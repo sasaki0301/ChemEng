@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Measurements and Significant Figures</title>
+
+<style>
+/* SAME STYLE AS TEMPLATE */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.quiz-container {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  width: 95%;
+  max-width: 850px;
+  text-align: center;
+}
+h2 { color: #136f63; margin-bottom: 25px; }
+.progress-wrapper { background:#e9f5ef; border-radius:8px; height:14px; width:100%; margin-bottom:25px; overflow:hidden;}
+.progress-bar { height:100%; background:linear-gradient(to right,#136f63,#2b7de9); width:0%; transition:width 0.4s;}
+.progress-text { text-align:right; font-size:0.95em; color:#174ea6; margin-bottom:10px; font-weight:600;}
+.question { font-size:1.3em; font-weight:600; color:#174ea6; margin-bottom:20px;}
+.choices { display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
+.choice { background:#e8ecf8; border:none; border-radius:10px; padding:14px; cursor:pointer; text-align:left;}
+.choice:hover { background:#d3dbf8; transform:translateY(-2px);}
+.choice.correct {background: #2b7de9;color: #fff;}
+.choice.incorrect {background: #e57373;color: #fff;}
+.explanation { background:#eef3ff; border-radius:10px; padding:14px; text-align:left; margin-bottom:20px; display:none;}
+.next-btn { background:#136f63; color:#fff; border:none; padding:12px 26px; border-radius:10px; cursor:pointer;}
+.result { font-size:1.4em; font-weight:bold; color:#174ea6;}
+.stars { font-size:2.5em; margin-top:10px;}
+.quiz-nav { margin-top:25px; display:flex; justify-content:center; gap:10px;}
+.quiz-btn { background:#e8ecf8; border:none; border-radius:8px; padding:10px 20px; cursor:pointer;}
+.quiz-btn.primary { background:#136f63; color:#fff;}
+@media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+
+.diagram-box {margin: 12px 0 20px; background: #f7fbff; border: 1px dashed #d8e9ff; padding: 10px; border-radius: 8px; }
+
+svg {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h2>Measurements and Significant Figures - Quiz</h2>
+
+<div class="progress-text" id="progressText"></div>
+<div class="progress-wrapper">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<div id="quizBox"></div>
+
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+
+</div>
+
+<script>
+
+  const quizData = [
+
+{q:"Why are measurements important in science and engineering?",c:["They make calculations longer","They provide quantitative information for decision-making","They eliminate all uncertainty","They replace observations"],a:1,e:"Measurements provide numerical information that allows scientists and engineers to analyze, compare, and design systems."},
+
+{q:"Which of the following is the SI base unit for length?",c:["Centimeter","Kilometer","Meter","Foot"],a:2,e:"The meter (m) is the SI base unit for length."},
+
+{q:"Which SI unit is used to measure mass?",c:["Gram","Pound","Kilogram","Ton"],a:2,e:"The kilogram (kg) is the SI base unit for mass."},
+
+{q:"Which SI unit is used to measure the amount of substance?",c:["Liter","Mole","Gram","Kelvin"],a:1,e:"The mole (mol) is the SI base unit for amount of substance."},
+
+{q:"What metric prefix represents 10⁻³?",c:["kilo","micro","milli","nano"],a:2,e:"Milli (m) represents 10⁻³ or one-thousandth."},
+
+{q:"Which metric prefix represents 10⁻⁶?",c:["milli","micro","nano","pico"],a:1,e:"Micro (μ) represents 10⁻⁶."},
+
+{q:"Convert 7.5 km to meters.",c:["750 m","7500 m","75,000 m","0.0075 m"],a:1,e:"1 km = 1000 m, so 7.5 km = 7500 m."},
+
+{q:"Convert 3500 mL to liters.",c:["35 L","3.5 L","0.35 L","350 L"],a:1,e:"1000 mL = 1 L, therefore 3500 mL = 3.5 L."},
+
+{q:"Which statement best describes accuracy?",c:["How close repeated measurements are to one another","How close a measurement is to the accepted value","The number of significant figures","The size of a measurement"],a:1,e:"Accuracy refers to closeness to the true or accepted value."},
+
+{q:"Which statement best describes precision?",c:["Closeness to the accepted value","Correct use of units","Consistency among repeated measurements","The smallest measurement possible"],a:2,e:"Precision refers to how closely repeated measurements agree with one another."},
+
+{q:"A student obtains measurements of 9.98 cm, 10.01 cm, and 10.00 cm. These measurements are best described as:",c:["Accurate but not precise","Precise","Neither accurate nor precise","Impossible to determine"],a:1,e:"The measurements are very close to each other, indicating high precision."},
+
+{q:"Which tool is commonly used for converting units correctly in chemistry and engineering?",c:["Scientific notation","Dimensional analysis","Graphing","Estimation"],a:1,e:"Dimensional analysis uses conversion factors to convert units systematically."},
+
+{q:"How many significant figures are present in the number 582.4?",c:["2","3","4","5"],a:2,e:"All nonzero digits are significant, so 582.4 has 4 significant figures."},
+
+{q:"How many significant figures are present in 0.00720?",c:["2","3","4","5"],a:1,e:"Leading zeros are not significant. The digits 7, 2, and the trailing zero after the decimal are significant, giving 3 significant figures."},
+
+{q:"How many significant figures are present in 1.050?",c:["2","3","4","5"],a:2,e:"The zero between 1 and 5 is significant, and the trailing zero after the decimal is also significant, giving 4 significant figures."},
+
+{q:"Which number contains exactly 2 significant figures?",c:["0.040","0.0045","4.500","105.0"],a:1,e:"Only the digits 4 and 5 are significant in 0.0045."},
+
+{q:"Perform the calculation using the correct significant figures: 8.2 + 3.56",c:["11.76","11.8","11.760","12"],a:1,e:"Addition is rounded to the least number of decimal places. The answer is 11.8."},
+
+{q:"Perform the calculation using the correct significant figures: 4.5 × 2.13",c:["9.585","9.6","9.59","10"],a:1,e:"Multiplication is rounded to the least number of significant figures. 4.5 has 2 sig figs, so the answer is 9.6."},
+
+{q:"An engineer records a beam length as 12.500 m. Why might this be preferred over writing 12.5 m?",c:["It uses fewer digits","It indicates greater measurement precision","It is easier to calculate","It changes the actual length"],a:1,e:"Additional significant figures communicate greater measurement precision."},
+
+{q:"A manufacturing company produces machine parts with dimensions accurate to ±0.001 mm. Why is this level of precision important?",c:["To increase the mass of the parts","To reduce the need for measurements","To ensure components fit and function correctly","To make calculations more difficult"],a:2,e:"Precision ensures parts meet design specifications and function properly in engineering systems."}
+
+];
+
+let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+	${q.svg || ""}
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+
+  const q = quizData[current];
+  const buttons = document.querySelectorAll(".choice");
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+
+    if (idx === q.a) {
+      btn.classList.add("correct");
+    }
+
+    if (idx === i && idx !== q.a) {
+      btn.classList.add("incorrect");
+    }
+  });
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>  
