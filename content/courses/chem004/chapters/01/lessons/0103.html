@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>Measurements and Significant Figures</title>
+
+<style>
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:#fafafa;
+  color:#222;
+  padding:24px;
+  line-height:1.8;
+  font-size:20px;
+}
+
+h1{color:#136f63;}
+h2{color:#136f63;margin-top:1.4em;}
+h3{color:#174ea6;}
+
+.section{margin-bottom:30px;}
+
+.key-box{
+  background:#e8f7f5;
+  border-left:6px solid #136f63;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.example-box{
+  background:#fff;
+  border-left:5px solid #2b7de9;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.visual-box{
+  background:#fff;
+  border-radius:12px;
+  padding:14px;
+  margin:16px 0;
+  border:1px solid #ddd;
+}
+
+.lesson-img{
+  width:100%;
+  max-width:720px;
+  display:block;
+  margin:0 auto;
+  border-radius:12px;
+}
+
+.caption{
+  text-align:center;
+  font-size:0.9em;
+  color:#555;
+}
+
+.activity{
+  background:#fff;
+  padding:14px;
+  border-radius:10px;
+  margin:14px 0;
+}
+
+.toggle-btn{
+  background:#136f63;
+  color:white;
+  border:none;
+  padding:6px 12px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.answer{
+  display:none;
+  margin-top:10px;
+  background:#eef3ff;
+  padding:10px;
+  border-radius:6px;
+}
+
+.formula{
+  font-size:22px;
+  font-weight:bold;
+  text-align:center;
+}
+
+.quiz-button{
+  background:#136f63;
+  color:white;
+  padding:12px 22px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:16px 0;
+  background:#fff;
+}
+
+th,td{
+  border:1px solid #ddd;
+  padding:10px;
+}
+
+th{background:#e8f7f5;}
+
+iframe{
+  width:100%;
+  max-width:100%;
+}
+</style>
+</head>
+<body>
+<h1>Chapter 1: Matter, Measurement, and the Language of Chemistry</h1>
+<h2>Lesson 3: Measurements and Significant Figures</h2>
+
+<div class="key-box">
+<strong>Engineering Scenario</strong><br><br>
+
+In 1999, NASA lost the Mars Climate Orbiter, a spacecraft worth approximately $125 million. The investigation revealed that one engineering team used English units (pound-force seconds) while another used SI units (newton-seconds).
+
+A simple measurement conversion error caused the spacecraft to enter Mars' atmosphere incorrectly and be destroyed.
+
+This event highlights a critical lesson:
+
+<strong>Engineering success depends on accurate measurements and proper calculations.</strong>
+</div>
+
+<div class="section">
+<h2>Learning Objectives</h2>
+
+After completing this lesson, you should be able to:
+
+<ul>
+<li>Understand the importance of measurement in science and engineering.</li>
+<li>Differentiate accuracy and precision.</li>
+<li>Use the International System of Units (SI).</li>
+<li>Convert between units using dimensional analysis.</li>
+<li>Understand uncertainty in measurements.</li>
+<li>Apply significant figure rules correctly.</li>
+<li>Perform calculations while maintaining appropriate precision.</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>Why Measurements Matter</h2>
+
+<p>
+Chemistry is a quantitative science. Engineers and scientists do not simply describe things—they measure them.
+</p>
+
+<p>
+Consider the following engineering applications:
+</p>
+
+<ul>
+<li>Measuring the thickness of semiconductor wafers.</li>
+<li>Determining the amount of fuel needed for a rocket.</li>
+<li>Calculating chemical concentrations in a water treatment plant.</li>
+<li>Measuring structural dimensions of a bridge.</li>
+<li>Determining battery capacity in electric vehicles.</li>
+</ul>
+
+<p>
+Even small measurement errors can lead to large engineering failures.
+</p>
+
+<div class="key-box">
+Measurements provide the numerical information needed to make scientific and engineering decisions.
+</div>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Engineering Measurements -->
+
+<img
+src="https://placehold.co/900x500?text=Engineering+Measurements"
+alt="Engineering Measurements"
+class="lesson-img">
+
+<p class="caption">
+Figure 1. Engineers rely on accurate measurements when designing systems and structures.
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>The International System of Units (SI)</h2>
+
+<p>
+Scientists and engineers around the world use the International System of Units (SI) to ensure consistency and accuracy.
+</p>
+
+<table>
+<tr>
+<th>Quantity</th>
+<th>SI Unit</th>
+<th>Symbol</th>
+</tr>
+
+<tr>
+<td>Length</td>
+<td>meter</td>
+<td>m</td>
+</tr>
+
+<tr>
+<td>Mass</td>
+<td>kilogram</td>
+<td>kg</td>
+</tr>
+
+<tr>
+<td>Time</td>
+<td>second</td>
+<td>s</td>
+</tr>
+
+<tr>
+<td>Temperature</td>
+<td>kelvin</td>
+<td>K</td>
+</tr>
+
+<tr>
+<td>Amount of Substance</td>
+<td>mole</td>
+<td>mol</td>
+</tr>
+
+<tr>
+<td>Electric Current</td>
+<td>ampere</td>
+<td>A</td>
+</tr>
+
+</table>
+
+<div class="key-box">
+The SI system allows scientists and engineers worldwide to communicate using a common language.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Metric Prefixes</h2>
+
+<p>
+Many measurements are either very large or very small. Prefixes make these values easier to express.
+</p>
+
+<table>
+<tr>
+<th>Prefix</th>
+<th>Symbol</th>
+<th>Multiplier</th>
+</tr>
+
+<tr>
+<td>kilo</td>
+<td>k</td>
+<td>10³</td>
+</tr>
+
+<tr>
+<td>centi</td>
+<td>c</td>
+<td>10⁻²</td>
+</tr>
+
+<tr>
+<td>milli</td>
+<td>m</td>
+<td>10⁻³</td>
+</tr>
+
+<tr>
+<td>micro</td>
+<td>μ</td>
+<td>10⁻⁶</td>
+</tr>
+
+<tr>
+<td>nano</td>
+<td>n</td>
+<td>10⁻⁹</td>
+</tr>
+
+<tr>
+<td>pico</td>
+<td>p</td>
+<td>10⁻¹²</td>
+</tr>
+
+</table>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Metric Prefix Scale -->
+
+<img
+src="https://placehold.co/900x500?text=Metric+Prefix+Scale"
+alt="Metric Prefix Scale"
+class="lesson-img">
+
+<p class="caption">
+Figure 2. Common metric prefixes used in science and engineering.
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Accuracy and Precision</h2>
+
+<p>
+These two terms are often confused, but they mean different things.
+</p>
+
+<h3>Accuracy</h3>
+
+<p>
+Accuracy refers to how close a measurement is to the true or accepted value.
+</p>
+
+<h3>Precision</h3>
+
+<p>
+Precision refers to how close repeated measurements are to one another.
+</p>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Accuracy vs Precision Target Diagram -->
+
+<img
+src="https://placehold.co/900x500?text=Accuracy+vs+Precision"
+alt="Accuracy versus Precision Diagram"
+class="lesson-img">
+
+<p class="caption">
+Figure 3. Comparison of accuracy and precision.
+</p>
+
+</div>
+
+<table>
+<tr>
+<th>Situation</th>
+<th>Accurate?</th>
+<th>Precise?</th>
+</tr>
+
+<tr>
+<td>Measurements near true value and close together</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Measurements close together but wrong</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td>Measurements scattered but average is correct</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+
+<tr>
+<td>Measurements scattered and incorrect</td>
+<td>No</td>
+<td>No</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="section">
+<h2>Uncertainty in Measurements</h2>
+
+<p>
+No measurement is perfectly exact.
+</p>
+
+<p>
+Every measuring device has limitations.
+</p>
+
+<div class="example-box">
+<strong>Example</strong><br><br>
+
+A ruler marked every 1 mm cannot measure with infinite precision.
+
+If a length falls between two markings, an estimate must be made.
+</div>
+
+<div class="key-box">
+Every measurement contains some degree of uncertainty.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Dimensional Analysis (Unit Conversion)</h2>
+
+<p>
+Dimensional analysis is a method used to convert between units using conversion factors.
+</p>
+
+<div class="formula">
+Conversion Factor = 1
+</div>
+
+<p>
+A conversion factor is a ratio of equivalent quantities.
+</p>
+
+<div class="example-box">
+1 m = 100 cm
+</div>
+
+<p>
+Therefore:
+</p>
+
+<div class="formula">
+100 cm / 1 m
+</div>
+
+<p>
+and
+</p>
+
+<div class="formula">
+1 m / 100 cm
+</div>
+
+<p>
+are both valid conversion factors.
+</p>
+
+</div>
+
+<div class="section">
+<h2>Worked Example 1: Unit Conversion</h2>
+
+<div class="example-box">
+<strong>Problem</strong><br><br>
+
+Convert 2.50 meters to centimeters.
+</div>
+
+<p><strong>Given:</strong></p>
+
+<p>2.50 m</p>
+
+<p><strong>Conversion Factor:</strong></p>
+
+<div class="formula">
+100 cm / 1 m
+</div>
+
+<p><strong>Solution:</strong></p>
+
+<div class="formula">
+2.50 m × (100 cm / 1 m)
+</div>
+
+<div class="formula">
+= 250 cm
+</div>
+
+<div class="key-box">
+<strong>Final Answer:</strong><br>
+250 cm
+</div>
+
+</div>
+
+<div class="section">
+<h2>Significant Figures</h2>
+
+<p>
+Significant figures indicate the precision of a measurement.
+</p>
+
+<p>
+They tell us which digits are meaningful and which are uncertain.
+</p>
+
+<div class="key-box">
+The final digit in a measurement is always estimated.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Rules for Significant Figures</h2>
+
+<table>
+<tr>
+<th>Rule</th>
+<th>Example</th>
+<th>Sig Figs</th>
+</tr>
+
+<tr>
+<td>All nonzero digits are significant</td>
+<td>456</td>
+<td>3</td>
+</tr>
+
+<tr>
+<td>Zeros between nonzero digits are significant</td>
+<td>1007</td>
+<td>4</td>
+</tr>
+
+<tr>
+<td>Leading zeros are not significant</td>
+<td>0.0045</td>
+<td>2</td>
+</tr>
+
+<tr>
+<td>Trailing zeros after decimal are significant</td>
+<td>5.200</td>
+<td>4</td>
+</tr>
+
+<tr>
+<td>Trailing zeros without decimal are ambiguous</td>
+<td>1500</td>
+<td>Depends</td>
+</tr>
+
+</table>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Significant Figures Examples -->
+
+<img
+src="https://placehold.co/900x500?text=Significant+Figures+Rules"
+alt="Significant Figures Rules"
+class="lesson-img">
+
+<p class="caption">
+Figure 4. Examples showing how significant figures are counted.
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Worked Example 2: Counting Significant Figures</h2>
+
+<div class="example-box">
+<strong>Problem</strong><br><br>
+
+Determine the number of significant figures in 0.00340
+</div>
+
+<p><strong>Solution:</strong></p>
+
+<ul>
+<li>Leading zeros are not significant.</li>
+<li>Digits 3 and 4 are significant.</li>
+<li>The trailing zero after the decimal is significant.</li>
+</ul>
+
+<p>
+Therefore:
+</p>
+
+<div class="formula">
+0.00340 → 3 Significant Figures
+</div>
+
+<div class="key-box">
+<strong>Final Answer:</strong><br>
+3 Significant Figures
+</div>
+
+</div>
+
+<div class="section">
+<h2>Significant Figures in Calculations</h2>
+
+<h3>Addition and Subtraction Rule</h3>
+
+<p>
+Round to the least number of decimal places.
+</p>
+
+<div class="example-box">
+12.35 + 4.2 = 16.55
+</div>
+
+<p>
+Rounded:
+</p>
+
+<div class="formula">
+16.6
+</div>
+
+<h3>Multiplication and Division Rule</h3>
+
+<p>
+Round to the least number of significant figures.
+</p>
+
+<div class="example-box">
+4.56 × 1.4
+</div>
+
+<div class="formula">
+= 6.384
+</div>
+
+<p>
+Rounded:
+</p>
+
+<div class="formula">
+6.4
+</div>
+
+</div>
+
+<div class="section">
+<h2>Worked Example 3: Engineering Application</h2>
+
+<div class="example-box">
+<strong>Problem</strong><br><br>
+
+A machinist measures a metal rod as 12.48 cm and another as 3.2 cm.
+
+What is the correct result for their combined length?
+</div>
+
+<p><strong>Solution:</strong></p>
+
+<div class="formula">
+12.48 + 3.2 = 15.68
+</div>
+
+<p>
+The least precise measurement has 1 decimal place.
+</p>
+
+<div class="formula">
+15.7 cm
+</div>
+
+<div class="key-box">
+<strong>Final Answer:</strong><br>
+15.7 cm
+</div>
+
+</div>
+
+<div class="section">
+<h2>Engineering Connection</h2>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Precision Manufacturing -->
+
+<img
+src="https://placehold.co/900x500?text=Precision+Manufacturing"
+alt="Precision Manufacturing"
+class="lesson-img">
+
+<p class="caption">
+Figure 5. Modern manufacturing requires extremely precise measurements.
+</p>
+
+</div>
+
+<p>
+Microchips, aircraft components, medical devices, and industrial machinery all depend on precise measurements.
+</p>
+
+<p>
+A small measurement error may result in:
+</p>
+
+<ul>
+<li>Mechanical failure</li>
+<li>Incorrect chemical concentrations</li>
+<li>Product defects</li>
+<li>Safety hazards</li>
+</ul>
+
+<div class="key-box">
+Engineering decisions are only as reliable as the measurements used to make them.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Check Your Understanding</h2>
+
+<div class="activity">
+<p><strong>1.</strong> What is the difference between accuracy and precision?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer('m1')">Show Answer</button>
+
+<div id="m1" class="answer">
+Accuracy measures closeness to the true value, while precision measures consistency among repeated measurements.
+</div>
+</div>
+
+<div class="activity">
+<p><strong>2.</strong> How many significant figures are in 0.02050?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer('m2')">Show Answer</button>
+
+<div id="m2" class="answer">
+4 significant figures.
+</div>
+</div>
+
+<div class="activity">
+<p><strong>3.</strong> Why is dimensional analysis important?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer('m3')">Show Answer</button>
+
+<div id="m3" class="answer">
+It allows accurate conversion between units and helps prevent calculation errors.
+</div>
+</div>
+
+</div>
+
+<div class="section">
+<h2>Lesson Summary</h2>
+
+<ul>
+<li>Measurements are essential in science and engineering.</li>
+<li>The SI system provides standardized units.</li>
+<li>Accuracy and precision describe measurement quality.</li>
+<li>All measurements contain uncertainty.</li>
+<li>Dimensional analysis is used for unit conversions.</li>
+<li>Significant figures indicate measurement precision.</li>
+<li>Proper rounding rules must be applied during calculations.</li>
+<li>Engineering systems depend on accurate measurements and calculations.</li>
+</ul>
+
+</div>
+
+  <script>
+function toggleAnswer(btn){
+  const ans = btn.nextElementSibling;
+  ans.style.display = ans.style.display === "block" ? "none" : "block";
+}
+
+document.getElementById("takeQuizBtn").addEventListener("click",(e)=>{
+  const quizId = e.target.dataset.quiz;
+  window.parent.postMessage({
+    type:"openQuiz",
+    quiz:quizId
+  },"*");
+});
+</script>
+</body>
+</html>
