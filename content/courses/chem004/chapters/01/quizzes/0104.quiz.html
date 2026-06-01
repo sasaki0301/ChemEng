@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Chapter 5 Assessment: Rotational Motion and Gravitation</title>
+
+<style>
+/* SAME STYLE AS TEMPLATE */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.quiz-container {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  width: 95%;
+  max-width: 850px;
+  text-align: center;
+}
+h2 { color: #136f63; margin-bottom: 25px; }
+.progress-wrapper { background:#e9f5ef; border-radius:8px; height:14px; width:100%; margin-bottom:25px; overflow:hidden;}
+.progress-bar { height:100%; background:linear-gradient(to right,#136f63,#2b7de9); width:0%; transition:width 0.4s;}
+.progress-text { text-align:right; font-size:0.95em; color:#174ea6; margin-bottom:10px; font-weight:600;}
+.question { font-size:1.3em; font-weight:600; color:#174ea6; margin-bottom:20px;}
+.choices { display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
+.choice { background:#e8ecf8; border:none; border-radius:10px; padding:14px; cursor:pointer; text-align:left;}
+.choice:hover { background:#d3dbf8; transform:translateY(-2px);}
+.choice.correct {background: #2b7de9;color: #fff;}
+.choice.incorrect {background: #e57373;color: #fff;}
+.explanation { background:#eef3ff; border-radius:10px; padding:14px; text-align:left; margin-bottom:20px; display:none;}
+.next-btn { background:#136f63; color:#fff; border:none; padding:12px 26px; border-radius:10px; cursor:pointer;}
+.result { font-size:1.4em; font-weight:bold; color:#174ea6;}
+.stars { font-size:2.5em; margin-top:10px;}
+.quiz-nav { margin-top:25px; display:flex; justify-content:center; gap:10px;}
+.quiz-btn { background:#e8ecf8; border:none; border-radius:8px; padding:10px 20px; cursor:pointer;}
+.quiz-btn.primary { background:#136f63; color:#fff;}
+@media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+
+.diagram-box {margin: 12px 0 20px; background: #f7fbff; border: 1px dashed #d8e9ff; padding: 10px; border-radius: 8px; }
+
+svg {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h2>Chapter 5 Assessment: Rotational Motion and Gravitation</h2>
+
+<div class="progress-text" id="progressText"></div>
+<div class="progress-wrapper">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<div id="quizBox"></div>
+
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+
+</div>
+
+<script>
+
+  const quizData = [
+
+{q:"Which statement best defines matter?",c:["Anything that produces energy","Anything that has mass and occupies space","Anything visible to the human eye","Anything made only of atoms"],a:1,e:"Matter is anything that has mass and occupies space."},
+
+{q:"According to the Particle Theory of Matter, particles are:",c:["Motionless in solids","Created when heated","Always moving","Present only in gases"],a:2,e:"Particles are always in motion regardless of the state of matter."},
+
+{q:"Which state of matter has particles that are far apart and move randomly at high speeds?",c:["Solid","Liquid","Gas","Plasma"],a:2,e:"Gas particles are widely separated and move rapidly in random directions."},
+
+{q:"Why are gases generally more compressible than liquids?",c:["Gas particles are larger","Gas particles move slower","There is more empty space between gas particles","Gas particles have stronger attractions"],a:2,e:"Large spaces between gas particles allow compression."},
+
+{q:"Which phase change occurs when a liquid becomes a gas?",c:["Condensation","Freezing","Deposition","Vaporization"],a:3,e:"Vaporization occurs when liquid particles gain enough energy to become gas."},
+
+{q:"The spreading of perfume throughout a room is an example of:",c:["Condensation","Diffusion","Sublimation","Deposition"],a:1,e:"Diffusion is the movement of particles from regions of high concentration to low concentration."},
+
+{q:"Which of the following is classified as a pure substance?",c:["Air","Saltwater","Distilled water","Concrete"],a:2,e:"Distilled water contains only H₂O molecules."},
+
+{q:"Which category best describes copper wire made entirely of copper atoms?",c:["Compound","Element","Homogeneous mixture","Heterogeneous mixture"],a:1,e:"Copper is an element because it contains only one type of atom."},
+
+{q:"Which of the following is a compound?",c:["Oxygen","Nitrogen","Carbon dioxide","Gold"],a:2,e:"Carbon dioxide contains carbon and oxygen chemically combined."},
+
+{q:"Which characteristic distinguishes compounds from mixtures?",c:["Compounds contain atoms","Compounds have fixed compositions","Compounds are always liquids","Compounds contain metals"],a:1,e:"Compounds have fixed chemical compositions and chemical bonds."},
+
+{q:"Which of the following is a homogeneous mixture?",c:["Sand and water","Oil and water","Saltwater","Granite"],a:2,e:"Saltwater has a uniform composition throughout."},
+
+{q:"Which of the following is a heterogeneous mixture?",c:["Brass","Air","Vinegar","Concrete"],a:3,e:"Concrete contains visibly different components and is non-uniform."},
+
+{q:"A material that has the same composition throughout is best described as:",c:["Homogeneous","Heterogeneous","Reactive","Corrosive"],a:0,e:"Homogeneous materials have uniform composition."},
+
+{q:"Which property can be observed without changing a substance into a new substance?",c:["Flammability","Corrosion tendency","Density","Reactivity with acid"],a:2,e:"Density is a physical property."},
+
+{q:"Rusting of iron demonstrates a:",c:["Physical property","Physical change","Chemical property","Extensive property"],a:2,e:"Rusting reveals the chemical behavior of iron."},
+
+{q:"Which of the following is an extensive property?",c:["Density","Boiling point","Mass","Color"],a:2,e:"Mass depends on the amount of matter present."},
+
+{q:"Which of the following is an intensive property?",c:["Volume","Length","Mass","Density"],a:3,e:"Density remains constant regardless of sample size."},
+
+{q:"A 10 g sample and a 100 g sample of the same substance have identical densities. This indicates density is:",c:["Chemical","Extensive","Intensive","Variable"],a:2,e:"Density is independent of sample size."},
+
+{q:"Which SI base unit is used for length?",c:["Centimeter","Meter","Kilometer","Foot"],a:1,e:"The meter (m) is the SI base unit of length."},
+
+{q:"Which SI base unit measures temperature?",c:["Celsius","Kelvin","Fahrenheit","Joule"],a:1,e:"The kelvin (K) is the SI base unit for temperature."},
+
+{q:"What metric prefix corresponds to 10³?",c:["Milli","Micro","Nano","Kilo"],a:3,e:"Kilo means one thousand or 10³."},
+
+{q:"What metric prefix corresponds to 10⁻⁶?",c:["Milli","Micro","Nano","Pico"],a:1,e:"Micro (μ) represents 10⁻⁶."},
+
+{q:"Convert 3.2 km to meters.",c:["320 m","3200 m","32,000 m","0.0032 m"],a:1,e:"1 km = 1000 m, so 3.2 km = 3200 m."},
+
+{q:"Convert 750 mL to liters.",c:["7.5 L","0.75 L","75 L","0.075 L"],a:1,e:"1000 mL = 1 L, therefore 750 mL = 0.75 L."},
+
+{q:"Dimensional analysis is primarily used for:",c:["Measuring density","Converting units","Finding mass","Calculating temperature"],a:1,e:"Dimensional analysis ensures proper unit conversion."},
+
+{q:"Which statement best describes accuracy?",c:["Consistency among measurements","Closeness to the accepted value","Number of significant figures","Measurement size"],a:1,e:"Accuracy refers to closeness to the true or accepted value."},
+
+{q:"Which statement best describes precision?",c:["Closeness to the true value","Consistency among repeated measurements","Correct unit selection","Measurement uncertainty"],a:1,e:"Precision describes how close repeated measurements are to one another."},
+
+{q:"A set of measurements is tightly grouped but far from the accepted value. These measurements are:",c:["Accurate and precise","Accurate but not precise","Precise but not accurate","Neither accurate nor precise"],a:2,e:"The measurements are consistent but incorrect."},
+
+{q:"How many significant figures are present in 0.00640?",c:["2","3","4","5"],a:1,e:"The digits 6, 4, and the trailing zero are significant."},
+
+{q:"How many significant figures are present in 10.05?",c:["3","4","5","6"],a:1,e:"All digits including the interior zero are significant."},
+
+{q:"How many significant figures are present in 0.02030?",c:["2","3","4","5"],a:2,e:"The digits 2, 0, 3, and the trailing zero are significant."},
+
+{q:"Which value contains exactly 4 significant figures?",c:["0.02030","0.00450","450","4.5"],a:0,e:"0.02030 contains four significant figures: 2, 0, 3, and the trailing 0."},
+
+{q:"Using the addition rule for significant figures, what is the correct result of 12.36 + 4.2?",c:["16.56","16.6","16.560","17"],a:1,e:"Round to the least number of decimal places (1 decimal place)."},
+
+{q:"Using the multiplication rule for significant figures, what is the correct result of 3.4 × 2.15?",c:["7.31","7.3","7.310","7"],a:1,e:"The result must have 2 significant figures because 3.4 has 2 significant figures."},
+
+{q:"An engineer is selecting materials for an aircraft. Which property would most likely be considered intensive?",c:["Mass","Volume","Density","Length"],a:2,e:"Density is an intensive property and helps compare materials regardless of sample size."},
+
+{q:"A water treatment engineer separates suspended solids from water using filtration. This works because the water sample is a:",c:["Compound","Element","Homogeneous mixture","Heterogeneous mixture"],a:3,e:"Suspended solids make the mixture non-uniform."}
+
+];
+
+  let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+	${q.svg || ""}
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+
+  const q = quizData[current];
+  const buttons = document.querySelectorAll(".choice");
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+
+    if (idx === q.a) {
+      btn.classList.add("correct");
+    }
+
+    if (idx === i && idx !== q.a) {
+      btn.classList.add("incorrect");
+    }
+  });
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>
