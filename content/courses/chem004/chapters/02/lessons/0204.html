@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>Electron Configuration</title>
+
+<style>
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:#fafafa;
+  color:#222;
+  padding:24px;
+  line-height:1.8;
+  font-size:20px;
+}
+
+h1{color:#136f63;}
+h2{color:#136f63;margin-top:1.4em;}
+h3{color:#174ea6;}
+
+.section{margin-bottom:30px;}
+
+.key-box{
+  background:#e8f7f5;
+  border-left:6px solid #136f63;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.example-box{
+  background:#fff;
+  border-left:5px solid #2b7de9;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.visual-box{
+  background:#fff;
+  border-radius:12px;
+  padding:14px;
+  margin:16px 0;
+  border:1px solid #ddd;
+}
+
+.lesson-img{
+  width:100%;
+  max-width:720px;
+  display:block;
+  margin:0 auto;
+  border-radius:12px;
+}
+
+.caption{
+  text-align:center;
+  font-size:0.9em;
+  color:#555;
+}
+
+.activity{
+  background:#fff;
+  padding:14px;
+  border-radius:10px;
+  margin:14px 0;
+}
+
+.toggle-btn{
+  background:#136f63;
+  color:white;
+  border:none;
+  padding:6px 12px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.answer{
+  display:none;
+  margin-top:10px;
+  background:#eef3ff;
+  padding:10px;
+  border-radius:6px;
+}
+
+.formula{
+  font-size:22px;
+  font-weight:bold;
+  text-align:center;
+}
+
+.quiz-button{
+  background:#136f63;
+  color:white;
+  padding:12px 22px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:16px 0;
+  background:#fff;
+}
+
+th,td{
+  border:1px solid #ddd;
+  padding:10px;
+}
+
+th{background:#e8f7f5;}
+
+iframe{
+  width:100%;
+  max-width:100%;
+}
+</style>
+</head>
+<body>
+
+  <h1>Chapter 2: Atomic Structure and Electronic Configuration</h1>
+<h2>Lesson 4: Electron Configuration</h2>
+
+<div class="key-box">
+<strong>Engineering Scenario</strong><br><br>
+
+Why does copper conduct electricity so well while glass does not? Why can silicon be used to build computer processors? Why are noble gases chemically stable while sodium reacts violently with water?
+
+The answer lies in how electrons are arranged within atoms.
+
+Electron configuration describes the distribution of electrons among energy levels and orbitals. Understanding electron configuration allows engineers and scientists to predict chemical behavior, electrical conductivity, bonding, and material properties.
+</div>
+
+<div class="section">
+<h2>Learning Objectives</h2>
+
+After completing this lesson, you should be able to:
+
+<ul>
+<li>Explain the significance of electron configuration.</li>
+<li>Describe the arrangement of electrons in energy levels and orbitals.</li>
+<li>Apply the Aufbau Principle, Pauli Exclusion Principle, and Hund's Rule.</li>
+<li>Write electron configurations for elements.</li>
+<li>Write noble gas shorthand electron configurations.</li>
+<li>Construct orbital diagrams.</li>
+<li>Relate electron configuration to engineering applications.</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>Why Electron Configuration Matters</h2>
+
+<p>
+Electrons determine most of the observable chemical and physical properties of matter.
+</p>
+
+<p>
+The arrangement of electrons influences:
+</p>
+
+<ul>
+<li>Chemical bonding</li>
+<li>Electrical conductivity</li>
+<li>Magnetism</li>
+<li>Material strength</li>
+<li>Chemical reactivity</li>
+<li>Semiconductor behavior</li>
+</ul>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Electronics and Electron Configuration -->
+
+<img
+src=""
+alt="Modern Electronics and Electron Configuration"
+class="lesson-img">
+
+<p class="caption">
+Figure 1. The operation of modern electronic devices depends on electron behavior.
+</p>
+
+</div>
+
+<div class="key-box">
+The properties of an element are largely determined by its electron configuration, especially its outermost electrons.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Energy Levels and Sublevels</h2>
+
+<p>
+Electrons occupy energy levels around the nucleus.
+</p>
+
+<p>
+Each principal energy level contains one or more sublevels.
+</p>
+
+<table>
+<tr>
+<th>Energy Level (n)</th>
+<th>Sublevels Present</th>
+</tr>
+
+<tr>
+<td>1</td>
+<td>s</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>s, p</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>s, p, d</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>s, p, d, f</td>
+</tr>
+
+</table>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Energy Levels and Sublevels -->
+
+<img
+src=""
+alt="Energy Levels and Sublevels"
+class="lesson-img">
+
+<p class="caption">
+Figure 2. Energy levels contain specific sublevels where electrons reside.
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Orbital Capacities</h2>
+
+<p>
+Each type of orbital can hold a maximum number of electrons.
+</p>
+
+<table>
+<tr>
+<th>Sublevel</th>
+<th>Number of Orbitals</th>
+<th>Maximum Electrons</th>
+</tr>
+
+<tr>
+<td>s</td>
+<td>1</td>
+<td>2</td>
+</tr>
+
+<tr>
+<td>p</td>
+<td>3</td>
+<td>6</td>
+</tr>
+
+<tr>
+<td>d</td>
+<td>5</td>
+<td>10</td>
+</tr>
+
+<tr>
+<td>f</td>
+<td>7</td>
+<td>14</td>
+</tr>
+
+</table>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Orbital Capacities -->
+
+<img
+src=""
+alt="Orbital Capacities"
+class="lesson-img">
+
+<p class="caption">
+Figure 3. Maximum electron capacities of s, p, d, and f orbitals.
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>The Three Rules of Electron Configuration</h2>
+
+<p>
+Electrons fill orbitals according to three important rules.
+</p>
+
+</div>
+
+<div class="section">
+<h2>1. Aufbau Principle</h2>
+
+<p>
+The Aufbau Principle states that electrons occupy the lowest available energy orbitals first.
+</p>
+
+<p>
+Think of electrons as filling the lowest floors of a building before moving to higher floors.
+</p>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Aufbau Principle Diagram -->
+
+<img
+src=""
+alt="Aufbau Principle Diagram"
+class="lesson-img">
+
+<p class="caption">
+Figure 4. Electrons fill lower-energy orbitals before higher-energy orbitals.
+</p>
+
+</div>
+
+<div class="key-box">
+Electrons always seek the lowest-energy arrangement possible.
+</div>
+
+</div>
+
+<div class="section">
+<h2>2. Pauli Exclusion Principle</h2>
+
+<p>
+No two electrons in the same atom can have identical sets of four quantum numbers.
+</p>
+
+<p>
+This means that an orbital can hold a maximum of two electrons with opposite spins.
+</p>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Pauli Exclusion Principle -->
+
+<img
+src=""
+alt="Pauli Exclusion Principle"
+class="lesson-img">
+
+<p class="caption">
+Figure 5. Two electrons in the same orbital must have opposite spins.
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>3. Hund's Rule</h2>
+
+<p>
+When electrons occupy orbitals of equal energy, they fill each orbital singly before pairing.
+</p>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Hund Rule Diagram -->
+
+<img
+src=""
+alt="Hund Rule Diagram"
+class="lesson-img">
+
+<p class="caption">
+Figure 6. Electrons occupy empty orbitals before pairing.
+</p>
+
+</div>
+
+<div class="key-box">
+Electrons prefer to spread out before pairing up.
+</div>
+
+</div>
+
+<div class="section">
+<h2>The Aufbau Filling Order</h2>
+
+<p>
+Electrons fill orbitals according to increasing energy.
+</p>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Aufbau Diagonal Rule -->
+
+<img
+src=""
+alt="Aufbau Diagonal Rule"
+class="lesson-img">
+
+<p class="caption">
+Figure 7. The diagonal rule helps determine electron filling order.
+</p>
+
+</div>
+
+<div class="formula">
+1s → 2s → 2p → 3s → 3p → 4s → 3d → 4p → 5s → 4d → 5p → 6s ...
+</div>
+
+</div>
+
+<div class="section">
+<h2>Writing Electron Configurations</h2>
+
+<p>
+Electron configurations indicate how electrons are distributed among orbitals.
+</p>
+
+<p>
+Each orbital notation contains:
+</p>
+
+<ul>
+<li>Energy level number</li>
+<li>Sublevel letter</li>
+<li>Superscript indicating number of electrons</li>
+</ul>
+
+<div class="example-box">
+Example:
+
+<div class="formula">
+1s²
+</div>
+
+This means:
+<ul>
+<li>Energy level = 1</li>
+<li>s orbital</li>
+<li>Contains 2 electrons</li>
+</ul>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Worked Example 1: Hydrogen</h2>
+
+<div class="example-box">
+<strong>Problem</strong><br><br>
+
+Write the electron configuration of Hydrogen (Atomic Number = 1).
+</div>
+
+<p><strong>Solution</strong></p>
+
+<p>
+Hydrogen has 1 electron.
+</p>
+
+<p>
+The first electron enters the lowest-energy orbital, 1s.
+</p>
+
+<div class="formula">
+1s¹
+</div>
+
+<div class="key-box">
+<strong>Answer:</strong><br>
+1s¹
+</div>
+
+</div>
+
+<div class="section">
+<h2>Worked Example 2: Carbon</h2>
+
+<div class="example-box">
+<strong>Problem</strong><br><br>
+
+Write the electron configuration of Carbon (Atomic Number = 6).
+</div>
+
+<p><strong>Solution</strong></p>
+
+<p>
+Carbon has 6 electrons.
+</p>
+
+<div class="formula">
+1s² 2s² 2p²
+</div>
+
+<p>
+Check:
+</p>
+
+<div class="formula">
+2 + 2 + 2 = 6 electrons
+</div>
+
+<div class="key-box">
+<strong>Answer:</strong><br>
+1s² 2s² 2p²
+</div>
+
+</div>
+
+<div class="section">
+<h2>Worked Example 3: Sodium</h2>
+
+<div class="example-box">
+<strong>Problem</strong><br><br>
+
+Write the electron configuration of Sodium (Atomic Number = 11).
+</div>
+
+<p><strong>Solution</strong></p>
+
+<p>
+Sodium has 11 electrons.
+</p>
+
+<div class="formula">
+1s² 2s² 2p⁶ 3s¹
+</div>
+
+<p>
+Verification:
+</p>
+
+<div class="formula">
+2 + 2 + 6 + 1 = 11
+</div>
+
+<div class="key-box">
+<strong>Answer:</strong><br>
+1s² 2s² 2p⁶ 3s¹
+</div>
+
+</div>
+
+<div class="section">
+<h2>Orbital Diagrams</h2>
+
+<p>
+Orbital diagrams provide a visual representation of electron arrangement.
+</p>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Orbital Diagram Example -->
+
+<img
+src=""
+alt="Orbital Diagram Example"
+class="lesson-img">
+
+<p class="caption">
+Figure 8. Orbital diagrams show electron occupancy and spin.
+</p>
+
+</div>
+
+<div class="example-box">
+Carbon:
+
+1s [↑↓]
+
+2s [↑↓]
+
+2p [↑] [↑] [ ]
+</div>
+
+<p>
+Notice that Hund's Rule is followed.
+</p>
+
+</div>
+
+<div class="section">
+<h2>Noble Gas Shorthand Notation</h2>
+
+<p>
+Long electron configurations can be abbreviated using noble gases.
+</p>
+
+<div class="example-box">
+
+Sodium:
+
+Full Configuration:
+
+<div class="formula">
+1s² 2s² 2p⁶ 3s¹
+</div>
+
+Nearest Noble Gas:
+
+<div class="formula">
+[Ne] 3s¹
+</div>
+
+</div>
+
+<div class="key-box">
+Noble gas notation simplifies electron configurations for larger atoms.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Interactive Simulation</h2>
+
+<p>
+Explore how electrons occupy orbitals and energy levels.
+</p>
+
+<div class="visual-box">
+
+<iframe
+src="https://phet.colorado.edu/sims/html/build-an-atom/latest/build-an-atom_en.html"
+height="650">
+</iframe>
+
+</div>
+
+<div class="activity">
+
+<h3>Simulation Investigation</h3>
+
+<ol>
+<li>Build Carbon, Oxygen, and Neon.</li>
+<li>Observe how electrons fill energy levels.</li>
+<li>Compare partially filled and completely filled outer shells.</li>
+</ol>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">
+Show Answers
+</button>
+
+<div class="answer">
+<ol>
+<li>Electrons fill lower-energy levels first.</li>
+<li>Neon has a complete outer shell.</li>
+<li>Atoms with complete outer shells tend to be more stable.</li>
+</ol>
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Engineering Connection</h2>
+
+<div class="key-box">
+<strong>Electron Configuration and Semiconductor Technology</strong>
+</div>
+
+<p>
+The semiconductor industry relies heavily on electron configurations.
+</p>
+
+<p>
+Silicon has the electron configuration:
+</p>
+
+<div class="formula">
+1s² 2s² 2p⁶ 3s² 3p²
+</div>
+
+<p>
+Its four valence electrons make silicon ideal for building transistors and integrated circuits.
+</p>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Semiconductor Technology -->
+
+<img
+src=""
+alt="Semiconductor Technology"
+class="lesson-img">
+
+<p class="caption">
+Figure 9. Semiconductor devices depend on electron arrangement and movement.
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Check Your Understanding</h2>
+
+<div class="activity">
+
+<p><strong>1.</strong> What principle states that electrons fill the lowest-energy orbitals first?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">
+Show Answer
+</button>
+
+<div class="answer">
+The Aufbau Principle.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>2.</strong> How many electrons can occupy a p subshell?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">
+Show Answer
+</button>
+
+<div class="answer">
+A p subshell can hold a maximum of 6 electrons.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>3.</strong> Why are noble gases generally unreactive?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">
+Show Answer
+</button>
+
+<div class="answer">
+They possess complete valence shells, making them very stable.
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Lesson Summary</h2>
+
+<ul>
+<li>Electron configuration describes the arrangement of electrons in atoms.</li>
+<li>Electrons fill orbitals according to the Aufbau Principle.</li>
+<li>The Pauli Exclusion Principle limits each orbital to two electrons with opposite spins.</li>
+<li>Hund's Rule requires electrons to occupy empty orbitals before pairing.</li>
+<li>s, p, d, and f orbitals have different capacities.</li>
+<li>Orbital diagrams visually represent electron arrangements.</li>
+<li>Noble gas notation provides a simplified way to write electron configurations.</li>
+<li>Electron configuration explains chemical behavior and many engineering applications.</li>
+</ul>
+
+</div>
+
+  <script>
+function toggleAnswer(btn){
+  const ans = btn.nextElementSibling;
+  ans.style.display = ans.style.display === "block" ? "none" : "block";
+}
+
+document.getElementById("takeQuizBtn").addEventListener("click",(e)=>{
+  const quizId = e.target.dataset.quiz;
+  window.parent.postMessage({
+    type:"openQuiz",
+    quiz:quizId
+  },"*");
+});
+</script>
+</body>
+</html>
