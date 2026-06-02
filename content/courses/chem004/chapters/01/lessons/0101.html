@@ -7,628 +7,1100 @@
 <title>Chapter 1: Matter, Measurement, and the Language of Chemistry</title>
 
 <style>
-body{
-  font-family:"Segoe UI",Arial,sans-serif;
-  background:#fafafa;
-  color:#222;
-  padding:24px;
-  line-height:1.8;
-  font-size:20px;
+:root{
+  --bg:#f6f8fb;
+  --surface:#ffffff;
+  --surface-soft:#f0f7f6;
+  --ink:#172033;
+  --muted:#5d6678;
+  --teal:#136f63;
+  --teal-dark:#0d5a50;
+  --blue:#174ea6;
+  --blue-soft:#edf4ff;
+  --amber:#8a5a00;
+  --amber-soft:#fff7df;
+  --rose:#9a3412;
+  --rose-soft:#fff1ec;
+  --border:#d9e2ea;
+  --shadow:0 16px 36px rgba(21,34,50,.08);
+  --radius:14px;
 }
 
-h1{color:#136f63;}
-h2{color:#136f63;margin-top:1.4em;}
-h3{color:#174ea6;}
+*{
+  box-sizing:border-box;
+}
 
-.section{margin-bottom:30px;}
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.7;
+  font-size:18px;
+}
+
+/* UI improvement: a centered lesson shell keeps reading lines comfortable on desktop while staying fluid on phones. */
+.lesson-container{
+  width:min(1120px,100%);
+  margin:0 auto;
+  padding:24px;
+}
+
+.lesson-hero{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 210px;
+  gap:24px;
+  align-items:center;
+  margin:8px 0 24px;
+  background:linear-gradient(135deg,#ffffff 0%,#eef8f6 100%);
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+}
+
+.chapter-kicker{
+  margin:0 0 8px;
+  color:var(--teal-dark);
+  font-size:.9rem;
+  font-weight:800;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+
+h1,h2,h3{
+  line-height:1.25;
+  letter-spacing:0;
+}
+
+h1{
+  margin:0;
+  color:var(--ink);
+  font-size:clamp(2rem,4vw,3.25rem);
+}
+
+h2{
+  color:var(--teal-dark);
+  font-size:1.55rem;
+  margin:0 0 14px;
+}
+
+h3{
+  color:var(--blue);
+  font-size:1.12rem;
+  margin:0 0 10px;
+}
+
+p{
+  margin:0 0 14px;
+}
+
+ul,ol{
+  margin:10px 0 0 1.25rem;
+  padding:0;
+}
+
+li + li{
+  margin-top:6px;
+}
+
+.lead{
+  max-width:760px;
+  margin-top:14px;
+  color:#344057;
+  font-size:1.08rem;
+}
+
+.meta-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:18px;
+}
+
+.meta-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  min-height:36px;
+  padding:7px 12px;
+  border:1px solid rgba(19,111,99,.22);
+  border-radius:999px;
+  background:#ffffff;
+  color:#26433f;
+  font-size:.92rem;
+  font-weight:700;
+}
+
+.topic-card{
+  min-height:180px;
+  display:grid;
+  place-items:center;
+  border-radius:var(--radius);
+  background:#12233d;
+  color:#ffffff;
+  position:relative;
+  overflow:hidden;
+}
+
+.topic-card::before,
+.topic-card::after{
+  content:"";
+  position:absolute;
+  border:2px solid rgba(255,255,255,.28);
+  border-radius:50%;
+  width:132px;
+  height:46px;
+}
+
+.topic-card::before{
+  transform:rotate(28deg);
+}
+
+.topic-card::after{
+  transform:rotate(-28deg);
+}
+
+.topic-mark{
+  width:76px;
+  height:76px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:#2fb39e;
+  color:#ffffff;
+  font-weight:900;
+  letter-spacing:.04em;
+  z-index:1;
+}
+
+/* UI improvement: lesson content is grouped into clear cards so students can scan concepts, examples, and checks quickly. */
+.section{
+  margin-bottom:22px;
+  padding:24px;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  background:var(--surface);
+  box-shadow:0 8px 24px rgba(21,34,50,.05);
+}
+
+.section-intro{
+  color:var(--muted);
+  max-width:780px;
+}
+
+.section-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+}
+
+.objectives-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(260px,.55fr);
+  gap:18px;
+}
+
+.objective-list{
+  display:grid;
+  gap:10px;
+  margin:0;
+  list-style:none;
+}
+
+.objective-list li{
+  padding:12px 14px;
+  border-radius:10px;
+  background:#f7fbfb;
+  border:1px solid #dcebe8;
+}
+
+.key-box,
+.example-box,
+.visual-box,
+.activity,
+.formula-card,
+.note-box,
+.application-card,
+.summary-card{
+  border-radius:12px;
+  padding:18px;
+  margin:16px 0;
+}
 
 .key-box{
-  background:#e8f7f5;
-  border-left:6px solid #136f63;
-  padding:14px;
-  border-radius:8px;
-  margin:16px 0;
+  background:var(--surface-soft);
+  border-left:6px solid var(--teal);
 }
 
 .example-box{
-  background:#fff;
-  border-left:5px solid #2b7de9;
-  padding:14px;
-  border-radius:8px;
-  margin:16px 0;
+  background:var(--blue-soft);
+  border-left:5px solid var(--blue);
+}
+
+.note-box{
+  background:var(--amber-soft);
+  border-left:5px solid var(--amber);
+}
+
+.application-card{
+  background:var(--rose-soft);
+  border-left:5px solid var(--rose);
 }
 
 .visual-box{
-  background:#fff;
-  border-radius:12px;
+  background:#ffffff;
+  border:1px solid var(--border);
+}
+
+.activity{
+  background:#f8fbff;
+  border:1px solid #d8e5ff;
+}
+
+.quick-check{
+  background:#fbfdff;
+}
+
+.formula-card{
+  background:#101c2f;
+  color:#ffffff;
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.formula-card h3{
+  color:#bceee6;
+}
+
+.formula{
+  margin:12px 0;
+  padding:18px;
+  border-radius:10px;
+  background:rgba(255,255,255,.09);
+  font-size:1.5rem;
+  font-weight:800;
+  text-align:center;
+}
+
+.formula-card dl,
+.example-steps dl{
+  display:grid;
+  grid-template-columns:max-content minmax(0,1fr);
+  gap:8px 14px;
+  margin:12px 0 0;
+}
+
+.formula-card dt,
+.example-steps dt{
+  font-weight:800;
+}
+
+.formula-card dd,
+.example-steps dd{
+  margin:0;
+}
+
+.example-steps{
+  display:grid;
+  gap:12px;
+  margin-top:14px;
+}
+
+.step{
   padding:14px;
-  margin:16px 0;
-  border:1px solid #ddd;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:#ffffff;
+}
+
+.step-title{
+  display:block;
+  margin-bottom:6px;
+  color:var(--teal-dark);
+  font-weight:800;
+}
+
+.final-answer{
+  background:#e9f8f1;
+  border:1px solid #b9e4ce;
+}
+
+/* UI improvement: figure placeholders reserve stable space for future diagrams without broken image icons. */
+.figure-placeholder{
+  min-height:220px;
+  display:grid;
+  place-items:center;
+  padding:24px;
+  border:2px dashed #aebdca;
+  border-radius:12px;
+  background:repeating-linear-gradient(135deg,#f8fafc,#f8fafc 12px,#eef3f7 12px,#eef3f7 24px);
+  color:#405068;
+  text-align:center;
+  font-weight:700;
 }
 
 .lesson-img{
   width:100%;
   max-width:720px;
-  display:block;
   margin:0 auto;
-  border-radius:12px;
 }
 
 .caption{
   text-align:center;
-  font-size:0.9em;
-  color:#555;
+  font-size:.9em;
+  color:var(--muted);
+  margin:12px 0 0;
 }
 
-.activity{
-  background:#fff;
-  padding:14px;
-  border-radius:10px;
-  margin:14px 0;
-}
-
-.toggle-btn{
-  background:#136f63;
-  color:white;
-  border:none;
-  padding:6px 12px;
-  border-radius:6px;
-  cursor:pointer;
-}
-
-.answer{
-  display:none;
-  margin-top:10px;
-  background:#eef3ff;
-  padding:10px;
-  border-radius:6px;
-}
-
-.formula{
-  font-size:22px;
-  font-weight:bold;
-  text-align:center;
-}
-
-.quiz-button{
-  background:#136f63;
-  color:white;
-  padding:12px 22px;
-  border-radius:10px;
-  border:none;
-  cursor:pointer;
-  font-weight:bold;
+.table-wrap{
+  width:100%;
+  overflow-x:auto;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:#ffffff;
 }
 
 table{
   width:100%;
+  min-width:720px;
   border-collapse:collapse;
-  margin:16px 0;
+  margin:0;
   background:#fff;
 }
 
 th,td{
-  border:1px solid #ddd;
-  padding:10px;
+  border-bottom:1px solid var(--border);
+  padding:12px;
+  vertical-align:top;
+  text-align:left;
 }
 
-th{background:#e8f7f5;}
+th{
+  background:#e8f7f5;
+  color:#113f39;
+}
+
+tr:last-child td{
+  border-bottom:none;
+}
+
+.toggle-btn,
+.quiz-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:42px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:800;
+  line-height:1.2;
+}
+
+.toggle-btn{
+  background:var(--teal);
+  color:white;
+  padding:8px 14px;
+}
+
+.toggle-btn:hover,
+.toggle-btn:focus-visible,
+.quiz-button:hover,
+.quiz-button:focus-visible{
+  outline:3px solid rgba(47,179,158,.28);
+  outline-offset:2px;
+}
+
+.answer{
+  display:none;
+  margin-top:12px;
+  background:#eef3ff;
+  padding:12px;
+  border-radius:8px;
+  border:1px solid #d5e1ff;
+}
+
+.quiz-panel{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  margin-top:18px;
+  padding:18px;
+  border-radius:12px;
+  background:#12233d;
+  color:#ffffff;
+}
+
+.quiz-panel p{
+  margin:0;
+  color:#dbe8ff;
+}
+
+.quiz-button{
+  background:#ffffff;
+  color:#123349;
+  padding:12px 20px;
+  white-space:nowrap;
+}
 
 iframe{
   width:100%;
   max-width:100%;
+  border:0;
+  border-radius:10px;
+}
+
+.screen-reader-text{
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
+}
+
+@media (max-width:820px){
+  body{
+    font-size:17px;
+  }
+
+  .lesson-container{
+    padding:14px;
+  }
+
+  .lesson-hero,
+  .objectives-grid,
+  .section-grid{
+    grid-template-columns:1fr;
+  }
+
+  .topic-card{
+    min-height:132px;
+  }
+
+  .section{
+    padding:18px;
+  }
+
+  .formula-card dl,
+  .example-steps dl{
+    grid-template-columns:1fr;
+  }
+
+  .quiz-button{
+    width:100%;
+  }
 }
 </style>
 </head>
 <body>
-
-  <h1>Chapter 1: Matter, Measurement, and the Language of Chemistry</h1>
-<h2>Lesson 1: Particle Nature of Matter</h2>
-
-<div class="key-box">
-<strong>Engineering Scenario</strong><br><br>
-
-A smartphone processor contains billions of transistors packed into a tiny chip. Engineers design these devices by controlling materials at the atomic level. Although atoms are invisible to the naked eye, understanding how particles behave allows engineers to develop faster computers, stronger materials, and more efficient energy systems.
-
-To understand engineering materials and chemical processes, we must first understand the particle nature of matter.
-</div>
-
-<div class="section">
-<h2>Learning Objectives</h2>
-
-After completing this lesson, you should be able to:
-
-<ul>
-<li>Explain the particle theory of matter.</li>
-<li>Describe the arrangement and motion of particles in solids, liquids, and gases.</li>
-<li>Relate temperature to particle motion.</li>
-<li>Explain diffusion and phase changes using particle behavior.</li>
-<li>Apply particle theory to real-world engineering situations.</li>
-</ul>
-</div>
-
-<div class="section">
-<h2>What is Matter?</h2>
-
-<p>
-Matter is anything that has <strong>mass</strong> and occupies <strong>space</strong>.
-Everything around us—including air, water, metals, plastics, soil, and living organisms—is matter.
-</p>
-
-<div class="example-box">
-<strong>Examples of Matter</strong>
-
-<ul>
-<li>Water in a bottle</li>
-<li>Steel used in bridges</li>
-<li>Air inside a tire</li>
-<li>Silicon inside computer chips</li>
-<li>Wood used in construction</li>
-</ul>
-</div>
-
-<p>
-Scientists once believed matter was continuous and could be divided forever into smaller pieces.
-Modern science has shown that matter is actually composed of tiny particles.
-</p>
-
-<div class="key-box">
-<strong>Fundamental Idea:</strong><br>
-All matter is made up of extremely tiny particles such as atoms, molecules, and ions.
-</div>
-</div>
-
-<div class="section">
-<h2>Particle Theory of Matter</h2>
-
-<p>
-The Particle Theory of Matter provides a model that explains the behavior of all substances.
-Although particles are too small to see directly without specialized instruments, their effects can be observed everywhere.
-</p>
-
-<table>
-<tr>
-<th>Principle</th>
-<th>Explanation</th>
-</tr>
-
-<tr>
-<td>All matter is made of particles</td>
-<td>Everything consists of tiny particles.</td>
-</tr>
-
-<tr>
-<td>Particles are constantly moving</td>
-<td>Particles never stop moving.</td>
-</tr>
-
-<tr>
-<td>There are spaces between particles</td>
-<td>The amount of empty space varies among solids, liquids, and gases.</td>
-</tr>
-
-<tr>
-<td>Particles attract one another</td>
-<td>Forces between particles help hold matter together.</td>
-</tr>
-
-<tr>
-<td>Temperature affects particle motion</td>
-<td>Higher temperature means faster particle motion.</td>
-</tr>
-</table>
-
-</div>
-
-<div class="section">
-<h2>Evidence for the Particle Nature of Matter</h2>
-
-<h3>1. Diffusion</h3>
-
-<p>
-When perfume is sprayed in one corner of a room, people on the other side eventually smell it.
-The perfume particles spread throughout the room by moving randomly through the air.
-</p>
-
-<div class="example-box">
-<strong>Real-Life Example:</strong><br>
-The smell of freshly cooked food often spreads throughout a building even though the food remains in the kitchen.
-</div>
-
-<h3>2. Dissolving</h3>
-
-<p>
-When sugar is stirred into water, the sugar appears to disappear.
-However, the sugar particles are still present and become distributed among the water particles.
-</p>
-
-<h3>3. Brownian Motion</h3>
-
-<p>
-Tiny particles suspended in liquids can be observed moving randomly.
-This random movement occurs because invisible molecules continuously collide with them.
-</p>
-
-</div>
-
-<div class="section">
-<h2>States of Matter and Particle Arrangement</h2>
-
-<p>
-The arrangement and movement of particles determine the state of matter.
-</p>
-
-<div class="visual-box">
-<img src="" class="lesson-img">
-<p class="caption">Figure 1. Particle arrangement in solids, liquids, and gases.</p>
-</div>
-
-<table>
-<tr>
-<th>Property</th>
-<th>Solid</th>
-<th>Liquid</th>
-<th>Gas</th>
-</tr>
-
-<tr>
-<td>Shape</td>
-<td>Definite</td>
-<td>Takes shape of container</td>
-<td>Takes shape of container</td>
-</tr>
-
-<tr>
-<td>Volume</td>
-<td>Definite</td>
-<td>Definite</td>
-<td>Variable</td>
-</tr>
-
-<tr>
-<td>Particle Spacing</td>
-<td>Very close</td>
-<td>Close</td>
-<td>Far apart</td>
-</tr>
-
-<tr>
-<td>Particle Motion</td>
-<td>Vibrates</td>
-<td>Slides</td>
-<td>Rapid random motion</td>
-</tr>
-
-<tr>
-<td>Compressibility</td>
-<td>Very low</td>
-<td>Low</td>
-<td>High</td>
-</tr>
-
-</table>
-
-</div>
-
-<div class="section">
-<h2>Solids</h2>
-
-<p>
-In solids, particles are packed closely together and held by strong attractive forces.
-Although particles cannot move freely, they continuously vibrate around fixed positions.
-</p>
-
-<div class="example-box">
-<strong>Examples:</strong>
-
-<ul>
-<li>Steel beams</li>
-<li>Concrete</li>
-<li>Glass</li>
-<li>Ice</li>
-</ul>
-</div>
-
-<p>
-Because particles are tightly packed, solids maintain both their shape and volume.
-</p>
-
-<div class="key-box">
-Strong particle attraction explains why solids are difficult to compress.
-</div>
-
-</div>
-
-<div class="section">
-<h2>Liquids</h2>
-
-<p>
-In liquids, particles remain close together but are not fixed in position.
-The particles can move and slide past one another.
-</p>
-
-<div class="example-box">
-<strong>Examples:</strong>
-
-<ul>
-<li>Water</li>
-<li>Gasoline</li>
-<li>Cooking oil</li>
-<li>Mercury</li>
-</ul>
-</div>
-
-<p>
-Liquids have a definite volume but take the shape of their container.
-</p>
-
-</div>
-
-<div class="section">
-<h2>Gases</h2>
-
-<p>
-Gas particles are far apart and move rapidly in all directions.
-The attractive forces between particles are very weak compared to those in solids and liquids.
-</p>
-
-<div class="example-box">
-<strong>Examples:</strong>
-
-<ul>
-<li>Oxygen</li>
-<li>Nitrogen</li>
-<li>Carbon dioxide</li>
-<li>Helium</li>
-</ul>
-</div>
-
-<p>
-Because of the large spaces between particles, gases are highly compressible.
-</p>
-
-<div class="key-box">
-The ability of gases to compress makes compressed-air systems and gas storage technologies possible.
-</div>
-
-</div>
-
-<div class="section">
-<h2>Interactive Simulation</h2>
-
-<p>
-Use the simulation below to observe how particles move in solids, liquids, and gases as temperature changes.
-</p>
-
-<div class="visual-box">
-<iframe
-src="https://phet.colorado.edu/sims/html/states-of-matter/latest/states-of-matter_en.html"
-height="600">
-</iframe>
-</div>
-
-<div class="activity">
-<h3>Simulation Questions</h3>
-
-<ol>
-<li>What happens to particle motion when temperature increases?</li>
-<li>Which state has the largest spaces between particles?</li>
-<li>Why are gases easier to compress than solids?</li>
-</ol>
-
-<button class="toggle-btn" onclick="toggleAnswer('sim1')">Show Answers</button>
-
-<div id="sim1" class="answer">
-<ol>
-<li>Particles move faster.</li>
-<li>Gas.</li>
-<li>Gas particles have large empty spaces between them.</li>
-</ol>
-</div>
-
-</div>
-
-</div>
-
-<div class="section">
-<h2>Temperature and Particle Motion</h2>
-
-<p>
-Temperature is directly related to the average kinetic energy of particles.
-</p>
-
-<div class="key-box">
-Higher temperature = Faster particle motion
-</div>
-
-<p>
-When a substance is heated, its particles gain energy and move faster.
-When a substance is cooled, its particles lose energy and move more slowly.
-</p>
-
-<div class="example-box">
-<strong>Example:</strong><br>
-A hot cup of coffee cools because its particles transfer energy to the surrounding air.
-As energy leaves the coffee, particle motion decreases.
-</div>
-
-</div>
-
-<div class="section">
-<h2>Phase Changes and Particle Behavior</h2>
-
-<table>
-<tr>
-<th>Process</th>
-<th>Change</th>
-<th>Particle Explanation</th>
-</tr>
-
-<tr>
-<td>Melting</td>
-<td>Solid → Liquid</td>
-<td>Particles gain energy and move more freely.</td>
-</tr>
-
-<tr>
-<td>Freezing</td>
-<td>Liquid → Solid</td>
-<td>Particles lose energy and become fixed.</td>
-</tr>
-
-<tr>
-<td>Vaporization</td>
-<td>Liquid → Gas</td>
-<td>Particles gain enough energy to escape.</td>
-</tr>
-
-<tr>
-<td>Condensation</td>
-<td>Gas → Liquid</td>
-<td>Particles lose energy and move closer together.</td>
-</tr>
-
-<tr>
-<td>Sublimation</td>
-<td>Solid → Gas</td>
-<td>Particles bypass the liquid state.</td>
-</tr>
-
-<tr>
-<td>Deposition</td>
-<td>Gas → Solid</td>
-<td>Particles directly form a solid.</td>
-</tr>
-
-</table>
-
-</div>
-
-<div class="section">
-<h2>Worked Example 1</h2>
-
-<div class="example-box">
-<strong>Problem:</strong><br>
-A steel bridge becomes slightly longer during a hot afternoon. Explain this using particle theory.
-</div>
-
-<p><strong>Solution:</strong></p>
-
-<ol>
-<li>Heating increases particle kinetic energy.</li>
-<li>Steel atoms vibrate more strongly.</li>
-<li>The average spacing between particles increases.</li>
-<li>The entire bridge expands slightly.</li>
-</ol>
-
-<div class="key-box">
-<strong>Answer:</strong><br>
-The bridge expands because heating increases particle motion and particle spacing.
-</div>
-
-</div>
-
-<div class="section">
-<h2>Worked Example 2</h2>
-
-<div class="example-box">
-<strong>Problem:</strong><br>
-Why can air be compressed inside a tank while steel cannot?
-</div>
-
-<p><strong>Solution:</strong></p>
-
-<ul>
-<li>Gas particles are far apart.</li>
-<li>Large empty spaces exist between gas particles.</li>
-<li>Pressure can reduce these spaces.</li>
-<li>Steel particles are already packed closely together.</li>
-</ul>
-
-<div class="key-box">
-<strong>Answer:</strong><br>
-Gases are compressible because of the large empty spaces between particles, while solids have very little empty space.
-</div>
-
-</div>
-
-<div class="section">
-<h2>Engineering Application</h2>
-
-<div class="key-box">
-<strong>Why Do Railroad Tracks Have Gaps?</strong>
-</div>
-
-<p>
-Metal railroad tracks expand when heated because their particles vibrate more strongly.
-Engineers intentionally leave expansion gaps to prevent the rails from buckling during hot weather.
-</p>
-
-<p>
-This is an example of how understanding particle behavior improves engineering design and safety.
-</p>
-
-</div>
-
-<div class="section">
-<h2>Check Your Understanding</h2>
-
-<div class="activity">
-
-<p><strong>1.</strong> Why are gases easier to compress than solids?</p>
-
-<button class="toggle-btn" onclick="toggleAnswer('a1')">Show Answer</button>
-
-<div id="a1" class="answer">
-Gas particles are much farther apart and contain large empty spaces.
-</div>
-
-</div>
-
-<div class="activity">
-
-<p><strong>2.</strong> What happens to particle motion when temperature increases?</p>
-
-<button class="toggle-btn" onclick="toggleAnswer('a2')">Show Answer</button>
-
-<div id="a2" class="answer">
-Particle motion becomes faster because kinetic energy increases.
-</div>
-
-</div>
-
-<div class="activity">
-
-<p><strong>3.</strong> Why does perfume spread throughout a room?</p>
-
-<button class="toggle-btn" onclick="toggleAnswer('a3')">Show Answer</button>
-
-<div id="a3" class="answer">
-Perfume particles move randomly and diffuse through the air.
-</div>
-
-</div>
-
-</div>
-
-<div class="section">
-<h2>Lesson Summary</h2>
-
-<ul>
-<li>Matter is anything that has mass and occupies space.</li>
-<li>All matter is composed of tiny particles.</li>
-<li>Particles are constantly moving.</li>
-<li>Solids, liquids, and gases differ because of particle arrangement and particle motion.</li>
-<li>Higher temperatures produce faster particle motion.</li>
-<li>Diffusion and Brownian motion provide evidence for the particle nature of matter.</li>
-<li>Many engineering systems depend on understanding particle behavior.</li>
-</ul>
-
-</div>
-
-  <script>
+<main class="lesson-container">
+  <!-- UI improvement: the header now gives students orientation, estimated time, and a visual topic signal before the lesson begins. -->
+  <header class="lesson-hero section">
+    <div>
+      <p class="chapter-kicker">Chapter 1: Matter, Measurement, and the Language of Chemistry</p>
+      <h1>Lesson 1: Particle Nature of Matter</h1>
+      <p class="lead">
+        Matter may look solid and continuous, but chemistry explains it as a system of tiny moving particles. In this lesson, you will use that model to explain diffusion, states of matter, temperature changes, and everyday engineering design.
+      </p>
+      <div class="meta-row" aria-label="Lesson details">
+        <span class="meta-pill">Estimated time: 35-45 minutes</span>
+        <span class="meta-pill">Level: Senior High School / First-Year College</span>
+        <span class="meta-pill">Topic: General Chemistry</span>
+      </div>
+    </div>
+    <div class="topic-card" aria-hidden="true">
+      <div class="topic-mark">ATOM</div>
+    </div>
+  </header>
+
+  <section class="section">
+    <h2>Learning Objectives</h2>
+    <div class="objectives-grid">
+      <ul class="objective-list">
+        <li>Explain the particle theory of matter using atoms, molecules, and ions.</li>
+        <li>Describe the arrangement and motion of particles in solids, liquids, and gases.</li>
+        <li>Relate temperature changes to particle motion and average kinetic energy.</li>
+        <li>Use particle behavior to explain diffusion, Brownian motion, dissolving, and phase changes.</li>
+        <li>Apply particle theory to daily life and engineering situations such as compressed air, thermal expansion, and material design.</li>
+      </ul>
+      <div class="key-box">
+        <strong>Why this lesson matters</strong>
+        <p>
+          Particle theory is the starting point for understanding chemical reactions, materials science, environmental chemistry, food science, medicine, and modern electronics.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Introduction: What Is Matter?</h2>
+    <p>
+      Matter is anything that has <strong>mass</strong> and occupies <strong>space</strong>. Air, water, metals, plastics, soil, food, and living organisms are all examples of matter.
+    </p>
+    <p>
+      At first glance, matter may seem continuous. A metal spoon looks like one smooth object, and a glass of water looks like one continuous liquid. Chemistry gives a deeper explanation: matter is made of very small particles that are constantly moving.
+    </p>
+
+    <div class="example-box">
+      <h3>Examples of Matter</h3>
+      <ul>
+        <li>Water in a bottle</li>
+        <li>Steel used in bridges</li>
+        <li>Air inside a tire</li>
+        <li>Silicon inside computer chips</li>
+        <li>Wood used in construction</li>
+      </ul>
+    </div>
+
+    <div class="formula-card">
+      <h3>Concept Formula</h3>
+      <p class="formula">Matter = Mass + Volume</p>
+      <dl>
+        <dt>Mass</dt>
+        <dd>The amount of matter in an object.</dd>
+        <dt>Volume</dt>
+        <dd>The space occupied by the object.</dd>
+      </dl>
+    </div>
+
+    <div class="note-box">
+      <strong>Common misconception</strong>
+      <p>
+        Air is matter even if you cannot see it. It has mass, fills space, and can exert pressure, such as when air inflates a basketball or a tire.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Key Concept: Particle Theory of Matter</h2>
+    <p class="section-intro">
+      The Particle Theory of Matter is a scientific model. A model is a simplified explanation that helps us understand things that are difficult to see directly.
+    </p>
+
+    <div class="key-box">
+      <strong>Fundamental idea:</strong>
+      <p>All matter is made up of extremely tiny particles such as atoms, molecules, and ions.</p>
+    </div>
+
+    <div class="table-wrap" role="region" aria-label="Particle theory principles" tabindex="0">
+      <table>
+        <tr>
+          <th>Principle</th>
+          <th>Simple Meaning</th>
+          <th>Why It Matters</th>
+        </tr>
+        <tr>
+          <td>All matter is made of particles</td>
+          <td>Every substance consists of tiny building blocks.</td>
+          <td>This explains why substances can combine, separate, dissolve, and react.</td>
+        </tr>
+        <tr>
+          <td>Particles are constantly moving</td>
+          <td>Particles never stop moving completely.</td>
+          <td>This helps explain diffusion, evaporation, pressure, and temperature.</td>
+        </tr>
+        <tr>
+          <td>There are spaces between particles</td>
+          <td>The amount of empty space depends on the state of matter.</td>
+          <td>This explains why gases are easier to compress than liquids and solids.</td>
+        </tr>
+        <tr>
+          <td>Particles attract one another</td>
+          <td>Forces between particles help hold substances together.</td>
+          <td>This explains why solids keep their shape and why liquids stay together as droplets.</td>
+        </tr>
+        <tr>
+          <td>Temperature affects particle motion</td>
+          <td>Higher temperature means faster particle motion.</td>
+          <td>This explains expansion, melting, boiling, and changes in pressure.</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="activity quick-check">
+      <h3>Knowledge Check</h3>
+      <p>
+        Think first: If all particles are moving, why does a solid object like a desk appear still?
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Evidence for the Particle Nature of Matter</h2>
+
+    <div class="section-grid">
+      <div class="example-box">
+        <h3>1. Diffusion</h3>
+        <p>
+          Diffusion is the spreading of particles from an area where they are more concentrated to an area where they are less concentrated.
+        </p>
+        <p>
+          When perfume is sprayed in one corner of a room, people farther away eventually smell it because perfume particles move randomly through the air.
+        </p>
+      </div>
+
+      <div class="example-box">
+        <h3>2. Dissolving</h3>
+        <p>
+          When sugar is stirred into water, it seems to disappear. It has not vanished; sugar particles become distributed among water particles.
+        </p>
+      </div>
+
+      <div class="example-box">
+        <h3>3. Brownian Motion</h3>
+        <p>
+          Tiny particles suspended in liquid can be seen moving randomly under a microscope. This happens because invisible molecules collide with them from different directions.
+        </p>
+      </div>
+
+      <div class="application-card">
+        <h3>Real-Life Connection</h3>
+        <p>
+          The smell of freshly cooked food spreads through a building because gas particles from the food diffuse into the surrounding air.
+        </p>
+      </div>
+    </div>
+
+    <div class="visual-box">
+      <div class="figure-placeholder lesson-img" role="img" aria-label="Placeholder diagram of perfume particles spreading through air">
+        Figure 1. Placeholder diagram: perfume particles diffusing from one side of a room to the other.
+      </div>
+      <p class="caption">Figure 1. Diffusion provides everyday evidence that particles move randomly.</p>
+    </div>
+
+    <div class="note-box">
+      <strong>Scientific application</strong>
+      <p>
+        Diffusion helps explain how oxygen moves from the lungs into the blood and how dissolved nutrients spread through cells.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>States of Matter and Particle Arrangement</h2>
+    <p>
+      The state of a substance depends on how its particles are arranged, how strongly they attract one another, and how freely they can move.
+    </p>
+
+    <div class="visual-box">
+      <div class="figure-placeholder lesson-img" role="img" aria-label="Placeholder diagram comparing particle arrangement in solids, liquids, and gases">
+        Figure 2. Placeholder diagram: particles tightly packed in a solid, close but mobile in a liquid, and far apart in a gas.
+      </div>
+      <p class="caption">Figure 2. Particle arrangement in solids, liquids, and gases.</p>
+    </div>
+
+    <div class="table-wrap" role="region" aria-label="Comparison of solids liquids and gases" tabindex="0">
+      <table>
+        <tr>
+          <th>Property</th>
+          <th>Solid</th>
+          <th>Liquid</th>
+          <th>Gas</th>
+        </tr>
+        <tr>
+          <td>Shape</td>
+          <td>Definite</td>
+          <td>Takes the shape of its container</td>
+          <td>Takes the shape of its container</td>
+        </tr>
+        <tr>
+          <td>Volume</td>
+          <td>Definite</td>
+          <td>Definite</td>
+          <td>Variable</td>
+        </tr>
+        <tr>
+          <td>Particle spacing</td>
+          <td>Very close</td>
+          <td>Close</td>
+          <td>Far apart</td>
+        </tr>
+        <tr>
+          <td>Particle motion</td>
+          <td>Vibrate around fixed positions</td>
+          <td>Slide past one another</td>
+          <td>Move rapidly in random directions</td>
+        </tr>
+        <tr>
+          <td>Compressibility</td>
+          <td>Very low</td>
+          <td>Low</td>
+          <td>High</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Solids, Liquids, and Gases</h2>
+
+    <div class="section-grid">
+      <div class="key-box">
+        <h3>Solids</h3>
+        <p>
+          In solids, particles are packed closely together and held by strong attractive forces. They cannot move freely, but they continuously vibrate around fixed positions.
+        </p>
+        <p><strong>Examples:</strong> steel beams, concrete, glass, and ice.</p>
+      </div>
+
+      <div class="key-box">
+        <h3>Liquids</h3>
+        <p>
+          In liquids, particles remain close together but are not fixed in place. They can move and slide past one another, so liquids flow.
+        </p>
+        <p><strong>Examples:</strong> water, gasoline, cooking oil, and mercury.</p>
+      </div>
+
+      <div class="key-box">
+        <h3>Gases</h3>
+        <p>
+          Gas particles are far apart and move rapidly in all directions. The attractive forces between particles are weak compared with those in solids and liquids.
+        </p>
+        <p><strong>Examples:</strong> oxygen, nitrogen, carbon dioxide, and helium.</p>
+      </div>
+
+      <div class="application-card">
+        <h3>Engineering Application</h3>
+        <p>
+          Compressed-air tools, scuba tanks, and gas cylinders work because gas particles have large spaces between them. Pressure can reduce those spaces and store more gas in a smaller volume.
+        </p>
+      </div>
+    </div>
+
+    <div class="activity quick-check">
+      <h3>Knowledge Check</h3>
+      <p>
+        Why does a liquid keep its volume but not its shape? Use particle spacing and particle motion in your explanation.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Interactive Simulation</h2>
+    <p>
+      Use the simulation below to observe how particles move in solids, liquids, and gases as temperature changes.
+    </p>
+
+    <div class="visual-box">
+      <iframe
+        title="PhET States of Matter simulation"
+        src="https://phet.colorado.edu/sims/html/states-of-matter/latest/states-of-matter_en.html"
+        height="600"
+        loading="lazy"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <div class="activity">
+      <h3>Simulation Questions</h3>
+      <ol>
+        <li>What happens to particle motion when temperature increases?</li>
+        <li>Which state has the largest spaces between particles?</li>
+        <li>Why are gases easier to compress than solids?</li>
+      </ol>
+
+      <button class="toggle-btn" type="button" onclick="toggleAnswer('sim1')">Show Answers</button>
+
+      <div id="sim1" class="answer">
+        <ol>
+          <li>Particles move faster.</li>
+          <li>Gas.</li>
+          <li>Gas particles have large empty spaces between them.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Temperature and Particle Motion</h2>
+    <p>
+      Temperature is related to the average kinetic energy of particles. In simple terms, hotter particles move faster on average; colder particles move more slowly on average.
+    </p>
+
+    <div class="formula-card">
+      <h3>Formula Box: Particle Motion and Temperature</h3>
+      <p class="formula">Average particle kinetic energy &prop; T(K)</p>
+      <dl>
+        <dt>Kinetic energy</dt>
+        <dd>Energy of motion.</dd>
+        <dt>T(K)</dt>
+        <dd>Absolute temperature measured in kelvin.</dd>
+        <dt>&prop;</dt>
+        <dd>Means "is proportional to." As kelvin temperature increases, average particle kinetic energy increases.</dd>
+      </dl>
+    </div>
+
+    <div class="example-box">
+      <h3>Daily Life Example</h3>
+      <p>
+        A hot cup of coffee cools because its particles transfer energy to the surrounding air. As energy leaves the coffee, average particle motion decreases.
+      </p>
+    </div>
+
+    <div class="visual-box">
+      <div class="figure-placeholder lesson-img" role="img" aria-label="Placeholder diagram showing particles moving slowly at low temperature and faster at high temperature">
+        Figure 3. Placeholder diagram: low-temperature particles moving slowly compared with high-temperature particles moving faster.
+      </div>
+      <p class="caption">Figure 3. Temperature changes are explained by changes in average particle motion.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Phase Changes and Particle Behavior</h2>
+    <p>
+      A phase change occurs when a substance changes state. The particles themselves do not disappear; their energy, spacing, and motion change.
+    </p>
+
+    <div class="table-wrap" role="region" aria-label="Phase changes and particle explanations" tabindex="0">
+      <table>
+        <tr>
+          <th>Process</th>
+          <th>Change</th>
+          <th>Particle Explanation</th>
+          <th>Everyday Example</th>
+        </tr>
+        <tr>
+          <td>Melting</td>
+          <td>Solid &rarr; Liquid</td>
+          <td>Particles gain energy and move more freely.</td>
+          <td>Ice becoming liquid water.</td>
+        </tr>
+        <tr>
+          <td>Freezing</td>
+          <td>Liquid &rarr; Solid</td>
+          <td>Particles lose energy and become fixed in place.</td>
+          <td>Water becoming ice in a freezer.</td>
+        </tr>
+        <tr>
+          <td>Vaporization</td>
+          <td>Liquid &rarr; Gas</td>
+          <td>Particles gain enough energy to escape into the gas phase.</td>
+          <td>Boiling water producing steam.</td>
+        </tr>
+        <tr>
+          <td>Condensation</td>
+          <td>Gas &rarr; Liquid</td>
+          <td>Particles lose energy and move closer together.</td>
+          <td>Water droplets forming on a cold glass.</td>
+        </tr>
+        <tr>
+          <td>Sublimation</td>
+          <td>Solid &rarr; Gas</td>
+          <td>Particles bypass the liquid state.</td>
+          <td>Dry ice becoming carbon dioxide gas.</td>
+        </tr>
+        <tr>
+          <td>Deposition</td>
+          <td>Gas &rarr; Solid</td>
+          <td>Particles directly form a solid.</td>
+          <td>Frost forming on a cold surface.</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="visual-box">
+      <div class="figure-placeholder lesson-img" role="img" aria-label="Placeholder flowchart of phase changes between solid liquid and gas">
+        Figure 4. Placeholder flowchart: phase changes among solid, liquid, and gas.
+      </div>
+      <p class="caption">Figure 4. Phase changes can be explained by changes in particle energy and arrangement.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Worked Example 1: Thermal Expansion</h2>
+
+    <div class="example-box">
+      <h3>Example Problem</h3>
+      <p>
+        A 10.0 m steel rail warms from 25&nbsp;&deg;C to 45&nbsp;&deg;C. Estimate how much longer it becomes. Use the coefficient of linear expansion for steel: &alpha; = 12 &times; 10<sup>-6</sup> /&deg;C.
+      </p>
+    </div>
+
+    <div class="formula-card">
+      <h3>Formula Box: Linear Expansion</h3>
+      <p class="formula">&Delta;L = &alpha;L<sub>0</sub>&Delta;T</p>
+      <dl>
+        <dt>&Delta;L</dt>
+        <dd>Change in length.</dd>
+        <dt>&alpha;</dt>
+        <dd>Coefficient of linear expansion.</dd>
+        <dt>L<sub>0</sub></dt>
+        <dd>Original length.</dd>
+        <dt>&Delta;T</dt>
+        <dd>Change in temperature.</dd>
+      </dl>
+    </div>
+
+    <div class="example-steps">
+      <div class="step">
+        <span class="step-title">Given</span>
+        <p>L<sub>0</sub> = 10.0 m, T<sub>initial</sub> = 25&nbsp;&deg;C, T<sub>final</sub> = 45&nbsp;&deg;C, &alpha; = 12 &times; 10<sup>-6</sup> /&deg;C.</p>
+      </div>
+      <div class="step">
+        <span class="step-title">Required</span>
+        <p>Find the increase in length, &Delta;L.</p>
+      </div>
+      <div class="step">
+        <span class="step-title">Solution</span>
+        <p>&Delta;T = 45&nbsp;&deg;C - 25&nbsp;&deg;C = 20&nbsp;&deg;C</p>
+        <p>&Delta;L = (12 &times; 10<sup>-6</sup> /&deg;C)(10.0 m)(20&nbsp;&deg;C)</p>
+        <p>&Delta;L = 0.0024 m</p>
+      </div>
+      <div class="step">
+        <span class="step-title">Unit Analysis</span>
+        <p>The &deg;C units cancel: (1/&deg;C) &times; m &times; &deg;C = m. The answer is a length.</p>
+      </div>
+      <div class="step final-answer">
+        <span class="step-title">Final Answer</span>
+        <p>The steel rail becomes about <strong>0.0024 m</strong>, or <strong>2.4 mm</strong>, longer.</p>
+      </div>
+    </div>
+
+    <div class="application-card">
+      <h3>Real-Life Connection</h3>
+      <p>
+        Railroad tracks and bridges include expansion gaps because metal particles vibrate more strongly when heated. Without room to expand, rails and bridge parts can bend, buckle, or crack.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Worked Example 2: Compressing Air</h2>
+
+    <div class="example-box">
+      <h3>Example Problem</h3>
+      <p>Why can air be compressed inside a tank while steel cannot be compressed easily?</p>
+    </div>
+
+    <div class="example-steps">
+      <div class="step">
+        <span class="step-title">Given</span>
+        <p>Air is a gas. Steel is a solid.</p>
+      </div>
+      <div class="step">
+        <span class="step-title">Required</span>
+        <p>Explain the difference using particle spacing and attractive forces.</p>
+      </div>
+      <div class="step">
+        <span class="step-title">Reasoning</span>
+        <ol>
+          <li>Gas particles are far apart and have large spaces between them.</li>
+          <li>Applying pressure can reduce those spaces.</li>
+          <li>Steel particles are already packed closely together in fixed positions.</li>
+          <li>There is very little empty space to reduce in a solid.</li>
+        </ol>
+      </div>
+      <div class="step final-answer">
+        <span class="step-title">Final Answer</span>
+        <p>Air is compressible because gas particles are far apart. Steel is difficult to compress because its particles are tightly packed.</p>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <strong>Common misconception</strong>
+      <p>
+        Compressing a gas does not make its particles smaller. It mainly decreases the empty space between particles.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Real-Life and Engineering Applications</h2>
+
+    <div class="section-grid">
+      <div class="application-card">
+        <h3>Students and Daily Life</h3>
+        <p>
+          Food aroma spreads in a cafeteria by diffusion. Hot soup cools as its particles transfer energy to the surrounding air.
+        </p>
+      </div>
+
+      <div class="application-card">
+        <h3>Sports and Transportation</h3>
+        <p>
+          Tire pressure changes with temperature because gas particle motion changes. Warmer gas particles collide more often and more strongly with the tire walls.
+        </p>
+      </div>
+
+      <div class="application-card">
+        <h3>Technology</h3>
+        <p>
+          Smartphone processors depend on materials engineered at the atomic scale. The behavior of particles affects conductivity, heat transfer, and durability.
+        </p>
+      </div>
+
+      <div class="application-card">
+        <h3>Engineering Safety</h3>
+        <p>
+          Bridges, pipelines, rails, and concrete structures are designed with particle-level thermal expansion in mind.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Check Your Understanding</h2>
+
+    <div class="activity">
+      <p><strong>1.</strong> Why are gases easier to compress than solids?</p>
+      <button class="toggle-btn" type="button" onclick="toggleAnswer('a1')">Show Answer</button>
+      <div id="a1" class="answer">
+        Gas particles are much farther apart and contain large empty spaces. Compression reduces those empty spaces.
+      </div>
+    </div>
+
+    <div class="activity">
+      <p><strong>2.</strong> What happens to particle motion when temperature increases?</p>
+      <button class="toggle-btn" type="button" onclick="toggleAnswer('a2')">Show Answer</button>
+      <div id="a2" class="answer">
+        Particle motion becomes faster because average kinetic energy increases.
+      </div>
+    </div>
+
+    <div class="activity">
+      <p><strong>3.</strong> Why does perfume spread throughout a room?</p>
+      <button class="toggle-btn" type="button" onclick="toggleAnswer('a3')">Show Answer</button>
+      <div id="a3" class="answer">
+        Perfume particles move randomly and diffuse through the air from a region of higher concentration to regions of lower concentration.
+      </div>
+    </div>
+  </section>
+
+  <section class="section summary-card">
+    <h2>Chapter Summary</h2>
+    <h3>Key Takeaways</h3>
+    <ul>
+      <li>Matter is anything that has mass and occupies space.</li>
+      <li>All matter is composed of tiny particles such as atoms, molecules, and ions.</li>
+      <li>Particles are constantly moving, even in solids.</li>
+      <li>Solids, liquids, and gases differ because of particle arrangement, spacing, attraction, and motion.</li>
+      <li>Higher temperature means greater average particle kinetic energy.</li>
+      <li>Diffusion, dissolving, and Brownian motion provide evidence for the particle nature of matter.</li>
+      <li>Engineering systems such as bridges, rails, tires, and compressed-air tanks depend on particle behavior.</li>
+    </ul>
+
+    <div class="quiz-panel">
+      <div>
+        <strong>Ready to practice?</strong>
+        <p>Take the lesson quiz when you have reviewed the key ideas and examples.</p>
+      </div>
+      <button id="takeQuizBtn" class="quiz-button" type="button" data-quiz="0101" data-open-quiz>Take Lesson Quiz</button>
+    </div>
+  </section>
+</main>
+
+<script>
 function toggleAnswer(btn){
-  const ans = btn.nextElementSibling;
+  const ans = typeof btn === "string" ? document.getElementById(btn) : btn.nextElementSibling;
+  if (!ans) return;
   ans.style.display = ans.style.display === "block" ? "none" : "block";
 }
 
