@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Chemical Bonding: Ionic and Covalent Bonds</title>
+
+<style>
+/* SAME STYLE AS TEMPLATE */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.quiz-container {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  width: 95%;
+  max-width: 850px;
+  text-align: center;
+}
+h2 { color: #136f63; margin-bottom: 25px; }
+.progress-wrapper { background:#e9f5ef; border-radius:8px; height:14px; width:100%; margin-bottom:25px; overflow:hidden;}
+.progress-bar { height:100%; background:linear-gradient(to right,#136f63,#2b7de9); width:0%; transition:width 0.4s;}
+.progress-text { text-align:right; font-size:0.95em; color:#174ea6; margin-bottom:10px; font-weight:600;}
+.question { font-size:1.3em; font-weight:600; color:#174ea6; margin-bottom:20px;}
+.choices { display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
+.choice { background:#e8ecf8; border:none; border-radius:10px; padding:14px; cursor:pointer; text-align:left;}
+.choice:hover { background:#d3dbf8; transform:translateY(-2px);}
+.choice.correct {background: #2b7de9;color: #fff;}
+.choice.incorrect {background: #e57373;color: #fff;}
+.explanation { background:#eef3ff; border-radius:10px; padding:14px; text-align:left; margin-bottom:20px; display:none;}
+.next-btn { background:#136f63; color:#fff; border:none; padding:12px 26px; border-radius:10px; cursor:pointer;}
+.result { font-size:1.4em; font-weight:bold; color:#174ea6;}
+.stars { font-size:2.5em; margin-top:10px;}
+.quiz-nav { margin-top:25px; display:flex; justify-content:center; gap:10px;}
+.quiz-btn { background:#e8ecf8; border:none; border-radius:8px; padding:10px 20px; cursor:pointer;}
+.quiz-btn.primary { background:#136f63; color:#fff;}
+@media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+
+.diagram-box {margin: 12px 0 20px; background: #f7fbff; border: 1px dashed #d8e9ff; padding: 10px; border-radius: 8px; }
+
+svg {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h2>Chemical Bonding: Ionic and Covalent Bonds - Quiz</h2>
+
+<div class="progress-text" id="progressText"></div>
+<div class="progress-wrapper">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<div id="quizBox"></div>
+
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+
+</div>
+
+<script>
+
+  const quizData = [
+
+{q:"Why do atoms form chemical bonds?",c:["To increase their atomic number","To become radioactive","To achieve a more stable, lower-energy electron arrangement","To gain more protons"],a:2,e:"Atoms form bonds because bonded arrangements are generally more stable and lower in energy than isolated atoms."},
+
+{q:"Which electrons are primarily involved in chemical bonding?",c:["Core electrons","Inner-shell electrons","Valence electrons","Nuclear electrons"],a:2,e:"Valence electrons are located in the outermost energy level and participate directly in bonding."},
+
+{q:"According to the octet rule, many atoms become stable when they have:",c:["2 valence electrons","4 valence electrons","6 valence electrons","8 valence electrons"],a:3,e:"Many atoms achieve stability when they have eight valence electrons, similar to noble gases."},
+
+{q:"What type of bond is formed when electrons are transferred from one atom to another?",c:["Metallic bond","Hydrogen bond","Covalent bond","Ionic bond"],a:3,e:"Ionic bonds form through the transfer of electrons, producing oppositely charged ions."},
+
+{q:"Which combination of elements is most likely to form an ionic bond?",c:["Nonmetal + Nonmetal","Metal + Nonmetal","Metal + Metal","Noble Gas + Noble Gas"],a:1,e:"Ionic bonding commonly occurs between metals and nonmetals."},
+
+{q:"What is a cation?",c:["A negatively charged ion","A neutral atom","A positively charged ion","A molecule"],a:2,e:"Cations are positively charged ions formed when atoms lose electrons."},
+
+{q:"What happens when a chlorine atom becomes a chloride ion?",c:["It loses one electron","It gains one electron","It loses one proton","It gains one neutron"],a:1,e:"Chlorine gains one electron to form a chloride ion (Cl⁻)."},
+
+{q:"Which of the following ions would calcium most likely form?",c:["Ca⁺","Ca²⁺","Ca³⁺","Ca²⁻"],a:1,e:"Calcium is a Group 2 metal and typically loses two electrons to form Ca²⁺."},
+
+{q:"Which property is characteristic of most ionic compounds?",c:["Low melting points","Poor crystal formation","High melting points","Always gases at room temperature"],a:2,e:"Strong electrostatic attractions give ionic compounds high melting points."},
+
+{q:"Why can molten sodium chloride conduct electricity?",c:["The electrons are free to move","The ions are free to move","The protons become mobile","The crystal structure disappears completely"],a:1,e:"When molten, ions become mobile and can carry electric charge."},
+
+{q:"What type of bond is formed when atoms share electrons?",c:["Ionic bond","Metallic bond","Covalent bond","Nuclear bond"],a:2,e:"Covalent bonds form through the sharing of electrons between atoms."},
+
+{q:"Which pair of elements is most likely to form a covalent bond?",c:["Sodium and Chlorine","Magnesium and Oxygen","Hydrogen and Oxygen","Calcium and Fluorine"],a:2,e:"Covalent bonds usually form between nonmetals such as hydrogen and oxygen."},
+
+{q:"What is the primary difference between ionic and covalent bonding?",c:["Ionic bonds involve sharing, covalent bonds involve transfer","Ionic bonds involve transfer, covalent bonds involve sharing","Ionic bonds occur only in gases","Covalent bonds occur only in liquids"],a:1,e:"Ionic bonding involves electron transfer, while covalent bonding involves electron sharing."},
+
+{q:"Which statement best describes a polar covalent bond?",c:["Electrons are transferred completely","Electrons are shared equally","Electrons are shared unequally","No electrons are involved"],a:2,e:"Polar covalent bonds occur when electrons are shared unequally due to differences in electronegativity."},
+
+{q:"A materials engineer is selecting a substance for a high-temperature ceramic component. Which type of bonding would most likely contribute to the material's high melting point?",c:["Weak intermolecular forces","Ionic bonding","Temporary dipole interactions","Nonpolar covalent bonding only"],a:1,e:"Strong ionic attractions often result in materials with very high melting points and thermal stability."}
+
+];
+
+  let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+	${q.svg || ""}
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+
+  const q = quizData[current];
+  const buttons = document.querySelectorAll(".choice");
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+
+    if (idx === q.a) {
+      btn.classList.add("correct");
+    }
+
+    if (idx === i && idx !== q.a) {
+      btn.classList.add("incorrect");
+    }
+  });
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>
