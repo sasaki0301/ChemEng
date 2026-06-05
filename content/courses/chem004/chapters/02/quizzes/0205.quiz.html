@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Chapter 2 Assessment: Atomic Structure and Electronic Configuration</title>
+
+<style>
+/* SAME STYLE AS TEMPLATE */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.quiz-container {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  width: 95%;
+  max-width: 850px;
+  text-align: center;
+}
+h2 { color: #136f63; margin-bottom: 25px; }
+.progress-wrapper { background:#e9f5ef; border-radius:8px; height:14px; width:100%; margin-bottom:25px; overflow:hidden;}
+.progress-bar { height:100%; background:linear-gradient(to right,#136f63,#2b7de9); width:0%; transition:width 0.4s;}
+.progress-text { text-align:right; font-size:0.95em; color:#174ea6; margin-bottom:10px; font-weight:600;}
+.question { font-size:1.3em; font-weight:600; color:#174ea6; margin-bottom:20px;}
+.choices { display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
+.choice { background:#e8ecf8; border:none; border-radius:10px; padding:14px; cursor:pointer; text-align:left;}
+.choice:hover { background:#d3dbf8; transform:translateY(-2px);}
+.choice.correct {background: #2b7de9;color: #fff;}
+.choice.incorrect {background: #e57373;color: #fff;}
+.explanation { background:#eef3ff; border-radius:10px; padding:14px; text-align:left; margin-bottom:20px; display:none;}
+.next-btn { background:#136f63; color:#fff; border:none; padding:12px 26px; border-radius:10px; cursor:pointer;}
+.result { font-size:1.4em; font-weight:bold; color:#174ea6;}
+.stars { font-size:2.5em; margin-top:10px;}
+.quiz-nav { margin-top:25px; display:flex; justify-content:center; gap:10px;}
+.quiz-btn { background:#e8ecf8; border:none; border-radius:8px; padding:10px 20px; cursor:pointer;}
+.quiz-btn.primary { background:#136f63; color:#fff;}
+@media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+
+.diagram-box {margin: 12px 0 20px; background: #f7fbff; border: 1px dashed #d8e9ff; padding: 10px; border-radius: 8px; }
+
+svg {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h2>Chapter 2 Assessment: Atomic Structure and Electronic Configuration</h2>
+
+<div class="progress-text" id="progressText"></div>
+<div class="progress-wrapper">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<div id="quizBox"></div>
+
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+
+</div>
+
+<script>
+
+  const quizData = [
+
+{q:"Which statement best explains why Dalton's atomic theory was eventually modified?",c:["Atoms were proven not to exist","Atoms were discovered to contain smaller particles","Elements were found to have identical masses","Compounds were found to contain only one element"],a:1,e:"The discovery of electrons, protons, and neutrons showed that atoms are divisible."},
+
+{q:"Which experimental observation from Rutherford's Gold Foil Experiment provided evidence for a dense nucleus?",c:["Most alpha particles passed straight through","Gold atoms emitted light","A small fraction of alpha particles were strongly deflected","Electrons were ejected from the foil"],a:2,e:"Large deflections indicated the presence of a concentrated positive charge and mass."},
+
+{q:"Which statement best distinguishes the Quantum Mechanical Model from the Bohr Model?",c:["The Bohr Model includes neutrons","The Quantum Mechanical Model uses probability distributions instead of fixed orbits","The Bohr Model contains electrons but the Quantum Mechanical Model does not","The Quantum Mechanical Model ignores energy levels"],a:1,e:"Electrons occupy orbitals, which are probability regions, rather than fixed circular paths."},
+
+{q:"An atom contains 26 protons, 30 neutrons, and 26 electrons. What is its mass number?",c:["26","30","52","56"],a:3,e:"Mass number = protons + neutrons = 26 + 30 = 56."},
+
+{q:"Which subatomic particle contributes the least to the mass of an atom?",c:["Proton","Neutron","Electron","Nucleus"],a:2,e:"An electron has only about 1/1836 the mass of a proton."},
+
+{q:"Two atoms contain 17 protons each but have 18 and 20 neutrons, respectively. These atoms are:",c:["Different elements","Ions","Isotopes","Compounds"],a:2,e:"Atoms with the same number of protons but different numbers of neutrons are isotopes."},
+
+{q:"An isotope has a mass number of 31 and an atomic number of 15. How many neutrons does it contain?",c:["15","16","31","46"],a:1,e:"Neutrons = 31 − 15 = 16."},
+
+{q:"Which isotope notation represents an atom with 8 protons and 10 neutrons?",c:["¹⁸₈O","⁸₁₈O","¹⁰₈O","⁸₁₀O"],a:0,e:"Mass number = 8 + 10 = 18, atomic number = 8."},
+
+{q:"Chlorine consists of 75% Cl-35 and 25% Cl-37. What is its average atomic mass?",c:["35.0 amu","35.5 amu","36.0 amu","36.5 amu"],a:1,e:"(35 × 0.75) + (37 × 0.25) = 35.5 amu."},
+
+{q:"An element consists of isotopes with masses of 24 amu (80%) and 26 amu (20%). What is the average atomic mass?",c:["24.2 amu","24.4 amu","24.6 amu","25.0 amu"],a:1,e:"(24 × 0.80) + (26 × 0.20) = 24.4 amu."},
+
+{q:"Which scientist proposed that electrons exhibit wave-like properties?",c:["Rutherford","Dalton","de Broglie","Bohr"],a:2,e:"Louis de Broglie proposed the wave nature of matter."},
+
+{q:"Which scientist developed the mathematical wave equation that describes electron behavior?",c:["Schrödinger","Thomson","Planck","Rutherford"],a:0,e:"Schrödinger's equation forms the basis of quantum mechanics."},
+
+{q:"What does the principal quantum number (n) primarily describe?",c:["Electron spin","Orbital orientation","Main energy level","Orbital shape"],a:2,e:"The principal quantum number specifies the electron's main energy level."},
+
+{q:"What orbital type corresponds to l = 3?",c:["s","p","d","f"],a:3,e:"An l value of 3 corresponds to an f orbital."},
+
+{q:"For n = 3, what are the possible values of l?",c:["0 only","0 and 1","0, 1, and 2","0, 1, 2, and 3"],a:2,e:"l ranges from 0 to n−1."},
+
+{q:"How many orbitals exist in a p subshell?",c:["1","2","3","6"],a:2,e:"A p subshell contains three orbitals."},
+
+{q:"How many orbitals exist in a d subshell?",c:["3","4","5","10"],a:2,e:"A d subshell contains five orbitals."},
+
+{q:"What is the maximum number of electrons that can occupy the n = 2 energy level?",c:["2","4","8","18"],a:2,e:"n = 2 contains the 2s and 2p sublevels, holding a total of 8 electrons."},
+
+{q:"Which quantum number distinguishes two electrons occupying the same orbital?",c:["n","l","mₗ","mₛ"],a:3,e:"Electrons in the same orbital must have opposite spins."},
+
+{q:"According to Hund's Rule, how would three electrons occupy three p orbitals?",c:["All pair in one orbital","Two pair and one remains alone","One electron occupies each orbital before pairing","Only two orbitals are occupied"],a:2,e:"Electrons occupy equal-energy orbitals singly before pairing."},
+
+{q:"Which electron configuration correctly represents nitrogen (Z = 7)?",c:["1s² 2s² 2p²","1s² 2s² 2p³","1s² 2s¹ 2p⁴","1s² 2p⁵"],a:1,e:"Nitrogen contains 7 electrons: 1s² 2s² 2p³."},
+
+{q:"Which electron configuration correctly represents oxygen (Z = 8)?",c:["1s² 2s² 2p⁴","1s² 2s² 2p⁶","1s² 2p⁶","1s² 2s¹ 2p⁵"],a:0,e:"Oxygen has 8 electrons: 1s² 2s² 2p⁴."},
+
+{q:"How many unpaired electrons are present in a ground-state nitrogen atom?",c:["0","1","2","3"],a:3,e:"Nitrogen's 2p³ electrons occupy separate orbitals according to Hund's Rule."},
+
+{q:"What is the noble-gas shorthand electron configuration for magnesium (Z = 12)?",c:["[Ne] 3s²","[He] 2s² 2p⁶ 3s²","[Ar] 3s²","[Ne] 3p²"],a:0,e:"Magnesium follows neon and has two electrons in the 3s orbital."},
+
+{q:"Which element has the electron configuration 1s² 2s² 2p⁶ 3s¹?",c:["Neon","Magnesium","Sodium","Aluminum"],a:2,e:"This configuration contains 11 electrons, corresponding to sodium."},
+
+{q:"Which electron configuration violates the Pauli Exclusion Principle?",c:["1s ↑↓","2p ↑ ↑ ↑","3s ↑↓","2s ↑↓"],a:1,e:"Two electrons in the same orbital must have opposite spins."},
+
+{q:"Which electron configuration demonstrates Hund's Rule correctly for a p² atom?",c:["[↑↓][ ][ ]","[↑][↑][ ]","[↑↓][↑][ ]","[↑↓][↑↓][ ]"],a:1,e:"Electrons occupy separate orbitals before pairing."},
+
+{q:"A neutral atom contains 15 electrons. What is its electron configuration?",c:["1s² 2s² 2p⁶ 3s² 3p³","1s² 2s² 2p⁶ 3s² 3p⁵","1s² 2s² 2p⁶ 3s¹ 3p⁴","1s² 2s² 2p⁶ 3s²"],a:0,e:"Phosphorus (Z = 15) has the configuration 1s² 2s² 2p⁶ 3s² 3p³."},
+
+{q:"Why is silicon particularly useful in semiconductor devices?",c:["It has a completely filled valence shell","It contains radioactive isotopes","It has four valence electrons that allow controlled conductivity","It contains only one isotope"],a:2,e:"Silicon's four valence electrons make it ideal for controlling electron flow."},
+
+{q:"A material engineer needs a stable element with a completely filled outer shell. Which group of the periodic table should be considered?",c:["Alkali Metals","Halogens","Transition Metals","Noble Gases"],a:3,e:"Noble gases possess complete valence shells and are highly stable."},
+
+{q:"Which statement best explains why isotopes of uranium have different applications in nuclear engineering?",c:["They contain different numbers of protons","They belong to different elements","They have different neutron numbers, affecting nuclear stability","They contain different numbers of electrons only"],a:2,e:"Differences in neutron number affect nuclear behavior and stability."},
+
+{q:"An atom has the electron configuration [Ne] 3s² 3p⁴. How many valence electrons does it possess?",c:["2","4","6","8"],a:2,e:"The outermost shell contains 3s² 3p⁴, totaling 6 valence electrons."},
+
+{q:"Which of the following concepts provides the strongest explanation for why electrons cannot be described as moving in precise circular paths around the nucleus?",c:["Average atomic mass","Hund's Rule","Heisenberg's Uncertainty Principle","Dalton's Atomic Theory"],a:2,e:"The Uncertainty Principle limits simultaneous knowledge of an electron's exact position and momentum."},
+
+{q:"A scientist discovers an atom with 19 protons, 20 neutrons, and 19 electrons. Which statement is correct?",c:["The atom is an isotope of calcium","The atom has a mass number of 39","The atom has an atomic number of 39","The atom is negatively charged"],a:1,e:"Mass number = 19 + 20 = 39, and the atom is neutral because protons equal electrons."}
+
+];
+
+  let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+	${q.svg || ""}
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+
+  const q = quizData[current];
+  const buttons = document.querySelectorAll(".choice");
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+
+    if (idx === q.a) {
+      btn.classList.add("correct");
+    }
+
+    if (idx === i && idx !== q.a) {
+      btn.classList.add("incorrect");
+    }
+  });
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>
