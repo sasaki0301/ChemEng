@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Chapter 5 Assessment: Periodicity and Chemical Bonding</title>
+
+<style>
+/* SAME STYLE AS TEMPLATE */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.quiz-container {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  width: 95%;
+  max-width: 850px;
+  text-align: center;
+}
+h2 { color: #136f63; margin-bottom: 25px; }
+.progress-wrapper { background:#e9f5ef; border-radius:8px; height:14px; width:100%; margin-bottom:25px; overflow:hidden;}
+.progress-bar { height:100%; background:linear-gradient(to right,#136f63,#2b7de9); width:0%; transition:width 0.4s;}
+.progress-text { text-align:right; font-size:0.95em; color:#174ea6; margin-bottom:10px; font-weight:600;}
+.question { font-size:1.3em; font-weight:600; color:#174ea6; margin-bottom:20px;}
+.choices { display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
+.choice { background:#e8ecf8; border:none; border-radius:10px; padding:14px; cursor:pointer; text-align:left;}
+.choice:hover { background:#d3dbf8; transform:translateY(-2px);}
+.choice.correct {background: #2b7de9;color: #fff;}
+.choice.incorrect {background: #e57373;color: #fff;}
+.explanation { background:#eef3ff; border-radius:10px; padding:14px; text-align:left; margin-bottom:20px; display:none;}
+.next-btn { background:#136f63; color:#fff; border:none; padding:12px 26px; border-radius:10px; cursor:pointer;}
+.result { font-size:1.4em; font-weight:bold; color:#174ea6;}
+.stars { font-size:2.5em; margin-top:10px;}
+.quiz-nav { margin-top:25px; display:flex; justify-content:center; gap:10px;}
+.quiz-btn { background:#e8ecf8; border:none; border-radius:8px; padding:10px 20px; cursor:pointer;}
+.quiz-btn.primary { background:#136f63; color:#fff;}
+@media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+
+.diagram-box {margin: 12px 0 20px; background: #f7fbff; border: 1px dashed #d8e9ff; padding: 10px; border-radius: 8px; }
+
+svg {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h2>Periodicity and Chemical Bonding</h2>
+
+<div class="progress-text" id="progressText"></div>
+<div class="progress-wrapper">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<div id="quizBox"></div>
+
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+
+</div>
+
+<script>
+
+  const quizData = [
+
+{q:"Which statement best explains why elements in the same group often exhibit similar chemical behavior?",c:["They have similar atomic masses","They have the same number of neutrons","They have similar valence electron configurations","They contain the same number of protons"],a:2,e:"Valence electrons primarily determine chemical behavior and bonding patterns."},
+
+{q:"An element is located in Group 17. Which characteristic is most likely true?",c:["It has one valence electron","It is chemically inert","It tends to gain one electron","It is a transition metal"],a:2,e:"Halogens have seven valence electrons and tend to gain one electron to complete an octet."},
+
+{q:"Which family of elements is most commonly used in electrical wiring due to excellent conductivity?",c:["Noble gases","Halogens","Transition metals","Metalloids"],a:2,e:"Many transition metals, including copper, exhibit excellent electrical conductivity."},
+
+{q:"Which element would be expected to have the largest atomic radius?",c:["Lithium","Fluorine","Potassium","Neon"],a:2,e:"Atomic radius increases down a group and decreases across a period."},
+
+{q:"Which element is expected to have the highest ionization energy?",c:["Sodium","Magnesium","Chlorine","Neon"],a:3,e:"Neon is small and has a stable electron configuration, making electron removal difficult."},
+
+{q:"Why does atomic radius generally decrease across a period?",c:["Additional energy levels are added","Nuclear attraction increases","Electron shielding increases dramatically","Valence electrons are removed"],a:1,e:"Increasing nuclear charge pulls electrons closer to the nucleus."},
+
+{q:"Which trend generally increases toward the upper-right corner of the periodic table?",c:["Atomic radius","Metallic character","Electronegativity","Atomic volume"],a:2,e:"Electronegativity generally increases toward fluorine."},
+
+{q:"A semiconductor engineer selects silicon because it is classified as a:",c:["Metal","Nonmetal","Metalloid","Noble gas"],a:2,e:"Silicon is a metalloid with semiconductor properties."},
+
+{q:"Which property measures an atom's ability to attract shared electrons in a bond?",c:["Electron affinity","Ionization energy","Atomic radius","Electronegativity"],a:3,e:"Electronegativity describes the attraction of shared bonding electrons."},
+
+{q:"Which statement best describes noble gases?",c:["Highly reactive metals","Highly reactive nonmetals","Stable elements with filled valence shells","Elements with one valence electron"],a:2,e:"Noble gases have complete valence shells and are generally unreactive."},
+
+{q:"Why do atoms form chemical bonds?",c:["To increase atomic number","To achieve greater stability","To gain neutrons","To become isotopes"],a:1,e:"Atoms bond to achieve lower-energy, more stable electron arrangements."},
+
+{q:"Which electrons are directly involved in bonding?",c:["Core electrons","Valence electrons","Nuclear electrons","Inner-shell electrons"],a:1,e:"Valence electrons participate in chemical bonding."},
+
+{q:"According to the octet rule, many atoms become stable when they possess:",c:["2 electrons","4 electrons","6 electrons","8 electrons"],a:3,e:"Many atoms achieve stability with eight valence electrons."},
+
+{q:"Which process occurs during ionic bond formation?",c:["Electron sharing","Electron transfer","Proton transfer","Neutron exchange"],a:1,e:"Ionic bonding involves transfer of electrons."},
+
+{q:"Which pair is most likely to form an ionic compound?",c:["Oxygen and Hydrogen","Carbon and Oxygen","Magnesium and Chlorine","Nitrogen and Hydrogen"],a:2,e:"A metal and a nonmetal commonly form ionic compounds."},
+
+{q:"What ion is formed when aluminum loses three electrons?",c:["Al⁻","Al⁺","Al²⁺","Al³⁺"],a:3,e:"Aluminum typically forms Al³⁺ by losing three valence electrons."},
+
+{q:"Why do ionic compounds typically have high melting points?",c:["Weak intermolecular forces","Strong electrostatic attractions","Low atomic masses","Electron sharing"],a:1,e:"Strong ionic attractions require large amounts of energy to overcome."},
+
+{q:"Why can molten ionic compounds conduct electricity?",c:["Electrons flow freely","Protons move through the liquid","Ions become mobile","Neutrons carry charge"],a:2,e:"Mobile ions allow electrical current to flow."},
+
+{q:"What is the primary difference between ionic and covalent bonding?",c:["Ionic bonds involve transfer; covalent bonds involve sharing","Ionic bonds involve sharing; covalent bonds involve transfer","Ionic bonds occur only in solids","Covalent bonds occur only in gases"],a:0,e:"Electron transfer forms ionic bonds while electron sharing forms covalent bonds."},
+
+{q:"Which type of bond exists between two nonmetal atoms?",c:["Ionic","Metallic","Covalent","Nuclear"],a:2,e:"Nonmetals commonly form covalent bonds."},
+
+{q:"Which molecule contains polar covalent bonds?",c:["N₂","O₂","H₂O","Cl₂"],a:2,e:"Water contains polar O-H bonds due to unequal electron sharing."},
+
+{q:"What information does a Lewis structure primarily provide?",c:["Atomic mass","Electron configuration","Valence electron arrangement and bonding","Nuclear composition"],a:2,e:"Lewis structures visualize valence electrons and bonding relationships."},
+
+{q:"What do the dots in a Lewis symbol represent?",c:["Neutrons","Protons","Valence electrons","Energy levels"],a:2,e:"Dots indicate valence electrons."},
+
+{q:"What is usually the first step in constructing a Lewis structure?",c:["Determine molecular shape","Add double bonds","Count total valence electrons","Calculate formal charges"],a:2,e:"Counting total valence electrons is always the starting point."},
+
+{q:"How many electrons are represented by a triple bond?",c:["2","4","6","8"],a:2,e:"A triple bond consists of three shared pairs or six electrons."},
+
+{q:"Which molecule contains a double bond?",c:["H₂","N₂","CO₂","NaCl"],a:2,e:"Carbon dioxide contains two double bonds."},
+
+{q:"What is a lone pair?",c:["A bonded electron pair","An unshared pair of valence electrons","A proton pair","An ion pair"],a:1,e:"Lone pairs are valence electrons not involved in bonding."},
+
+{q:"Why are lone pairs important?",c:["They determine atomic number","They influence molecular shape and reactivity","They increase mass number","They create isotopes"],a:1,e:"Lone pairs affect geometry, polarity, and chemical properties."},
+
+{q:"Which molecule is commonly used to illustrate resonance?",c:["CH₄","O₃","H₂","NaCl"],a:1,e:"Ozone is often represented using resonance structures."},
+
+{q:"Which element commonly forms compounds with incomplete octets?",c:["Neon","Argon","Boron","Oxygen"],a:2,e:"Boron frequently forms stable compounds with six valence electrons."},
+
+{q:"Which compound demonstrates an expanded octet around the central atom?",c:["CH₄","NH₃","SF₆","H₂O"],a:2,e:"Sulfur in SF₆ accommodates more than eight electrons."},
+
+{q:"A materials engineer needs a compound with excellent heat resistance and a very high melting point. Which type of bonding would most likely be present?",c:["Weak covalent bonding","Ionic bonding","Van der Waals interactions only","Nonpolar molecular bonding"],a:1,e:"Strong ionic attractions often produce materials with high melting points and thermal stability."},
+
+{q:"A chemical engineer is comparing sodium chloride and carbon dioxide. Which statement is correct?",c:["Both are ionic compounds","Both are covalent compounds","NaCl is ionic while CO₂ is covalent","NaCl is covalent while CO₂ is ionic"],a:2,e:"Sodium chloride forms through electron transfer while carbon dioxide forms through electron sharing."},
+
+{q:"A semiconductor manufacturer studies bonding in silicon crystals. Why is covalent bonding important in silicon?",c:["It creates mobile ions","It allows controlled electron behavior within a crystal lattice","It increases radioactivity","It prevents electron movement"],a:1,e:"The covalent network in silicon enables semiconductor functionality."},
+
+{q:"A scientist examines an element that has seven valence electrons, high electronegativity, and a strong tendency to gain electrons. To which family does it most likely belong?",c:["Alkali metals","Transition metals","Halogens","Noble gases"],a:2,e:"Halogens possess seven valence electrons and strongly attract electrons."}
+
+];
+
+let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+	${q.svg || ""}
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+
+  const q = quizData[current];
+  const buttons = document.querySelectorAll(".choice");
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+
+    if (idx === q.a) {
+      btn.classList.add("correct");
+    }
+
+    if (idx === i && idx !== q.a) {
+      btn.classList.add("incorrect");
+    }
+  });
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>  
