@@ -1,124 +1,126 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lesson 2: Mole-to-Mole and Mass-to-Mass Stoichiometry</title>
-  <style>
-    .math-card,
-    .worked-example{
-      background:#f7fbff;
-      border:1px solid #dbe7f3;
-      border-radius:8px;
-      padding:16px 18px;
-      margin:16px 0;
-    }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 
-    .reaction{
-      text-align:center;
-      font-weight:800;
-      color:#174ea6;
-      font-size:1.12rem;
-      margin:12px 0;
-      overflow-wrap:anywhere;
-    }
+<title></title>
 
-    .roadmap{
-      text-align:center;
-      font-weight:800;
-      color:#136f63;
-      font-size:1.12rem;
-      margin:10px 0;
-    }
+<style>
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:#fafafa;
+  color:#222;
+  padding:24px;
+  line-height:1.8;
+  font-size:20px;
+}
 
-    .math-work{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
-      margin:12px 0;
-      padding:14px;
-      background:#ffffff;
-      border:1px solid #e3edf7;
-      border-radius:8px;
-      overflow-x:auto;
-    }
+h1{color:#136f63;}
+h2{color:#136f63;margin-top:1.4em;}
+h3{color:#174ea6;}
 
-    .math-work.center{
-      justify-content:center;
-    }
+.section{margin-bottom:30px;}
 
-    .fraction{
-      display:inline-grid;
-      grid-template-rows:auto auto;
-      min-width:max-content;
-      text-align:center;
-      line-height:1.2;
-      vertical-align:middle;
-      font-weight:700;
-    }
+.key-box{
+  background:#e8f7f5;
+  border-left:6px solid #136f63;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
 
-    .fraction .top{
-      border-bottom:2px solid currentColor;
-      padding:0 10px 5px;
-    }
+.example-box{
+  background:#fff;
+  border-left:5px solid #2b7de9;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
 
-    .fraction .bottom{
-      padding:5px 10px 0;
-    }
+.visual-box{
+  background:#fff;
+  border-radius:12px;
+  padding:14px;
+  margin:16px 0;
+  border:1px solid #ddd;
+}
 
-    .final-answer{
-      background:#e9f8f1;
-      border:1px solid #b9e4ce;
-      border-radius:8px;
-      padding:12px 14px;
-      margin-top:12px;
-      font-weight:800;
-      color:#0d5a50;
-    }
+.lesson-img{
+  width:100%;
+  max-width:720px;
+  display:block;
+  margin:0 auto;
+  border-radius:12px;
+}
 
-    .ratio-strip{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:10px;
-      margin-top:14px;
-    }
+.caption{
+  text-align:center;
+  font-size:0.9em;
+  color:#555;
+}
 
-    .ratio-strip div{
-      background:#ffffff;
-      border:1px solid #dbe7f3;
-      border-radius:8px;
-      padding:12px;
-      text-align:center;
-      font-weight:700;
-    }
+.activity{
+  background:#fff;
+  padding:14px;
+  border-radius:10px;
+  margin:14px 0;
+}
 
-    .answer ol{
-      margin-top:8px;
-    }
+.toggle-btn{
+  background:#136f63;
+  color:white;
+  border:none;
+  padding:6px 12px;
+  border-radius:6px;
+  cursor:pointer;
+}
 
-    .answer{
-      display:none;
-      margin-top:12px;
-      background:#eef3ff;
-      border-radius:8px;
-      padding:12px 16px;
-    }
+.answer{
+  display:none;
+  margin-top:10px;
+  background:#eef3ff;
+  padding:10px;
+  border-radius:6px;
+}
 
-    @media(max-width:620px){
-      .ratio-strip{
-        grid-template-columns:1fr;
-      }
+.formula{
+  font-size:22px;
+  font-weight:bold;
+  text-align:center;
+}
 
-      .math-work{
-        align-items:flex-start;
-      }
-    }
-  </style>
+.quiz-button{
+  background:#136f63;
+  color:white;
+  padding:12px 22px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:16px 0;
+  background:#fff;
+}
+
+th,td{
+  border:1px solid #ddd;
+  padding:10px;
+}
+
+th{background:#e8f7f5;}
+
+iframe{
+  width:100%;
+  max-width:100%;
+}
+</style>
 </head>
 <body>
-<main class="lesson-container">
-  <section class="section">
     <h1>Chapter 5: Stoichiometry and Quantitative Chemistry</h1>
     <h2>Lesson 2: Mole-to-Mole and Mass-to-Mass Stoichiometry</h2>
 
@@ -134,7 +136,6 @@
       </p>
       <p>Stoichiometry provides the mathematical framework for answering this question.</p>
     </div>
-  </section>
 
   <section class="section">
     <h2>Learning Objectives</h2>
@@ -729,14 +730,29 @@
       <li>Stoichiometry is essential for industrial production, environmental engineering, and energy systems.</li>
     </ul>
   </section>
-</main>
+
+<div style="text-align:center;margin-top:30px;">
+	<button class="quiz-button" id="takeQuizBtn">
+
+Take the Quiz →
+
+</button>
+
+</div>
 
 <script>
 function toggleAnswer(btn){
-  const ans = typeof btn === "string" ? document.getElementById(btn) : btn.nextElementSibling;
-  if (!ans) return;
+  const ans = btn.nextElementSibling;
   ans.style.display = ans.style.display === "block" ? "none" : "block";
 }
+
+document.getElementById("takeQuizBtn").addEventListener("click",(e)=>{
+  const quizId = e.target.dataset.quiz;
+  window.parent.postMessage({
+    type:"openQuiz",
+    quiz:quizId
+  },"*");
+});
 </script>
 </body>
 </html>
