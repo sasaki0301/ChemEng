@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Chapter 5 Assessment: Stoichiometry and Quantitative Chemistry</title>
+
+<style>
+/* SAME STYLE AS TEMPLATE */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.quiz-container {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  width: 95%;
+  max-width: 850px;
+  text-align: center;
+}
+h2 { color: #136f63; margin-bottom: 25px; }
+.progress-wrapper { background:#e9f5ef; border-radius:8px; height:14px; width:100%; margin-bottom:25px; overflow:hidden;}
+.progress-bar { height:100%; background:linear-gradient(to right,#136f63,#2b7de9); width:0%; transition:width 0.4s;}
+.progress-text { text-align:right; font-size:0.95em; color:#174ea6; margin-bottom:10px; font-weight:600;}
+.question { font-size:1.3em; font-weight:600; color:#174ea6; margin-bottom:20px;}
+.choices { display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
+.choice { background:#e8ecf8; border:none; border-radius:10px; padding:14px; cursor:pointer; text-align:left;}
+.choice:hover { background:#d3dbf8; transform:translateY(-2px);}
+.choice.correct {background: #2b7de9;color: #fff;}
+.choice.incorrect {background: #e57373;color: #fff;}
+.explanation { background:#eef3ff; border-radius:10px; padding:14px; text-align:left; margin-bottom:20px; display:none;}
+.next-btn { background:#136f63; color:#fff; border:none; padding:12px 26px; border-radius:10px; cursor:pointer;}
+.result { font-size:1.4em; font-weight:bold; color:#174ea6;}
+.stars { font-size:2.5em; margin-top:10px;}
+.quiz-nav { margin-top:25px; display:flex; justify-content:center; gap:10px;}
+.quiz-btn { background:#e8ecf8; border:none; border-radius:8px; padding:10px 20px; cursor:pointer;}
+.quiz-btn.primary { background:#136f63; color:#fff;}
+@media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+
+.diagram-box {margin: 12px 0 20px; background: #f7fbff; border: 1px dashed #d8e9ff; padding: 10px; border-radius: 8px; }
+
+svg {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h2>Chapter 5 Assessment: Stoichiometry and Quantitative Chemistry</h2>
+
+<div class="progress-text" id="progressText"></div>
+<div class="progress-wrapper">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<div id="quizBox"></div>
+
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+
+</div>
+
+<script>
+
+  const quizData = [
+
+{q:"What is Avogadro's Number?",c:["6.022 × 10²²","6.022 × 10²³","6.022 × 10²⁴","6.022 × 10²⁵"],a:1,e:"One mole of any substance contains 6.022 × 10²³ particles."},
+
+{q:"How many moles are represented by 1.204 × 10²⁴ molecules?",c:["1.0 mol","2.0 mol","3.0 mol","4.0 mol"],a:1,e:"1.204 × 10²⁴ ÷ 6.022 × 10²³ = 2.0 mol."},
+
+{q:"How many molecules are present in 0.50 mol H₂O?",c:["3.01 × 10²²","3.01 × 10²³","6.02 × 10²³","1.20 × 10²⁴"],a:1,e:"0.50 × 6.022 × 10²³ = 3.01 × 10²³ molecules."},
+
+{q:"What is the molar mass of CaCO₃?",c:["84.08 g/mol","92.09 g/mol","100.09 g/mol","108.10 g/mol"],a:2,e:"CaCO₃ = 40.08 + 12.01 + (3 × 16.00) = 100.09 g/mol."},
+
+{q:"What is the molar mass of Al₂(SO₄)₃?",c:["282.15 g/mol","314.15 g/mol","342.15 g/mol","368.15 g/mol"],a:2,e:"The molar mass of Al₂(SO₄)₃ is 342.15 g/mol."},
+
+{q:"How many moles are in 73.0 g HCl?",c:["1.0 mol","2.0 mol","3.0 mol","4.0 mol"],a:1,e:"73.0 ÷ 36.46 ≈ 2.0 mol."},
+
+{q:"What mass corresponds to 1.50 mol NaOH?",c:["40.0 g","50.0 g","60.0 g","75.0 g"],a:2,e:"1.50 × 40.00 = 60.0 g."},
+
+{q:"How many formula units are in 2.0 mol MgCl₂?",c:["6.02 × 10²²","1.20 × 10²⁴","6.02 × 10²³","3.01 × 10²³"],a:1,e:"2.0 × 6.022 × 10²³ = 1.20 × 10²⁴ formula units."},
+
+{q:"In stoichiometry, the coefficients of a balanced equation represent:",c:["Mass ratios","Volume ratios","Mole ratios","Density ratios"],a:2,e:"Balanced equations provide mole ratios between reactants and products."},
+
+{q:"Using N₂ + 3H₂ → 2NH₃, how many moles of NH₃ can be produced from 2.5 mol N₂?",c:["2.5 mol","5.0 mol","7.5 mol","10.0 mol"],a:1,e:"2.5 mol N₂ × (2 mol NH₃ / 1 mol N₂) = 5.0 mol NH₃."},
+
+{q:"Using 2KClO₃ → 2KCl + 3O₂, how many moles of O₂ are produced from 8.0 mol KClO₃?",c:["4.0 mol","8.0 mol","12.0 mol","16.0 mol"],a:2,e:"8.0 × (3/2) = 12.0 mol O₂."},
+
+{q:"Using CaCO₃ → CaO + CO₂, how many moles of CO₂ are produced from 4.0 mol CaCO₃?",c:["2.0 mol","4.0 mol","6.0 mol","8.0 mol"],a:1,e:"The mole ratio is 1:1."},
+
+{q:"Using 4Al + 3O₂ → 2Al₂O₃, how many moles of Al₂O₃ are formed from 20 mol Al?",c:["5 mol","10 mol","15 mol","20 mol"],a:1,e:"20 × (2/4) = 10 mol Al₂O₃."},
+
+{q:"How many grams of CO₂ are produced from 2.0 mol CO₂?",c:["22.0 g","44.0 g","66.0 g","88.0 g"],a:3,e:"2.0 × 44.01 = 88.0 g."},
+
+{q:"What is the first step in solving a stoichiometry problem?",c:["Convert to moles","Apply mole ratio","Balance the equation","Convert to grams"],a:2,e:"A balanced equation is required before calculations can begin."},
+
+{q:"Which roadmap is used for most stoichiometry calculations?",c:["Mass → Mole → Mole Ratio → Mole → Mass","Mass → Product → Mole","Mole → Mass → Product","Mass → Volume → Product"],a:0,e:"This is the standard stoichiometric pathway."},
+
+{q:"Using CH₄ + 2O₂ → CO₂ + 2H₂O, how many moles of O₂ are required to react with 3.0 mol CH₄?",c:["1.5 mol","3.0 mol","6.0 mol","9.0 mol"],a:2,e:"3.0 × 2 = 6.0 mol O₂."},
+
+{q:"Using 2Mg + O₂ → 2MgO, what mass of MgO is produced from 2.0 mol Mg?",c:["40.3 g","60.5 g","80.6 g","100.8 g"],a:2,e:"2.0 mol MgO × 40.3 g/mol = 80.6 g."},
+
+{q:"Which reactant determines the maximum amount of product that can form?",c:["Excess reactant","Catalyst","Limiting reactant","Product"],a:2,e:"The limiting reactant controls product formation."},
+
+{q:"What is an excess reactant?",c:["The reactant consumed first","The reactant remaining after the reaction","The product formed","The catalyst"],a:1,e:"An excess reactant remains after the reaction stops."},
+
+{q:"In 2H₂ + O₂ → 2H₂O, if 10 mol H₂ and 3 mol O₂ are available, which reactant is limiting?",c:["H₂","O₂","H₂O","Neither"],a:1,e:"10 mol H₂ requires 5 mol O₂, but only 3 mol O₂ are available."},
+
+{q:"In N₂ + 3H₂ → 2NH₃, if 4 mol N₂ and 15 mol H₂ are available, which reactant is limiting?",c:["N₂","H₂","NH₃","Neither"],a:0,e:"4 mol N₂ requires 12 mol H₂, so hydrogen is in excess."},
+
+{q:"What is theoretical yield?",c:["Product actually collected","Maximum possible product","Unused reactant","Reaction efficiency"],a:1,e:"Theoretical yield is the maximum amount predicted by stoichiometry."},
+
+{q:"What is actual yield?",c:["Maximum possible product","Product predicted by calculations","Product obtained experimentally","Unused reactant"],a:2,e:"Actual yield is the amount actually collected."},
+
+{q:"Which formula calculates percent yield?",c:["(Theoretical ÷ Actual) × 100","(Actual ÷ Theoretical) × 100","Actual × Theoretical","Theoretical − Actual"],a:1,e:"Percent Yield = (Actual Yield ÷ Theoretical Yield) × 100."},
+
+{q:"A reaction has a theoretical yield of 150 g and an actual yield of 120 g. What is the percent yield?",c:["70%","75%","80%","85%"],a:2,e:"(120 ÷ 150) × 100 = 80%."},
+
+{q:"A reaction has a theoretical yield of 240 g and an actual yield of 204 g. What is the percent yield?",c:["80%","82.5%","85%","90%"],a:2,e:"(204 ÷ 240) × 100 = 85%."},
+
+{q:"Which is NOT a common cause of low percent yield?",c:["Incomplete reactions","Side reactions","Product loss","Creation of new atoms"],a:3,e:"Atoms are neither created nor destroyed in chemical reactions."},
+
+{q:"A fertilizer plant predicts 800 kg NH₃ but produces 720 kg. What is the percent yield?",c:["85%","90%","92%","95%"],a:1,e:"(720 ÷ 800) × 100 = 90%."},
+
+{q:"A power plant burns methane according to CH₄ + 2O₂ → CO₂ + 2H₂O. If 64 g CH₄ reacts completely, what mass of O₂ is required?",c:["128 g","192 g","256 g","320 g"],a:2,e:"64 g CH₄ = 4 mol CH₄. Required O₂ = 8 mol. 8 × 32 = 256 g O₂."},
+
+{q:"A chemical engineer decomposes 500 g CaCO₃. What is the theoretical mass of CO₂ produced?",c:["110 g","165 g","220 g","330 g"],a:2,e:"500 g CaCO₃ = 5.00 mol. Produces 5.00 mol CO₂. 5 × 44.01 ≈ 220 g."},
+
+{q:"Which statement best describes stoichiometry?",c:["Study of reaction speed","Study of atomic structure","Study of quantitative relationships in chemical reactions","Study of chemical bonding"],a:2,e:"Stoichiometry determines the amounts of reactants and products involved in reactions."},
+
+{q:"Why is stoichiometry important in engineering?",c:["It determines atomic numbers","It predicts material requirements and production output","It changes reaction rates","It eliminates side reactions"],a:1,e:"Engineers use stoichiometry for process design, manufacturing, and efficiency calculations."},
+
+{q:"A process has a percent yield of 100%. What does this indicate?",c:["Actual yield exceeds theoretical yield","Theoretical yield exceeds actual yield","Actual yield equals theoretical yield","No reaction occurred"],a:2,e:"A 100% yield means the actual yield exactly matches the theoretical prediction."},
+
+{q:"Which chapter concept connects microscopic particles to measurable quantities such as grams?",c:["Periodic trends","Chemical bonding","The mole concept","Reaction classification"],a:2,e:"The mole concept bridges the microscopic and macroscopic worlds of chemistry."}
+
+];
+
+  let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+	${q.svg || ""}
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+
+  const q = quizData[current];
+  const buttons = document.querySelectorAll(".choice");
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+
+    if (idx === q.a) {
+      btn.classList.add("correct");
+    }
+
+    if (idx === i && idx !== q.a) {
+      btn.classList.add("incorrect");
+    }
+  });
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>
