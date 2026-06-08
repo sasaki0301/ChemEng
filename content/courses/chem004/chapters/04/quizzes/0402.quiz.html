@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Writing and Balancing Chemical Equations</title>
+
+<style>
+/* SAME STYLE AS TEMPLATE */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.quiz-container {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  width: 95%;
+  max-width: 850px;
+  text-align: center;
+}
+h2 { color: #136f63; margin-bottom: 25px; }
+.progress-wrapper { background:#e9f5ef; border-radius:8px; height:14px; width:100%; margin-bottom:25px; overflow:hidden;}
+.progress-bar { height:100%; background:linear-gradient(to right,#136f63,#2b7de9); width:0%; transition:width 0.4s;}
+.progress-text { text-align:right; font-size:0.95em; color:#174ea6; margin-bottom:10px; font-weight:600;}
+.question { font-size:1.3em; font-weight:600; color:#174ea6; margin-bottom:20px;}
+.choices { display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
+.choice { background:#e8ecf8; border:none; border-radius:10px; padding:14px; cursor:pointer; text-align:left;}
+.choice:hover { background:#d3dbf8; transform:translateY(-2px);}
+.choice.correct {background: #2b7de9;color: #fff;}
+.choice.incorrect {background: #e57373;color: #fff;}
+.explanation { background:#eef3ff; border-radius:10px; padding:14px; text-align:left; margin-bottom:20px; display:none;}
+.next-btn { background:#136f63; color:#fff; border:none; padding:12px 26px; border-radius:10px; cursor:pointer;}
+.result { font-size:1.4em; font-weight:bold; color:#174ea6;}
+.stars { font-size:2.5em; margin-top:10px;}
+.quiz-nav { margin-top:25px; display:flex; justify-content:center; gap:10px;}
+.quiz-btn { background:#e8ecf8; border:none; border-radius:8px; padding:10px 20px; cursor:pointer;}
+.quiz-btn.primary { background:#136f63; color:#fff;}
+@media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+
+.diagram-box {margin: 12px 0 20px; background: #f7fbff; border: 1px dashed #d8e9ff; padding: 10px; border-radius: 8px; }
+
+svg {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h2>Writing and Balancing Chemical Equations - Quiz</h2>
+
+<div class="progress-text" id="progressText"></div>
+<div class="progress-wrapper">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<div id="quizBox"></div>
+
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+
+</div>
+
+<script>
+const quizData = [
+
+{q:"What is the primary purpose of a chemical equation?",c:["To identify isotopes","To represent a chemical reaction symbolically","To determine atomic mass","To classify elements"],a:1,e:"Chemical equations use formulas and symbols to represent chemical reactions."},
+
+{q:"In a chemical equation, the substances present before the reaction occurs are called:",c:["Products","Catalysts","Reactants","Coefficients"],a:2,e:"Reactants are the starting substances that undergo chemical change."},
+
+{q:"What does the arrow (→) in a chemical equation mean?",c:["Reacts with","Plus","Produces or yields","Balances"],a:2,e:"The arrow separates reactants from products and means 'produces' or 'yields'."},
+
+{q:"What does the symbol (aq) represent in a chemical equation?",c:["Solid","Liquid","Gas","Dissolved in water"],a:3,e:"(aq) indicates an aqueous solution, meaning the substance is dissolved in water."},
+
+{q:"Which scientific law requires chemical equations to be balanced?",c:["Law of Definite Proportions","Law of Multiple Proportions","Law of Conservation of Mass","Law of Constant Composition"],a:2,e:"Matter cannot be created or destroyed during a chemical reaction."},
+
+{q:"What can be changed when balancing a chemical equation?",c:["Subscripts","Chemical formulas","Coefficients","Element symbols"],a:2,e:"Only coefficients may be adjusted when balancing equations."},
+
+{q:"Why should subscripts never be changed when balancing equations?",c:["They indicate the physical state","They change the identity of the compound","They affect reaction speed","They indicate charge"],a:1,e:"Changing subscripts creates a different substance entirely."},
+
+{q:"Which of the following equations is correctly balanced?",c:["H₂ + O₂ → H₂O","2H₂ + O₂ → 2H₂O","H₂ + 2O₂ → H₂O","2H₂ + 2O₂ → 2H₂O"],a:1,e:"This equation contains equal numbers of hydrogen and oxygen atoms on both sides."},
+
+{q:"Balance the equation: N₂ + H₂ → NH₃",c:["N₂ + H₂ → 2NH₃","N₂ + 2H₂ → 2NH₃","N₂ + 3H₂ → 2NH₃","2N₂ + 3H₂ → 2NH₃"],a:2,e:"The balanced equation is N₂ + 3H₂ → 2NH₃."},
+
+{q:"Balance the equation: Fe + Cl₂ → FeCl₃",c:["Fe + Cl₂ → FeCl₃","2Fe + 3Cl₂ → 2FeCl₃","3Fe + 2Cl₂ → 3FeCl₃","2Fe + Cl₂ → FeCl₃"],a:1,e:"The balanced equation is 2Fe + 3Cl₂ → 2FeCl₃."},
+
+{q:"Which element should usually be balanced last in hydrocarbon combustion reactions?",c:["Carbon","Hydrogen","Oxygen","Nitrogen"],a:2,e:"Oxygen is often balanced last because it appears in multiple compounds."},
+
+{q:"Balance the equation: C₂H₄ + O₂ → CO₂ + H₂O",c:["C₂H₄ + 2O₂ → 2CO₂ + 2H₂O","2C₂H₄ + O₂ → 2CO₂ + H₂O","C₂H₄ + O₂ → CO₂ + H₂O","2C₂H₄ + 3O₂ → 2CO₂ + 4H₂O"],a:0,e:"Balancing carbon and hydrogen first leads to C₂H₄ + 3O₂ → 2CO₂ + 2H₂O? Actually oxygen count becomes 6 on products, requiring 3O₂. Therefore correct balanced equation is C₂H₄ + 3O₂ → 2CO₂ + 2H₂O."},
+
+{q:"Which statement about coefficients is correct?",c:["They indicate the number of atoms within a molecule","They multiply every atom in a formula","They cannot be changed","They indicate ion charges"],a:1,e:"A coefficient multiplies all atoms in the chemical formula that follows it."},
+
+{q:"When balancing equations containing unchanged polyatomic ions on both sides, what strategy is often useful?",c:["Split the ion into individual atoms","Treat the polyatomic ion as a single unit","Ignore the ion","Balance oxygen first"],a:1,e:"Treating an unchanged polyatomic ion as a unit simplifies balancing."},
+
+{q:"Balance the equation: Na₃PO₄ + MgCl₂ → Mg₃(PO₄)₂ + NaCl",c:["Na₃PO₄ + MgCl₂ → Mg₃(PO₄)₂ + NaCl","2Na₃PO₄ + 3MgCl₂ → Mg₃(PO₄)₂ + 6NaCl","3Na₃PO₄ + 2MgCl₂ → Mg₃(PO₄)₂ + 3NaCl","Na₃PO₄ + 3MgCl₂ → Mg₃(PO₄)₂ + 2NaCl"],a:1,e:"Treat phosphate as a single unit. The balanced equation is 2Na₃PO₄ + 3MgCl₂ → Mg₃(PO₄)₂ + 6NaCl."},
+
+{q:"Balance the equation: Al₂(SO₄)₃ + Ca(OH)₂ → Al(OH)₃ + CaSO₄",c:["Al₂(SO₄)₃ + Ca(OH)₂ → Al(OH)₃ + CaSO₄","Al₂(SO₄)₃ + 2Ca(OH)₂ → 2Al(OH)₃ + CaSO₄","Al₂(SO₄)₃ + 3Ca(OH)₂ → 2Al(OH)₃ + 3CaSO₄","2Al₂(SO₄)₃ + 3Ca(OH)₂ → Al(OH)₃ + 3CaSO₄"],a:2,e:"Treat sulfate as a unit. The balanced equation is Al₂(SO₄)₃ + 3Ca(OH)₂ → 2Al(OH)₃ + 3CaSO₄."},
+
+{q:"Balance the equation: Fe₂(SO₄)₃ + KOH → Fe(OH)₃ + K₂SO₄",c:["Fe₂(SO₄)₃ + 3KOH → 2Fe(OH)₃ + K₂SO₄","Fe₂(SO₄)₃ + 6KOH → 2Fe(OH)₃ + 3K₂SO₄","Fe₂(SO₄)₃ + KOH → Fe(OH)₃ + K₂SO₄","2Fe₂(SO₄)₃ + 6KOH → 2Fe(OH)₃ + 3K₂SO₄"],a:1,e:"Treat sulfate as a unit. The balanced equation is Fe₂(SO₄)₃ + 6KOH → 2Fe(OH)₃ + 3K₂SO₄."},
+
+{q:"A chemical engineer needs to determine raw material requirements for ammonia production. Why is balancing the equation important?",c:["To identify catalysts","To determine correct reactant-to-product ratios","To calculate atomic numbers","To classify reaction types"],a:1,e:"Balanced equations provide the quantitative relationships needed for engineering calculations."},
+
+{q:"An environmental engineer is calculating CO₂ emissions from fuel combustion. What information from a balanced equation is most useful?",c:["State symbols only","Reaction color","Stoichiometric ratios between reactants and products","Atomic masses only"],a:2,e:"Balanced equations provide the mole ratios required for emission calculations."},
+
+{q:"Which of the following best explains why balanced chemical equations are essential in industrial chemistry?",c:["They make reactions occur faster","They ensure mass conservation and accurate material calculations","They increase product quality automatically","They eliminate side reactions"],a:1,e:"Industrial processes rely on balanced equations to accurately predict reactant consumption and product formation."}
+
+];
+  let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+	${q.svg || ""}
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+
+  const q = quizData[current];
+  const buttons = document.querySelectorAll(".choice");
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+
+    if (idx === q.a) {
+      btn.classList.add("correct");
+    }
+
+    if (idx === i && idx !== q.a) {
+      btn.classList.add("incorrect");
+    }
+  });
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>
+  
