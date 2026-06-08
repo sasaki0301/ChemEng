@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Chapter 4 Assessment: Chemical Nomenclature and Reactions</title>
+
+<style>
+/* SAME STYLE AS TEMPLATE */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.quiz-container {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  width: 95%;
+  max-width: 850px;
+  text-align: center;
+}
+h2 { color: #136f63; margin-bottom: 25px; }
+.progress-wrapper { background:#e9f5ef; border-radius:8px; height:14px; width:100%; margin-bottom:25px; overflow:hidden;}
+.progress-bar { height:100%; background:linear-gradient(to right,#136f63,#2b7de9); width:0%; transition:width 0.4s;}
+.progress-text { text-align:right; font-size:0.95em; color:#174ea6; margin-bottom:10px; font-weight:600;}
+.question { font-size:1.3em; font-weight:600; color:#174ea6; margin-bottom:20px;}
+.choices { display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
+.choice { background:#e8ecf8; border:none; border-radius:10px; padding:14px; cursor:pointer; text-align:left;}
+.choice:hover { background:#d3dbf8; transform:translateY(-2px);}
+.choice.correct {background: #2b7de9;color: #fff;}
+.choice.incorrect {background: #e57373;color: #fff;}
+.explanation { background:#eef3ff; border-radius:10px; padding:14px; text-align:left; margin-bottom:20px; display:none;}
+.next-btn { background:#136f63; color:#fff; border:none; padding:12px 26px; border-radius:10px; cursor:pointer;}
+.result { font-size:1.4em; font-weight:bold; color:#174ea6;}
+.stars { font-size:2.5em; margin-top:10px;}
+.quiz-nav { margin-top:25px; display:flex; justify-content:center; gap:10px;}
+.quiz-btn { background:#e8ecf8; border:none; border-radius:8px; padding:10px 20px; cursor:pointer;}
+.quiz-btn.primary { background:#136f63; color:#fff;}
+@media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+
+.diagram-box {margin: 12px 0 20px; background: #f7fbff; border: 1px dashed #d8e9ff; padding: 10px; border-radius: 8px; }
+
+svg {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h2>Chapter 5 Assessment: Chemical Nomenclature and Reactions</h2>
+
+<div class="progress-text" id="progressText"></div>
+<div class="progress-wrapper">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<div id="quizBox"></div>
+
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+
+</div>
+
+<script>
+
+  const quizData = [
+
+{q:"What is the primary purpose of chemical nomenclature?",c:["To determine reaction rates","To provide a standardized system for naming compounds","To calculate atomic masses","To classify elements"],a:1,e:"Chemical nomenclature ensures clear and consistent communication among scientists and engineers."},
+
+{q:"Which of the following is the correct name for Li₂O?",c:["Lithium Oxygen","Lithium Oxide","Dilithium Oxide","Lithium Dioxide"],a:1,e:"Binary ionic compounds are named by stating the metal followed by the nonmetal ending in -ide."},
+
+{q:"What is the correct formula for Aluminum Sulfide?",c:["AlS","Al₂S₃","Al₃S₂","AlSO₄"],a:1,e:"Aluminum forms Al³⁺ while sulfide is S²⁻, producing Al₂S₃."},
+
+{q:"Which compound contains the nitrate ion?",c:["NaNO₂","NaNO₃","Na₂SO₄","NaOH"],a:1,e:"NO₃⁻ is the nitrate ion."},
+
+{q:"What is the name of Ca(OH)₂?",c:["Calcium Oxide","Calcium Hydroxide","Calcium Hydrogen Oxide","Calcium Hydroxate"],a:1,e:"OH⁻ is the hydroxide ion."},
+
+{q:"Which polyatomic ion has the formula CO₃²⁻?",c:["Carbonite","Carbonate","Carbide","Carbonyl"],a:1,e:"CO₃²⁻ is carbonate."},
+
+{q:"What is the formula of Ammonium Phosphate?",c:["NH₄PO₄","(NH₄)₂PO₄","(NH₄)₃PO₄","NH₄₃PO₄"],a:2,e:"Three ammonium ions are needed to balance phosphate's 3− charge."},
+
+{q:"What is the correct name for FeCl₂?",c:["Iron Chloride","Iron(I) Chloride","Iron(II) Chloride","Iron(III) Chloride"],a:2,e:"Each chloride is -1, making iron +2."},
+
+{q:"What is the correct formula for Copper(II) Sulfate?",c:["CuSO₄","Cu₂SO₄","CuSO₃","Cu₂(SO₄)₃"],a:0,e:"Copper(II) is Cu²⁺ and sulfate is SO₄²⁻."},
+
+{q:"What is the correct name for N₂O₃?",c:["Nitrogen Oxide","Dinitrogen Trioxide","Nitrogen Trioxide","Dinitrogen Oxide"],a:1,e:"Covalent compounds use prefixes to indicate atom counts."},
+
+{q:"Which prefix represents eight atoms?",c:["Hepta","Hexa","Octa","Nona"],a:2,e:"Octa- indicates eight atoms."},
+
+{q:"What is the correct formula for Carbon Tetrachloride?",c:["CCl","CCl₂","CCl₃","CCl₄"],a:3,e:"Tetra means four chlorine atoms."},
+
+{q:"Which acid is derived from the nitrite ion?",c:["Nitric Acid","Nitrous Acid","Nitride Acid","Nitricous Acid"],a:1,e:"-ite ions become -ous acids."},
+
+{q:"What is the correct name for HBr(aq)?",c:["Hydrobromic Acid","Bromic Acid","Bromous Acid","Hydrobromous Acid"],a:0,e:"Binary acids use the pattern hydro + root + ic acid."},
+
+{q:"What is the formula for Magnesium Nitrate?",c:["MgNO₃","Mg(NO₃)₂","Mg₂NO₃","Mg₂(NO₃)₂"],a:1,e:"Mg²⁺ requires two nitrate ions."},
+
+{q:"What is a reactant in a chemical equation?",c:["A substance formed during a reaction","A starting substance in a reaction","A catalyst","A coefficient"],a:1,e:"Reactants are the substances present before a reaction occurs."},
+
+{q:"Which symbol separates reactants from products?",c:["=","+","→","×"],a:2,e:"The arrow indicates the direction of the reaction."},
+
+{q:"Which scientific law requires balanced chemical equations?",c:["Law of Multiple Proportions","Law of Conservation of Mass","Law of Definite Composition","Law of Periodicity"],a:1,e:"Matter is neither created nor destroyed during chemical reactions."},
+
+{q:"What may be changed when balancing chemical equations?",c:["Subscripts","Chemical formulas","Coefficients","Element symbols"],a:2,e:"Only coefficients may be adjusted."},
+
+{q:"Balance: H₂ + Cl₂ → HCl",c:["H₂ + Cl₂ → HCl","2H₂ + Cl₂ → 2HCl","H₂ + Cl₂ → 2HCl","2H₂ + 2Cl₂ → 2HCl"],a:2,e:"The balanced equation is H₂ + Cl₂ → 2HCl."},
+
+{q:"Balance: Na + O₂ → Na₂O",c:["2Na + O₂ → Na₂O","4Na + O₂ → 2Na₂O","2Na + 2O₂ → Na₂O","4Na + 2O₂ → 2Na₂O"],a:1,e:"The balanced equation is 4Na + O₂ → 2Na₂O."},
+
+{q:"Balance: Al + HCl → AlCl₃ + H₂",c:["Al + 3HCl → AlCl₃ + H₂","2Al + 6HCl → 2AlCl₃ + 3H₂","Al + HCl → AlCl₃ + H₂","2Al + 3HCl → 2AlCl₃ + H₂"],a:1,e:"The balanced equation is 2Al + 6HCl → 2AlCl₃ + 3H₂."},
+
+{q:"Why should subscripts never be changed during balancing?",c:["It changes the state of matter","It changes the identity of the compound","It affects the charge","It changes the reaction type"],a:1,e:"Changing subscripts creates a different substance."},
+
+{q:"Balance: Ca₃(PO₄)₂ + H₂SO₄ → CaSO₄ + H₃PO₄",c:["Ca₃(PO₄)₂ + H₂SO₄ → CaSO₄ + H₃PO₄","Ca₃(PO₄)₂ + 3H₂SO₄ → 3CaSO₄ + 2H₃PO₄","Ca₃(PO₄)₂ + 2H₂SO₄ → 2CaSO₄ + H₃PO₄","2Ca₃(PO₄)₂ + 3H₂SO₄ → 3CaSO₄ + 2H₃PO₄"],a:1,e:"Treat phosphate and sulfate as intact polyatomic ions."},
+
+{q:"Which reaction type follows the pattern A + B → AB?",c:["Combustion","Decomposition","Synthesis","Double Replacement"],a:2,e:"Two or more substances combine into a single product."},
+
+{q:"Which reaction type follows the pattern AB → A + B?",c:["Synthesis","Single Replacement","Combustion","Decomposition"],a:3,e:"One compound breaks into simpler substances."},
+
+{q:"Classify: Zn + 2AgNO₃ → Zn(NO₃)₂ + 2Ag",c:["Synthesis","Single Replacement","Combustion","Neutralization"],a:1,e:"Zinc replaces silver in the compound."},
+
+{q:"Classify: Na₂CO₃ + CaCl₂ → CaCO₃ + 2NaCl",c:["Combustion","Double Replacement","Synthesis","Decomposition"],a:1,e:"The ions exchange partners."},
+
+{q:"What type of reaction occurs when methane burns in oxygen?",c:["Combustion","Neutralization","Precipitation","Single Replacement"],a:0,e:"Hydrocarbon combustion produces carbon dioxide and water."},
+
+{q:"What are the products of a neutralization reaction?",c:["Metal and hydrogen","Carbon dioxide and water","Salt and water","Salt and oxygen"],a:2,e:"Acids react with bases to form salt and water."},
+
+{q:"Which reaction is a neutralization reaction?",c:["H₂SO₄ + 2NaOH → Na₂SO₄ + 2H₂O","Zn + HCl → ZnCl₂ + H₂","2KClO₃ → 2KCl + 3O₂","2Mg + O₂ → 2MgO"],a:0,e:"An acid reacts with a base."},
+
+{q:"What is a precipitate?",c:["A gas produced during a reaction","An insoluble solid formed during a reaction","A catalyst","A dissolved ion"],a:1,e:"Precipitates form when insoluble compounds are produced in solution."},
+
+{q:"Which reaction is most likely a precipitation reaction?",c:["AgNO₃ + KCl → AgCl + KNO₃","CH₄ + O₂ → CO₂ + H₂O","N₂ + H₂ → NH₃","CaCO₃ → CaO + CO₂"],a:0,e:"Silver chloride is insoluble and precipitates from solution."},
+
+{q:"A wastewater treatment facility adds a base to acidic water before discharge. Which reaction type is being applied?",c:["Combustion","Neutralization","Synthesis","Decomposition"],a:1,e:"Neutralization is commonly used to control wastewater pH."},
+
+{q:"A chemical engineer is producing ammonia from nitrogen and hydrogen. Which reaction type is involved?",c:["Synthesis","Single Replacement","Combustion","Double Replacement"],a:0,e:"Two reactants combine to form one product."}
+
+];
+
+  let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+	${q.svg || ""}
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+
+  const q = quizData[current];
+  const buttons = document.querySelectorAll(".choice");
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+
+    if (idx === q.a) {
+      btn.classList.add("correct");
+    }
+
+    if (idx === i && idx !== q.a) {
+      btn.classList.add("incorrect");
+    }
+  });
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>
