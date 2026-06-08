@@ -1,746 +1,742 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lesson 2: Mole-to-Mole and Mass-to-Mass Stoichiometry</title>
+  <style>
+    .math-card,
+    .worked-example{
+      background:#f7fbff;
+      border:1px solid #dbe7f3;
+      border-radius:8px;
+      padding:16px 18px;
+      margin:16px 0;
+    }
 
-<title>Mole-to-Mole and Mass-to-Mass Stoichiometry</title>
+    .reaction{
+      text-align:center;
+      font-weight:800;
+      color:#174ea6;
+      font-size:1.12rem;
+      margin:12px 0;
+      overflow-wrap:anywhere;
+    }
 
-<style>
-body{
-  font-family:"Segoe UI",Arial,sans-serif;
-  background:#fafafa;
-  color:#222;
-  padding:24px;
-  line-height:1.8;
-  font-size:20px;
-}
+    .roadmap{
+      text-align:center;
+      font-weight:800;
+      color:#136f63;
+      font-size:1.12rem;
+      margin:10px 0;
+    }
 
-h1{color:#136f63;}
-h2{color:#136f63;margin-top:1.4em;}
-h3{color:#174ea6;}
+    .math-work{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      margin:12px 0;
+      padding:14px;
+      background:#ffffff;
+      border:1px solid #e3edf7;
+      border-radius:8px;
+      overflow-x:auto;
+    }
 
-.section{margin-bottom:30px;}
+    .math-work.center{
+      justify-content:center;
+    }
 
-.key-box{
-  background:#e8f7f5;
-  border-left:6px solid #136f63;
-  padding:14px;
-  border-radius:8px;
-  margin:16px 0;
-}
+    .fraction{
+      display:inline-grid;
+      grid-template-rows:auto auto;
+      min-width:max-content;
+      text-align:center;
+      line-height:1.2;
+      vertical-align:middle;
+      font-weight:700;
+    }
 
-.example-box{
-  background:#fff;
-  border-left:5px solid #2b7de9;
-  padding:14px;
-  border-radius:8px;
-  margin:16px 0;
-}
+    .fraction .top{
+      border-bottom:2px solid currentColor;
+      padding:0 10px 5px;
+    }
 
-.visual-box{
-  background:#fff;
-  border-radius:12px;
-  padding:14px;
-  margin:16px 0;
-  border:1px solid #ddd;
-}
+    .fraction .bottom{
+      padding:5px 10px 0;
+    }
 
-.lesson-img{
-  width:100%;
-  max-width:720px;
-  display:block;
-  margin:0 auto;
-  border-radius:12px;
-}
+    .final-answer{
+      background:#e9f8f1;
+      border:1px solid #b9e4ce;
+      border-radius:8px;
+      padding:12px 14px;
+      margin-top:12px;
+      font-weight:800;
+      color:#0d5a50;
+    }
 
-.caption{
-  text-align:center;
-  font-size:0.9em;
-  color:#555;
-}
+    .ratio-strip{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:10px;
+      margin-top:14px;
+    }
 
-.activity{
-  background:#fff;
-  padding:14px;
-  border-radius:10px;
-  margin:14px 0;
-}
+    .ratio-strip div{
+      background:#ffffff;
+      border:1px solid #dbe7f3;
+      border-radius:8px;
+      padding:12px;
+      text-align:center;
+      font-weight:700;
+    }
 
-.toggle-btn{
-  background:#136f63;
-  color:white;
-  border:none;
-  padding:6px 12px;
-  border-radius:6px;
-  cursor:pointer;
-}
+    .answer ol{
+      margin-top:8px;
+    }
 
-.answer{
-  display:none;
-  margin-top:10px;
-  background:#eef3ff;
-  padding:10px;
-  border-radius:6px;
-}
+    .answer{
+      display:none;
+      margin-top:12px;
+      background:#eef3ff;
+      border-radius:8px;
+      padding:12px 16px;
+    }
 
-.formula{
-  font-size:22px;
-  font-weight:bold;
-  text-align:center;
-}
+    @media(max-width:620px){
+      .ratio-strip{
+        grid-template-columns:1fr;
+      }
 
-.quiz-button{
-  background:#136f63;
-  color:white;
-  padding:12px 22px;
-  border-radius:10px;
-  border:none;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  margin:16px 0;
-  background:#fff;
-}
-
-th,td{
-  border:1px solid #ddd;
-  padding:10px;
-}
-
-th{background:#e8f7f5;}
-
-iframe{
-  width:100%;
-  max-width:100%;
-}
-</style>
+      .math-work{
+        align-items:flex-start;
+      }
+    }
+  </style>
 </head>
 <body>
-
-  <h1>Chapter 5: Stoichiometry and Quantitative Chemistry</h1>
-<h2>Lesson 2: Mole-to-Mole and Mass-to-Mass Stoichiometry</h2>
-
-<div class="key-box">
-<strong>Engineering Scenario</strong><br><br>
-
-A power plant burns methane to generate electricity. A fertilizer company produces ammonia for agriculture. A cement plant decomposes limestone to manufacture cement.
-
-In all of these processes, engineers must answer an important question:
-
-<strong>"How much product can be produced from a given amount of reactant?"</strong>
-
-Stoichiometry provides the mathematical framework for answering this question.
-</div>
-
-<div class="section">
-<h2>Learning Objectives</h2>
-
-<ul>
-<li>Define stoichiometry.</li>
-<li>Interpret mole ratios from balanced equations.</li>
-<li>Perform mole-to-mole calculations.</li>
-<li>Perform mass-to-mass calculations.</li>
-<li>Apply stoichiometry to engineering situations.</li>
-<li>Use a systematic problem-solving approach.</li>
-</ul>
-</div>
-
-<div class="section">
-<h2>What is Stoichiometry?</h2>
-
-<p>
-Stoichiometry is the study of quantitative relationships in chemical reactions.
-</p>
-
-<p>
-It allows chemists and engineers to determine:
-</p>
-
-<ul>
-<li>How much reactant is needed</li>
-<li>How much product can be produced</li>
-<li>How efficiently a process operates</li>
-<li>Material requirements in manufacturing</li>
-</ul>
-
-<div class="key-box">
-Stoichiometry is essentially the mathematics of chemical reactions.
-</div>
-
-</div>
-
-<div class="section">
-<h2>Stoichiometric Coefficients</h2>
-
-<p>
-The coefficients in a balanced equation represent mole relationships.
-</p>
-
-<div class="formula">
-2H₂ + O₂ → 2H₂O
-</div>
-
-<p>
-This equation means:
-</p>
-
-<ul>
-<li>2 mol H₂ reacts with 1 mol O₂</li>
-<li>2 mol H₂ produces 2 mol H₂O</li>
-<li>1 mol O₂ produces 2 mol H₂O</li>
-</ul>
-
-<div class="visual-box">
-
-<!-- IMAGE PLACEHOLDER: Mole Ratio Visualization -->
-
-<img
-src=""
-alt="Mole Ratio Relationship in a Balanced Equation"
-class="lesson-img">
-
-<p class="caption">
-Figure 1. Balanced equations provide mole ratios used in stoichiometric calculations.
-</p>
-
-</div>
-
-</div>
-
-<div class="section">
-<h2>Understanding Mole Ratios</h2>
-
-<p>
-A mole ratio comes directly from the coefficients of a balanced equation.
-</p>
-
-<div class="formula">
-N₂ + 3H₂ → 2NH₃
-</div>
-
-<table>
-<tr>
-<th>Mole Ratio</th>
-<th>Meaning</th>
-</tr>
-
-<tr>
-<td>1 mol N₂ : 3 mol H₂</td>
-<td>One mole nitrogen requires three moles hydrogen</td>
-</tr>
-
-<tr>
-<td>1 mol N₂ : 2 mol NH₃</td>
-<td>One mole nitrogen produces two moles ammonia</td>
-</tr>
-
-<tr>
-<td>3 mol H₂ : 2 mol NH₃</td>
-<td>Three moles hydrogen produce two moles ammonia</td>
-</tr>
-
-</table>
-
-</div>
-
-<div class="section">
-<h2>The Stoichiometry Roadmap</h2>
-
-<div class="key-box">
-
-<div class="formula">
-Mass → Mole → Mole Ratio → Mole → Mass
-</div>
-
-</div>
-
-<p>
-Nearly every stoichiometry problem follows this roadmap.
-</p>
-
-<ul>
-<li>Convert the given quantity to moles.</li>
-<li>Use the mole ratio.</li>
-<li>Convert to the desired unit.</li>
-</ul>
-
-</div>
-
-<div class="section">
-<h2>Mole-to-Mole Stoichiometry</h2>
-
-<p>
-Mole-to-mole problems involve converting between moles of different substances using mole ratios.
-</p>
-
-</div>
-
-<div class="section">
-<h2>Worked Example 1</h2>
-
-<div class="example-box">
-
-<strong>Problem</strong><br><br>
-
-How many moles of water are produced when 5.0 mol H₂ reacts completely?
-
-<div class="formula">
-2H₂ + O₂ → 2H₂O
-</div>
-
-</div>
-
-<p><strong>Step 1:</strong> Write the mole ratio.</p>
-
-<div class="formula">
-2 mol H₂
-────────
-2 mol H₂O
-</div>
-
-<p><strong>Step 2:</strong> Apply ratio.</p>
-
-<div class="formula">
-5.0 mol H₂ ×
-2 mol H₂O
-──────────
-2 mol H₂
-</div>
-
-<div class="formula">
-5.0 mol H₂O
-</div>
-
-<div class="key-box">
-Answer: 5.0 mol H₂O
-</div>
-
-</div>
-
-<div class="section">
-<h2>Worked Example 2</h2>
-
-<div class="example-box">
-
-<strong>Problem</strong><br><br>
-
-How many moles of NH₃ can be produced from 4.0 mol N₂?
-
-<div class="formula">
-N₂ + 3H₂ → 2NH₃
-</div>
-
-</div>
-
-<p><strong>Step 1:</strong> Write mole ratio.</p>
-
-<div class="formula">
-2 mol NH₃
-────────
-1 mol N₂
-</div>
-
-<p><strong>Step 2:</strong> Convert.</p>
-
-<div class="formula">
-4.0 × 2 = 8.0 mol NH₃
-</div>
-
-<div class="key-box">
-Answer: 8.0 mol NH₃
-</div>
-
-</div>
-
-<div class="section">
-<h2>Worked Example 3</h2>
-
-<div class="example-box">
-
-<strong>Problem</strong><br><br>
-
-How many moles of Al₂O₃ are produced from 12 mol Al?
-
-<div class="formula">
-4Al + 3O₂ → 2Al₂O₃
-</div>
-
-</div>
-
-<div class="formula">
-12 mol Al ×
-2 mol Al₂O₃
-────────────
-4 mol Al
-</div>
-
-<div class="formula">
-6 mol Al₂O₃
-</div>
-
-<div class="key-box">
-Answer: 6 mol Al₂O₃
-</div>
-
-</div>
-
-<div class="section">
-<h2>Mass-to-Mass Stoichiometry</h2>
-
-<p>
-Most real-world engineering calculations involve mass rather than moles.
-</p>
-
-<div class="key-box">
-
-Follow these four steps:
-
-<ol>
-<li>Balance the equation.</li>
-<li>Convert mass to moles.</li>
-<li>Apply mole ratio.</li>
-<li>Convert moles back to mass.</li>
-</ol>
-
-</div>
-
-</div>
-
-<div class="section">
-<h2>Worked Example 4: Magnesium Oxide Production</h2>
-
-<div class="example-box">
-
-Given 24.3 g Mg, determine the mass of MgO produced.
-
-<div class="formula">
-2Mg + O₂ → 2MgO
-</div>
-
-</div>
-
-<p><strong>Step 1:</strong> Convert Mg to moles.</p>
-
-<div class="formula">
-24.3 g ÷ 24.3 g/mol = 1.00 mol Mg
-</div>
-
-<p><strong>Step 2:</strong> Apply mole ratio.</p>
-
-<div class="formula">
-1.00 mol Mg ×
-2 mol MgO
-─────────
-2 mol Mg
-=
-1.00 mol MgO
-</div>
-
-<p><strong>Step 3:</strong> Convert to grams.</p>
-
-<div class="formula">
-1.00 × 40.3 = 40.3 g MgO
-</div>
-
-<div class="key-box">
-Answer: 40.3 g MgO
-</div>
-
-</div>
-
-<div class="section">
-<h2>Worked Example 5: Limestone Decomposition</h2>
-
-<div class="example-box">
-
-Given 250 g CaCO₃, determine the mass of CO₂ produced.
-
-<div class="formula">
-CaCO₃ → CaO + CO₂
-</div>
-
-</div>
-
-<p><strong>Step 1:</strong> Convert to moles.</p>
-
-<div class="formula">
-250 g ÷ 100.09 g/mol
-=
-2.50 mol CaCO₃
-</div>
-
-<p><strong>Step 2:</strong> Mole ratio.</p>
-
-<div class="formula">
-1:1
-</div>
-
-<div class="formula">
-2.50 mol CO₂
-</div>
-
-<p><strong>Step 3:</strong> Convert to mass.</p>
-
-<div class="formula">
-2.50 × 44.01
-=
-110.0 g CO₂
-</div>
-
-<div class="key-box">
-Answer: 110.0 g CO₂
-</div>
-
-</div>
-
-<div class="section">
-<h2>Worked Example 6: Ammonia Production</h2>
-
-<div class="example-box">
-
-Given 56 g N₂, determine the mass of NH₃ produced.
-
-<div class="formula">
-N₂ + 3H₂ → 2NH₃
-</div>
-
-</div>
-
-<p><strong>Step 1:</strong> Convert to moles.</p>
-
-<div class="formula">
-56 ÷ 28.02
-=
-2.00 mol N₂
-</div>
-
-<p><strong>Step 2:</strong> Mole ratio.</p>
-
-<div class="formula">
-2.00 × 2
-=
-4.00 mol NH₃
-</div>
-
-<p><strong>Step 3:</strong> Convert to mass.</p>
-
-<div class="formula">
-4.00 × 17.03
-=
-68.1 g NH₃
-</div>
-
-<div class="key-box">
-Answer: 68.1 g NH₃
-</div>
-
-</div>
-
-<div class="section">
-<h2>Worked Example 7: Engineering Combustion Problem</h2>
-
-<div class="example-box">
-
-A power plant burns 32.0 g CH₄.
-
-How much O₂ is required?
-
-<div class="formula">
-CH₄ + 2O₂ → CO₂ + 2H₂O
-</div>
-
-</div>
-
-<p><strong>Step 1:</strong> Convert CH₄ to moles.</p>
-
-<div class="formula">
-32.0 ÷ 16.04
-=
-1.995 mol CH₄
-</div>
-
-<p><strong>Step 2:</strong> Apply mole ratio.</p>
-
-<div class="formula">
-1.995 × 2
-=
-3.99 mol O₂
-</div>
-
-<p><strong>Step 3:</strong> Convert to mass.</p>
-
-<div class="formula">
-3.99 × 32.00
-=
-127.7 g O₂
-</div>
-
-<div class="key-box">
-Answer: 127.7 g O₂
-</div>
-
-</div>
-
-<div class="section">
-<h2>Engineering Applications</h2>
-
-<ul>
-<li>Fuel consumption calculations</li>
-<li>Emission analysis</li>
-<li>Fertilizer manufacturing</li>
-<li>Chemical production planning</li>
-<li>Material inventory management</li>
-<li>Environmental impact assessment</li>
-</ul>
-
-<div class="visual-box">
-
-<!-- IMAGE PLACEHOLDER: Industrial Stoichiometry Application -->
-
-<img
-src=""
-alt="Stoichiometry in Industrial Chemical Processes"
-class="lesson-img">
-
-<p class="caption">
-Figure 2. Stoichiometry is used to determine material requirements and product output in industrial processes.
-</p>
-
-</div>
-
-</div>
-
-<div class="section">
-<h2>Interactive Simulation</h2>
-
-<div class="activity">
-
-<p>
-Explore how reactants combine to form products and identify leftover materials.
-</p>
-
-<iframe
-height="500"
-src="https://phet.colorado.edu/sims/html/reactants-products-and-leftovers/latest/reactants-products-and-leftovers_en.html">
-</iframe>
-
-</div>
-
-</div>
-
-<div class="section">
-<h2>Practice Drills</h2>
-
-<div class="activity">
-<p><strong>1.</strong> How many moles of H₂O are produced from 3.5 mol O₂?</p>
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Solution</button>
-<div class="answer">7.0 mol H₂O</div>
-</div>
-
-<div class="activity">
-<p><strong>2.</strong> How many moles of CO₂ are produced from 5.0 mol CH₄?</p>
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Solution</button>
-<div class="answer">5.0 mol CO₂</div>
-</div>
-
-<div class="activity">
-<p><strong>3.</strong> What mass of MgO is produced from 48.6 g Mg?</p>
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Solution</button>
-<div class="answer">80.6 g MgO</div>
-</div>
-
-<div class="activity">
-<p><strong>4.</strong> What mass of CO₂ is produced from 500 g CaCO₃?</p>
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Solution</button>
-<div class="answer">220 g CO₂</div>
-</div>
-
-<div class="activity">
-<p><strong>5.</strong> How many grams of NH₃ can be produced from 84 g N₂?</p>
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Solution</button>
-<div class="answer">102.2 g NH₃</div>
-</div>
-
-<div class="activity">
-<p><strong>6.</strong> How many grams of O₂ are needed to burn 16.0 g CH₄?</p>
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Solution</button>
-<div class="answer">63.8 g O₂</div>
-</div>
-
-<div class="activity">
-<p><strong>7.</strong> How many moles of Al₂O₃ are produced from 20 mol Al?</p>
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Solution</button>
-<div class="answer">10 mol Al₂O₃</div>
-</div>
-
-<div class="activity">
-<p><strong>8.</strong> What mass of H₂O is produced from 4.0 mol H₂?</p>
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Solution</button>
-<div class="answer">72.1 g H₂O</div>
-</div>
-
-<div class="activity">
-<p><strong>9.</strong> What mass of CaO is produced from 300 g CaCO₃?</p>
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Solution</button>
-<div class="answer">168 g CaO</div>
-</div>
-
-<div class="activity">
-<p><strong>10.</strong> How many grams of CO₂ are produced from 44.0 g propane (C₃H₈)?</p>
-<button class="toggle-btn" onclick="toggleAnswer(this)">Show Solution</button>
-<div class="answer">132 g CO₂</div>
-</div>
-<div style="text-align:center;margin-top:30px;">
-	<button class="quiz-button" id="takeQuizBtn">
-
-Take the Quiz →
-
-</button>
-
-</div>
+<main class="lesson-container">
+  <section class="section">
+    <h1>Chapter 5: Stoichiometry and Quantitative Chemistry</h1>
+    <h2>Lesson 2: Mole-to-Mole and Mass-to-Mass Stoichiometry</h2>
+
+    <div class="concept-box">
+      <strong>Engineering Scenario</strong>
+      <p>
+        A power plant burns methane to generate electricity. A fertilizer company produces ammonia for agriculture.
+        A cement plant decomposes limestone to manufacture cement.
+      </p>
+      <p>
+        In all of these processes, engineers must answer an important question:
+        <strong>How much product can be produced from a given amount of reactant?</strong>
+      </p>
+      <p>Stoichiometry provides the mathematical framework for answering this question.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Learning Objectives</h2>
+    <ul>
+      <li>Define stoichiometry.</li>
+      <li>Interpret mole ratios from balanced equations.</li>
+      <li>Perform mole-to-mole calculations.</li>
+      <li>Perform mass-to-mass calculations.</li>
+      <li>Apply stoichiometry to engineering situations.</li>
+      <li>Use a systematic problem-solving approach.</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>What Is Stoichiometry?</h2>
+    <p>Stoichiometry is the study of quantitative relationships in chemical reactions.</p>
+    <p>It allows chemists and engineers to determine:</p>
+    <ul>
+      <li>How much reactant is needed.</li>
+      <li>How much product can be produced.</li>
+      <li>How efficiently a process operates.</li>
+      <li>Material requirements in manufacturing.</li>
+    </ul>
+
+    <div class="concept-box">
+      <strong>Key idea:</strong>
+      <p>Stoichiometry is essentially the mathematics of chemical reactions.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Stoichiometric Coefficients</h2>
+    <p>The coefficients in a balanced equation represent mole relationships.</p>
+
+    <div class="math-card">
+      <p class="reaction">2H<sub>2</sub> + O<sub>2</sub> &rarr; 2H<sub>2</sub>O</p>
+      <p>This equation means:</p>
+      <ul>
+        <li>2 mol H<sub>2</sub> reacts with 1 mol O<sub>2</sub>.</li>
+        <li>2 mol H<sub>2</sub> produces 2 mol H<sub>2</sub>O.</li>
+        <li>1 mol O<sub>2</sub> produces 2 mol H<sub>2</sub>O.</li>
+      </ul>
+      <div class="ratio-strip" aria-label="Mole ratio visualization">
+        <div>2 mol H<sub>2</sub></div>
+        <div>1 mol O<sub>2</sub></div>
+        <div>2 mol H<sub>2</sub>O</div>
+      </div>
+      <p class="caption">
+        Figure 1. Balanced equations provide mole ratios used in stoichiometric calculations.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Understanding Mole Ratios</h2>
+    <p>A mole ratio comes directly from the coefficients of a balanced equation.</p>
+
+    <div class="math-card">
+      <p class="reaction">N<sub>2</sub> + 3H<sub>2</sub> &rarr; 2NH<sub>3</sub></p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>Mole Ratio</th>
+          <th>Meaning</th>
+        </tr>
+        <tr>
+          <td>1 mol N<sub>2</sub> : 3 mol H<sub>2</sub></td>
+          <td>One mole nitrogen requires three moles hydrogen.</td>
+        </tr>
+        <tr>
+          <td>1 mol N<sub>2</sub> : 2 mol NH<sub>3</sub></td>
+          <td>One mole nitrogen produces two moles ammonia.</td>
+        </tr>
+        <tr>
+          <td>3 mol H<sub>2</sub> : 2 mol NH<sub>3</sub></td>
+          <td>Three moles hydrogen produce two moles ammonia.</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>The Stoichiometry Roadmap</h2>
+    <div class="concept-box">
+      <p class="roadmap">Mass &rarr; Mole &rarr; Mole Ratio &rarr; Mole &rarr; Mass</p>
+    </div>
+    <p>Nearly every stoichiometry problem follows this roadmap.</p>
+    <ul>
+      <li>Convert the given quantity to moles.</li>
+      <li>Use the mole ratio.</li>
+      <li>Convert to the desired unit.</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>Mole-to-Mole Stoichiometry</h2>
+    <p>
+      Mole-to-mole problems involve converting between moles of different substances using mole ratios.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>Worked Example 1</h2>
+
+    <div class="worked-example">
+      <h3>Problem</h3>
+      <p>How many moles of water are produced when 5.0 mol H<sub>2</sub> reacts completely?</p>
+      <p class="reaction">2H<sub>2</sub> + O<sub>2</sub> &rarr; 2H<sub>2</sub>O</p>
+
+      <h3>Step 1: Write the mole ratio.</h3>
+      <p>Place the wanted substance, H<sub>2</sub>O, on top and the given substance, H<sub>2</sub>, on the bottom.</p>
+      <div class="math-work center">
+        <span class="fraction">
+          <span class="top">2 mol H<sub>2</sub>O</span>
+          <span class="bottom">2 mol H<sub>2</sub></span>
+        </span>
+      </div>
+
+      <h3>Step 2: Apply the ratio.</h3>
+      <div class="math-work">
+        <span>5.0 mol H<sub>2</sub></span>
+        <span>&times;</span>
+        <span class="fraction">
+          <span class="top">2 mol H<sub>2</sub>O</span>
+          <span class="bottom">2 mol H<sub>2</sub></span>
+        </span>
+        <span>=</span>
+        <span>5.0 mol H<sub>2</sub>O</span>
+      </div>
+
+      <div class="final-answer">Answer: 5.0 mol H<sub>2</sub>O</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Worked Example 2</h2>
+
+    <div class="worked-example">
+      <h3>Problem</h3>
+      <p>How many moles of NH<sub>3</sub> can be produced from 4.0 mol N<sub>2</sub>?</p>
+      <p class="reaction">N<sub>2</sub> + 3H<sub>2</sub> &rarr; 2NH<sub>3</sub></p>
+
+      <h3>Step 1: Write the mole ratio.</h3>
+      <div class="math-work center">
+        <span class="fraction">
+          <span class="top">2 mol NH<sub>3</sub></span>
+          <span class="bottom">1 mol N<sub>2</sub></span>
+        </span>
+      </div>
+
+      <h3>Step 2: Convert moles of N<sub>2</sub> to moles of NH<sub>3</sub>.</h3>
+      <div class="math-work">
+        <span>4.0 mol N<sub>2</sub></span>
+        <span>&times;</span>
+        <span class="fraction">
+          <span class="top">2 mol NH<sub>3</sub></span>
+          <span class="bottom">1 mol N<sub>2</sub></span>
+        </span>
+        <span>=</span>
+        <span>8.0 mol NH<sub>3</sub></span>
+      </div>
+
+      <div class="final-answer">Answer: 8.0 mol NH<sub>3</sub></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Worked Example 3</h2>
+
+    <div class="worked-example">
+      <h3>Problem</h3>
+      <p>How many moles of Al<sub>2</sub>O<sub>3</sub> are produced from 12 mol Al?</p>
+      <p class="reaction">4Al + 3O<sub>2</sub> &rarr; 2Al<sub>2</sub>O<sub>3</sub></p>
+
+      <h3>Solution</h3>
+      <div class="math-work">
+        <span>12 mol Al</span>
+        <span>&times;</span>
+        <span class="fraction">
+          <span class="top">2 mol Al<sub>2</sub>O<sub>3</sub></span>
+          <span class="bottom">4 mol Al</span>
+        </span>
+        <span>=</span>
+        <span>6 mol Al<sub>2</sub>O<sub>3</sub></span>
+      </div>
+
+      <div class="final-answer">Answer: 6 mol Al<sub>2</sub>O<sub>3</sub></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Mass-to-Mass Stoichiometry</h2>
+    <p>Most real-world engineering calculations involve mass rather than moles.</p>
+
+    <div class="concept-box">
+      <strong>Follow these four steps:</strong>
+      <ol>
+        <li>Balance the equation.</li>
+        <li>Convert mass to moles.</li>
+        <li>Apply the mole ratio.</li>
+        <li>Convert moles back to mass.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Worked Example 4: Magnesium Oxide Production</h2>
+
+    <div class="worked-example">
+      <h3>Problem</h3>
+      <p>Given 24.3 g Mg, determine the mass of MgO produced.</p>
+      <p class="reaction">2Mg + O<sub>2</sub> &rarr; 2MgO</p>
+
+      <h3>Step 1: Convert Mg to moles.</h3>
+      <div class="math-work">
+        <span>24.3 g Mg</span>
+        <span>&divide;</span>
+        <span>24.3 g/mol</span>
+        <span>=</span>
+        <span>1.00 mol Mg</span>
+      </div>
+
+      <h3>Step 2: Apply the mole ratio.</h3>
+      <div class="math-work">
+        <span>1.00 mol Mg</span>
+        <span>&times;</span>
+        <span class="fraction">
+          <span class="top">2 mol MgO</span>
+          <span class="bottom">2 mol Mg</span>
+        </span>
+        <span>=</span>
+        <span>1.00 mol MgO</span>
+      </div>
+
+      <h3>Step 3: Convert moles of MgO to grams.</h3>
+      <div class="math-work">
+        <span>1.00 mol MgO</span>
+        <span>&times;</span>
+        <span>40.3 g/mol</span>
+        <span>=</span>
+        <span>40.3 g MgO</span>
+      </div>
+
+      <div class="final-answer">Answer: 40.3 g MgO</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Worked Example 5: Limestone Decomposition</h2>
+
+    <div class="worked-example">
+      <h3>Problem</h3>
+      <p>Given 250 g CaCO<sub>3</sub>, determine the mass of CO<sub>2</sub> produced.</p>
+      <p class="reaction">CaCO<sub>3</sub> &rarr; CaO + CO<sub>2</sub></p>
+
+      <h3>Step 1: Convert CaCO<sub>3</sub> to moles.</h3>
+      <div class="math-work">
+        <span>250 g CaCO<sub>3</sub></span>
+        <span>&divide;</span>
+        <span>100.09 g/mol</span>
+        <span>=</span>
+        <span>2.50 mol CaCO<sub>3</sub></span>
+      </div>
+
+      <h3>Step 2: Use the 1:1 mole ratio.</h3>
+      <div class="math-work">
+        <span>2.50 mol CaCO<sub>3</sub></span>
+        <span>&times;</span>
+        <span class="fraction">
+          <span class="top">1 mol CO<sub>2</sub></span>
+          <span class="bottom">1 mol CaCO<sub>3</sub></span>
+        </span>
+        <span>=</span>
+        <span>2.50 mol CO<sub>2</sub></span>
+      </div>
+
+      <h3>Step 3: Convert moles of CO<sub>2</sub> to grams.</h3>
+      <div class="math-work">
+        <span>2.50 mol CO<sub>2</sub></span>
+        <span>&times;</span>
+        <span>44.01 g/mol</span>
+        <span>=</span>
+        <span>110.0 g CO<sub>2</sub></span>
+      </div>
+
+      <div class="final-answer">Answer: 110.0 g CO<sub>2</sub></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Worked Example 6: Ammonia Production</h2>
+
+    <div class="worked-example">
+      <h3>Problem</h3>
+      <p>Given 56 g N<sub>2</sub>, determine the mass of NH<sub>3</sub> produced.</p>
+      <p class="reaction">N<sub>2</sub> + 3H<sub>2</sub> &rarr; 2NH<sub>3</sub></p>
+
+      <h3>Step 1: Convert N<sub>2</sub> to moles.</h3>
+      <div class="math-work">
+        <span>56 g N<sub>2</sub></span>
+        <span>&divide;</span>
+        <span>28.02 g/mol</span>
+        <span>=</span>
+        <span>2.00 mol N<sub>2</sub></span>
+      </div>
+
+      <h3>Step 2: Convert moles of N<sub>2</sub> to moles of NH<sub>3</sub>.</h3>
+      <div class="math-work">
+        <span>2.00 mol N<sub>2</sub></span>
+        <span>&times;</span>
+        <span class="fraction">
+          <span class="top">2 mol NH<sub>3</sub></span>
+          <span class="bottom">1 mol N<sub>2</sub></span>
+        </span>
+        <span>=</span>
+        <span>4.00 mol NH<sub>3</sub></span>
+      </div>
+
+      <h3>Step 3: Convert moles of NH<sub>3</sub> to grams.</h3>
+      <div class="math-work">
+        <span>4.00 mol NH<sub>3</sub></span>
+        <span>&times;</span>
+        <span>17.03 g/mol</span>
+        <span>=</span>
+        <span>68.1 g NH<sub>3</sub></span>
+      </div>
+
+      <div class="final-answer">Answer: 68.1 g NH<sub>3</sub></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Worked Example 7: Engineering Combustion Problem</h2>
+
+    <div class="worked-example">
+      <h3>Problem</h3>
+      <p>A power plant burns 32.0 g CH<sub>4</sub>. How much O<sub>2</sub> is required?</p>
+      <p class="reaction">CH<sub>4</sub> + 2O<sub>2</sub> &rarr; CO<sub>2</sub> + 2H<sub>2</sub>O</p>
+
+      <h3>Step 1: Convert CH<sub>4</sub> to moles.</h3>
+      <div class="math-work">
+        <span>32.0 g CH<sub>4</sub></span>
+        <span>&divide;</span>
+        <span>16.04 g/mol</span>
+        <span>=</span>
+        <span>1.995 mol CH<sub>4</sub></span>
+      </div>
+
+      <h3>Step 2: Apply the mole ratio.</h3>
+      <div class="math-work">
+        <span>1.995 mol CH<sub>4</sub></span>
+        <span>&times;</span>
+        <span class="fraction">
+          <span class="top">2 mol O<sub>2</sub></span>
+          <span class="bottom">1 mol CH<sub>4</sub></span>
+        </span>
+        <span>=</span>
+        <span>3.99 mol O<sub>2</sub></span>
+      </div>
+
+      <h3>Step 3: Convert moles of O<sub>2</sub> to grams.</h3>
+      <div class="math-work">
+        <span>3.99 mol O<sub>2</sub></span>
+        <span>&times;</span>
+        <span>32.00 g/mol</span>
+        <span>=</span>
+        <span>127.7 g O<sub>2</sub></span>
+      </div>
+
+      <div class="final-answer">Answer: 127.7 g O<sub>2</sub></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Engineering Applications</h2>
+    <ul>
+      <li>Fuel consumption calculations.</li>
+      <li>Emission analysis.</li>
+      <li>Fertilizer manufacturing.</li>
+      <li>Chemical production planning.</li>
+      <li>Material inventory management.</li>
+      <li>Environmental impact assessment.</li>
+    </ul>
+
+    <div class="concept-box">
+      <strong>Industrial use:</strong>
+      <p>
+        Stoichiometry helps engineers estimate material requirements and product output before a process is scaled up.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Interactive Simulation</h2>
+    <div class="activity">
+      <p>Explore how reactants combine to form products and identify leftover materials.</p>
+      <iframe
+        title="Reactants, Products, and Leftovers simulation"
+        height="500"
+        src="https://phet.colorado.edu/sims/html/reactants-products-and-leftovers/latest/reactants-products-and-leftovers_en.html">
+      </iframe>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Practice Drills</h2>
+
+    <div class="activity">
+      <p><strong>1.</strong> How many moles of H<sub>2</sub>O are produced from 3.5 mol O<sub>2</sub>?</p>
+      <button class="toggle-btn" type="button" onclick="toggleAnswer(this)">Show Solution</button>
+      <div class="answer">
+        <p class="reaction">2H<sub>2</sub> + O<sub>2</sub> &rarr; 2H<sub>2</sub>O</p>
+        <ol>
+          <li>Use the coefficient ratio: 1 mol O<sub>2</sub> produces 2 mol H<sub>2</sub>O.</li>
+          <li>Multiply the given moles by the conversion factor.</li>
+        </ol>
+        <div class="math-work">
+          <span>3.5 mol O<sub>2</sub></span>
+          <span>&times;</span>
+          <span class="fraction">
+            <span class="top">2 mol H<sub>2</sub>O</span>
+            <span class="bottom">1 mol O<sub>2</sub></span>
+          </span>
+          <span>=</span>
+          <span>7.0 mol H<sub>2</sub>O</span>
+        </div>
+        <div class="final-answer">Answer: 7.0 mol H<sub>2</sub>O</div>
+      </div>
+    </div>
+
+    <div class="activity">
+      <p><strong>2.</strong> How many moles of CO<sub>2</sub> are produced from 5.0 mol CH<sub>4</sub>?</p>
+      <button class="toggle-btn" type="button" onclick="toggleAnswer(this)">Show Solution</button>
+      <div class="answer">
+        <p class="reaction">CH<sub>4</sub> + 2O<sub>2</sub> &rarr; CO<sub>2</sub> + 2H<sub>2</sub>O</p>
+        <ol>
+          <li>The balanced equation shows a 1:1 ratio between CH<sub>4</sub> and CO<sub>2</sub>.</li>
+          <li>So the moles of CO<sub>2</sub> match the moles of CH<sub>4</sub>.</li>
+        </ol>
+        <div class="math-work">
+          <span>5.0 mol CH<sub>4</sub></span>
+          <span>&times;</span>
+          <span class="fraction">
+            <span class="top">1 mol CO<sub>2</sub></span>
+            <span class="bottom">1 mol CH<sub>4</sub></span>
+          </span>
+          <span>=</span>
+          <span>5.0 mol CO<sub>2</sub></span>
+        </div>
+        <div class="final-answer">Answer: 5.0 mol CO<sub>2</sub></div>
+      </div>
+    </div>
+
+    <div class="activity">
+      <p><strong>3.</strong> What mass of MgO is produced from 48.6 g Mg?</p>
+      <button class="toggle-btn" type="button" onclick="toggleAnswer(this)">Show Solution</button>
+      <div class="answer">
+        <p class="reaction">2Mg + O<sub>2</sub> &rarr; 2MgO</p>
+        <ol>
+          <li>Convert Mg to moles: 48.6 g &divide; 24.3 g/mol = 2.00 mol Mg.</li>
+          <li>The mole ratio Mg:MgO is 2:2, so 2.00 mol Mg produces 2.00 mol MgO.</li>
+          <li>Convert MgO to mass: 2.00 mol &times; 40.3 g/mol = 80.6 g MgO.</li>
+        </ol>
+        <div class="final-answer">Answer: 80.6 g MgO</div>
+      </div>
+    </div>
+
+    <div class="activity">
+      <p><strong>4.</strong> What mass of CO<sub>2</sub> is produced from 500 g CaCO<sub>3</sub>?</p>
+      <button class="toggle-btn" type="button" onclick="toggleAnswer(this)">Show Solution</button>
+      <div class="answer">
+        <p class="reaction">CaCO<sub>3</sub> &rarr; CaO + CO<sub>2</sub></p>
+        <ol>
+          <li>Convert CaCO<sub>3</sub> to moles: 500 g &divide; 100.09 g/mol = 5.00 mol CaCO<sub>3</sub>.</li>
+          <li>The mole ratio CaCO<sub>3</sub>:CO<sub>2</sub> is 1:1, so 5.00 mol CO<sub>2</sub> is produced.</li>
+          <li>Convert to grams: 5.00 mol &times; 44.01 g/mol = 220 g CO<sub>2</sub>.</li>
+        </ol>
+        <div class="final-answer">Answer: 220 g CO<sub>2</sub></div>
+      </div>
+    </div>
+
+    <div class="activity">
+      <p><strong>5.</strong> How many grams of NH<sub>3</sub> can be produced from 84 g N<sub>2</sub>?</p>
+      <button class="toggle-btn" type="button" onclick="toggleAnswer(this)">Show Solution</button>
+      <div class="answer">
+        <p class="reaction">N<sub>2</sub> + 3H<sub>2</sub> &rarr; 2NH<sub>3</sub></p>
+        <ol>
+          <li>Convert N<sub>2</sub> to moles: 84 g &divide; 28.0 g/mol = 3.00 mol N<sub>2</sub>.</li>
+          <li>Use the ratio 1 mol N<sub>2</sub> : 2 mol NH<sub>3</sub>, giving 6.00 mol NH<sub>3</sub>.</li>
+          <li>Convert to grams: 6.00 mol &times; 17.03 g/mol = 102.2 g NH<sub>3</sub>.</li>
+        </ol>
+        <div class="final-answer">Answer: 102.2 g NH<sub>3</sub></div>
+      </div>
+    </div>
+
+    <div class="activity">
+      <p><strong>6.</strong> How many grams of O<sub>2</sub> are needed to burn 16.0 g CH<sub>4</sub>?</p>
+      <button class="toggle-btn" type="button" onclick="toggleAnswer(this)">Show Solution</button>
+      <div class="answer">
+        <p class="reaction">CH<sub>4</sub> + 2O<sub>2</sub> &rarr; CO<sub>2</sub> + 2H<sub>2</sub>O</p>
+        <ol>
+          <li>Convert CH<sub>4</sub> to moles: 16.0 g &divide; 16.04 g/mol = 0.998 mol CH<sub>4</sub>.</li>
+          <li>Use the ratio 1 mol CH<sub>4</sub> : 2 mol O<sub>2</sub>, giving 1.995 mol O<sub>2</sub>.</li>
+          <li>Convert O<sub>2</sub> to grams: 1.995 mol &times; 32.00 g/mol = 63.8 g O<sub>2</sub>.</li>
+        </ol>
+        <div class="final-answer">Answer: 63.8 g O<sub>2</sub></div>
+      </div>
+    </div>
+
+    <div class="activity">
+      <p><strong>7.</strong> How many moles of Al<sub>2</sub>O<sub>3</sub> are produced from 20 mol Al?</p>
+      <button class="toggle-btn" type="button" onclick="toggleAnswer(this)">Show Solution</button>
+      <div class="answer">
+        <p class="reaction">4Al + 3O<sub>2</sub> &rarr; 2Al<sub>2</sub>O<sub>3</sub></p>
+        <ol>
+          <li>Use the coefficient ratio: 4 mol Al produces 2 mol Al<sub>2</sub>O<sub>3</sub>.</li>
+          <li>Multiply 20 mol Al by 2/4.</li>
+        </ol>
+        <div class="math-work">
+          <span>20 mol Al</span>
+          <span>&times;</span>
+          <span class="fraction">
+            <span class="top">2 mol Al<sub>2</sub>O<sub>3</sub></span>
+            <span class="bottom">4 mol Al</span>
+          </span>
+          <span>=</span>
+          <span>10 mol Al<sub>2</sub>O<sub>3</sub></span>
+        </div>
+        <div class="final-answer">Answer: 10 mol Al<sub>2</sub>O<sub>3</sub></div>
+      </div>
+    </div>
+
+    <div class="activity">
+      <p><strong>8.</strong> What mass of H<sub>2</sub>O is produced from 4.0 mol H<sub>2</sub>?</p>
+      <button class="toggle-btn" type="button" onclick="toggleAnswer(this)">Show Solution</button>
+      <div class="answer">
+        <p class="reaction">2H<sub>2</sub> + O<sub>2</sub> &rarr; 2H<sub>2</sub>O</p>
+        <ol>
+          <li>The ratio H<sub>2</sub>:H<sub>2</sub>O is 2:2, so 4.0 mol H<sub>2</sub> produces 4.0 mol H<sub>2</sub>O.</li>
+          <li>Convert water to mass: 4.0 mol &times; 18.02 g/mol = 72.1 g H<sub>2</sub>O.</li>
+        </ol>
+        <div class="final-answer">Answer: 72.1 g H<sub>2</sub>O</div>
+      </div>
+    </div>
+
+    <div class="activity">
+      <p><strong>9.</strong> What mass of CaO is produced from 300 g CaCO<sub>3</sub>?</p>
+      <button class="toggle-btn" type="button" onclick="toggleAnswer(this)">Show Solution</button>
+      <div class="answer">
+        <p class="reaction">CaCO<sub>3</sub> &rarr; CaO + CO<sub>2</sub></p>
+        <ol>
+          <li>Convert CaCO<sub>3</sub> to moles: 300 g &divide; 100.09 g/mol = 3.00 mol CaCO<sub>3</sub>.</li>
+          <li>The ratio CaCO<sub>3</sub>:CaO is 1:1, so 3.00 mol CaO is produced.</li>
+          <li>Convert CaO to mass: 3.00 mol &times; 56.08 g/mol = 168 g CaO.</li>
+        </ol>
+        <div class="final-answer">Answer: 168 g CaO</div>
+      </div>
+    </div>
+
+    <div class="activity">
+      <p><strong>10.</strong> How many grams of CO<sub>2</sub> are produced from 44.0 g propane (C<sub>3</sub>H<sub>8</sub>)?</p>
+      <button class="toggle-btn" type="button" onclick="toggleAnswer(this)">Show Solution</button>
+      <div class="answer">
+        <p class="reaction">C<sub>3</sub>H<sub>8</sub> + 5O<sub>2</sub> &rarr; 3CO<sub>2</sub> + 4H<sub>2</sub>O</p>
+        <ol>
+          <li>Convert propane to moles: 44.0 g &divide; 44.10 g/mol = 0.998 mol C<sub>3</sub>H<sub>8</sub>.</li>
+          <li>Use the ratio 1 mol C<sub>3</sub>H<sub>8</sub> : 3 mol CO<sub>2</sub>, giving 2.99 mol CO<sub>2</sub>.</li>
+          <li>Convert CO<sub>2</sub> to mass: 2.99 mol &times; 44.01 g/mol = 132 g CO<sub>2</sub>.</li>
+        </ol>
+        <div class="final-answer">Answer: 132 g CO<sub>2</sub></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Lesson Summary</h2>
+    <ul>
+      <li>Stoichiometry studies quantitative relationships in chemical reactions.</li>
+      <li>Balanced equations provide mole ratios.</li>
+      <li>Mole ratios are used to convert between substances.</li>
+      <li>Most stoichiometric problems follow this roadmap:</li>
+    </ul>
+
+    <div class="concept-box">
+      <p class="roadmap">Mass &rarr; Mole &rarr; Mole Ratio &rarr; Mole &rarr; Mass</p>
+    </div>
+
+    <ul>
+      <li>Mass-to-mass stoichiometry requires converting between grams and moles.</li>
+      <li>Stoichiometry is essential for industrial production, environmental engineering, and energy systems.</li>
+    </ul>
+  </section>
+</main>
 
 <script>
 function toggleAnswer(btn){
-  const ans = btn.nextElementSibling;
+  const ans = typeof btn === "string" ? document.getElementById(btn) : btn.nextElementSibling;
+  if (!ans) return;
   ans.style.display = ans.style.display === "block" ? "none" : "block";
 }
-
-document.getElementById("takeQuizBtn").addEventListener("click",(e)=>{
-  const quizId = e.target.dataset.quiz;
-  window.parent.postMessage({
-    type:"openQuiz",
-    quiz:quizId
-  },"*");
-});
 </script>
 </body>
 </html>
-</div>
-
-<div class="section">
-<h2>Lesson Summary</h2>
-
-<ul>
-<li>Stoichiometry studies quantitative relationships in chemical reactions.</li>
-<li>Balanced equations provide mole ratios.</li>
-<li>Mole ratios are used to convert between substances.</li>
-<li>Most stoichiometric problems follow the roadmap:</li>
-</ul>
-
-<div class="formula">
-Mass → Mole → Mole Ratio → Mole → Mass
-</div>
-
-<ul>
-<li>Mass-to-mass stoichiometry requires converting between grams and moles.</li>
-<li>Stoichiometry is essential for industrial production, environmental engineering, and energy systems.</li>
-</ul>
-
-</div>
-
-  
