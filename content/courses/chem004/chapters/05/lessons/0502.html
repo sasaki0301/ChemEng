@@ -90,6 +90,42 @@ h3{color:#174ea6;}
   text-align:center;
 }
 
+.formula .equation-line{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:8px 0;
+}
+
+.formula .fraction{
+  display:inline-grid;
+  grid-template-rows:auto auto;
+  min-width:max-content;
+  text-align:center;
+  line-height:1.2;
+  vertical-align:middle;
+}
+
+.formula .fraction-top{
+  border-bottom:2px solid currentColor;
+  padding:0 10px 5px;
+}
+
+.formula .fraction-bottom{
+  padding:5px 10px 0;
+}
+
+.answer .formula{
+  font-size:20px;
+  margin:8px 0;
+}
+
+.answer ol{
+  margin-top:8px;
+}
+
 .quiz-button{
   background:#136f63;
   color:white;
@@ -181,7 +217,7 @@ The coefficients in a balanced equation represent mole relationships.
 </p>
 
 <div class="formula">
-2H₂ + O₂ → 2H₂O
+2H<sub>2</sub> + O<sub>2</sub> &rarr; 2H<sub>2</sub>O
 </div>
 
 <p>
@@ -189,9 +225,9 @@ This equation means:
 </p>
 
 <ul>
-<li>2 mol H₂ reacts with 1 mol O₂</li>
-<li>2 mol H₂ produces 2 mol H₂O</li>
-<li>1 mol O₂ produces 2 mol H₂O</li>
+<li>2 mol H<sub>2</sub> reacts with 1 mol O<sub>2</sub></li>
+<li>2 mol H<sub>2</sub> produces 2 mol H<sub>2</sub>O</li>
+<li>1 mol O<sub>2</sub> produces 2 mol H<sub>2</sub>O</li>
 </ul>
 
 <div class="visual-box">
@@ -219,7 +255,7 @@ A mole ratio comes directly from the coefficients of a balanced equation.
 </p>
 
 <div class="formula">
-N₂ + 3H₂ → 2NH₃
+N<sub>2</sub> + 3H<sub>2</sub> &rarr; 2NH<sub>3</sub>
 </div>
 
 <table>
@@ -229,17 +265,17 @@ N₂ + 3H₂ → 2NH₃
 </tr>
 
 <tr>
-<td>1 mol N₂ : 3 mol H₂</td>
+<td>1 mol N<sub>2</sub> : 3 mol H<sub>2</sub></td>
 <td>One mole nitrogen requires three moles hydrogen</td>
 </tr>
 
 <tr>
-<td>1 mol N₂ : 2 mol NH₃</td>
+<td>1 mol N<sub>2</sub> : 2 mol NH<sub>3</sub></td>
 <td>One mole nitrogen produces two moles ammonia</td>
 </tr>
 
 <tr>
-<td>3 mol H₂ : 2 mol NH₃</td>
+<td>3 mol H<sub>2</sub> : 2 mol NH<sub>3</sub></td>
 <td>Three moles hydrogen produce two moles ammonia</td>
 </tr>
 
@@ -253,7 +289,7 @@ N₂ + 3H₂ → 2NH₃
 <div class="key-box">
 
 <div class="formula">
-Mass → Mole → Mole Ratio → Mole → Mass
+Mass &rarr; Mole &rarr; Mole Ratio &rarr; Mole &rarr; Mass
 </div>
 
 </div>
@@ -286,10 +322,10 @@ Mole-to-mole problems involve converting between moles of different substances u
 
 <strong>Problem</strong><br><br>
 
-How many moles of water are produced when 5.0 mol H₂ reacts completely?
+How many moles of water are produced when 5.0 mol H<sub>2</sub> reacts completely?
 
 <div class="formula">
-2H₂ + O₂ → 2H₂O
+2H<sub>2</sub> + O<sub>2</sub> &rarr; 2H<sub>2</sub>O
 </div>
 
 </div>
@@ -297,26 +333,31 @@ How many moles of water are produced when 5.0 mol H₂ reacts completely?
 <p><strong>Step 1:</strong> Write the mole ratio.</p>
 
 <div class="formula">
-2 mol H₂
-────────
-2 mol H₂O
+<div class="equation-line">
+<span class="fraction">
+<span class="fraction-top">2 mol H<sub>2</sub>O</span>
+<span class="fraction-bottom">2 mol H<sub>2</sub></span>
+</span>
+</div>
 </div>
 
 <p><strong>Step 2:</strong> Apply ratio.</p>
 
 <div class="formula">
-5.0 mol H₂ ×
-2 mol H₂O
-──────────
-2 mol H₂
+<div class="equation-line">
+<span>5.0 mol H<sub>2</sub></span>
+<span>&times;</span>
+<span class="fraction">
+<span class="fraction-top">2 mol H<sub>2</sub>O</span>
+<span class="fraction-bottom">2 mol H<sub>2</sub></span>
+</span>
+<span>=</span>
+<span>5.0 mol H<sub>2</sub>O</span>
 </div>
-
-<div class="formula">
-5.0 mol H₂O
 </div>
 
 <div class="key-box">
-Answer: 5.0 mol H₂O
+Answer: 5.0 mol H<sub>2</sub>O
 </div>
 
 </div>
@@ -328,10 +369,10 @@ Answer: 5.0 mol H₂O
 
 <strong>Problem</strong><br><br>
 
-How many moles of NH₃ can be produced from 4.0 mol N₂?
+How many moles of NH<sub>3</sub> can be produced from 4.0 mol N<sub>2</sub>?
 
 <div class="formula">
-N₂ + 3H₂ → 2NH₃
+N<sub>2</sub> + 3H<sub>2</sub> &rarr; 2NH<sub>3</sub>
 </div>
 
 </div>
@@ -339,19 +380,31 @@ N₂ + 3H₂ → 2NH₃
 <p><strong>Step 1:</strong> Write mole ratio.</p>
 
 <div class="formula">
-2 mol NH₃
-────────
-1 mol N₂
+<div class="equation-line">
+<span class="fraction">
+<span class="fraction-top">2 mol NH<sub>3</sub></span>
+<span class="fraction-bottom">1 mol N<sub>2</sub></span>
+</span>
+</div>
 </div>
 
 <p><strong>Step 2:</strong> Convert.</p>
 
 <div class="formula">
-4.0 × 2 = 8.0 mol NH₃
+<div class="equation-line">
+<span>4.0 mol N<sub>2</sub></span>
+<span>&times;</span>
+<span class="fraction">
+<span class="fraction-top">2 mol NH<sub>3</sub></span>
+<span class="fraction-bottom">1 mol N<sub>2</sub></span>
+</span>
+<span>=</span>
+<span>8.0 mol NH<sub>3</sub></span>
+</div>
 </div>
 
 <div class="key-box">
-Answer: 8.0 mol NH₃
+Answer: 8.0 mol NH<sub>3</sub>
 </div>
 
 </div>
@@ -363,27 +416,29 @@ Answer: 8.0 mol NH₃
 
 <strong>Problem</strong><br><br>
 
-How many moles of Al₂O₃ are produced from 12 mol Al?
+How many moles of Al<sub>2</sub>O<sub>3</sub> are produced from 12 mol Al?
 
 <div class="formula">
-4Al + 3O₂ → 2Al₂O₃
+4Al + 3O<sub>2</sub> &rarr; 2Al<sub>2</sub>O<sub>3</sub>
 </div>
 
 </div>
 
 <div class="formula">
-12 mol Al ×
-2 mol Al₂O₃
-────────────
-4 mol Al
+<div class="equation-line">
+<span>12 mol Al</span>
+<span>&times;</span>
+<span class="fraction">
+<span class="fraction-top">2 mol Al<sub>2</sub>O<sub>3</sub></span>
+<span class="fraction-bottom">4 mol Al</span>
+</span>
+<span>=</span>
+<span>6 mol Al<sub>2</sub>O<sub>3</sub></span>
 </div>
-
-<div class="formula">
-6 mol Al₂O₃
 </div>
 
 <div class="key-box">
-Answer: 6 mol Al₂O₃
+Answer: 6 mol Al<sub>2</sub>O<sub>3</sub>
 </div>
 
 </div>
@@ -418,7 +473,7 @@ Follow these four steps:
 Given 24.3 g Mg, determine the mass of MgO produced.
 
 <div class="formula">
-2Mg + O₂ → 2MgO
+2Mg + O<sub>2</sub> &rarr; 2MgO
 </div>
 
 </div>
@@ -426,24 +481,28 @@ Given 24.3 g Mg, determine the mass of MgO produced.
 <p><strong>Step 1:</strong> Convert Mg to moles.</p>
 
 <div class="formula">
-24.3 g ÷ 24.3 g/mol = 1.00 mol Mg
+24.3 g &divide; 24.3 g/mol = 1.00 mol Mg
 </div>
 
 <p><strong>Step 2:</strong> Apply mole ratio.</p>
 
 <div class="formula">
-1.00 mol Mg ×
-2 mol MgO
-─────────
-2 mol Mg
-=
-1.00 mol MgO
+<div class="equation-line">
+<span>1.00 mol Mg</span>
+<span>&times;</span>
+<span class="fraction">
+<span class="fraction-top">2 mol MgO</span>
+<span class="fraction-bottom">2 mol Mg</span>
+</span>
+<span>=</span>
+<span>1.00 mol MgO</span>
+</div>
 </div>
 
 <p><strong>Step 3:</strong> Convert to grams.</p>
 
 <div class="formula">
-1.00 × 40.3 = 40.3 g MgO
+1.00 &times; 40.3 = 40.3 g MgO
 </div>
 
 <div class="key-box">
@@ -457,10 +516,10 @@ Answer: 40.3 g MgO
 
 <div class="example-box">
 
-Given 250 g CaCO₃, determine the mass of CO₂ produced.
+Given 250 g CaCO<sub>3</sub>, determine the mass of CO<sub>2</sub> produced.
 
 <div class="formula">
-CaCO₃ → CaO + CO₂
+CaCO<sub>3</sub> &rarr; CaO + CO<sub>2</sub>
 </div>
 
 </div>
@@ -468,31 +527,32 @@ CaCO₃ → CaO + CO₂
 <p><strong>Step 1:</strong> Convert to moles.</p>
 
 <div class="formula">
-250 g ÷ 100.09 g/mol
-=
-2.50 mol CaCO₃
+250 g &divide; 100.09 g/mol = 2.50 mol CaCO<sub>3</sub>
 </div>
 
 <p><strong>Step 2:</strong> Mole ratio.</p>
 
 <div class="formula">
-1:1
+<div class="equation-line">
+<span>2.50 mol CaCO<sub>3</sub></span>
+<span>&times;</span>
+<span class="fraction">
+<span class="fraction-top">1 mol CO<sub>2</sub></span>
+<span class="fraction-bottom">1 mol CaCO<sub>3</sub></span>
+</span>
+<span>=</span>
+<span>2.50 mol CO<sub>2</sub></span>
 </div>
-
-<div class="formula">
-2.50 mol CO₂
 </div>
 
 <p><strong>Step 3:</strong> Convert to mass.</p>
 
 <div class="formula">
-2.50 × 44.01
-=
-110.0 g CO₂
+2.50 &times; 44.01 = 110.0 g CO<sub>2</sub>
 </div>
 
 <div class="key-box">
-Answer: 110.0 g CO₂
+Answer: 110.0 g CO<sub>2</sub>
 </div>
 
 </div>
@@ -502,10 +562,10 @@ Answer: 110.0 g CO₂
 
 <div class="example-box">
 
-Given 56 g N₂, determine the mass of NH₃ produced.
+Given 56 g N<sub>2</sub>, determine the mass of NH<sub>3</sub> produced.
 
 <div class="formula">
-N₂ + 3H₂ → 2NH₃
+N<sub>2</sub> + 3H<sub>2</sub> &rarr; 2NH<sub>3</sub>
 </div>
 
 </div>
@@ -513,29 +573,32 @@ N₂ + 3H₂ → 2NH₃
 <p><strong>Step 1:</strong> Convert to moles.</p>
 
 <div class="formula">
-56 ÷ 28.02
-=
-2.00 mol N₂
+56 &divide; 28.02 = 2.00 mol N<sub>2</sub>
 </div>
 
 <p><strong>Step 2:</strong> Mole ratio.</p>
 
 <div class="formula">
-2.00 × 2
-=
-4.00 mol NH₃
+<div class="equation-line">
+<span>2.00 mol N<sub>2</sub></span>
+<span>&times;</span>
+<span class="fraction">
+<span class="fraction-top">2 mol NH<sub>3</sub></span>
+<span class="fraction-bottom">1 mol N<sub>2</sub></span>
+</span>
+<span>=</span>
+<span>4.00 mol NH<sub>3</sub></span>
+</div>
 </div>
 
 <p><strong>Step 3:</strong> Convert to mass.</p>
 
 <div class="formula">
-4.00 × 17.03
-=
-68.1 g NH₃
+4.00 &times; 17.03 = 68.1 g NH<sub>3</sub>
 </div>
 
 <div class="key-box">
-Answer: 68.1 g NH₃
+Answer: 68.1 g NH<sub>3</sub>
 </div>
 
 </div>
@@ -545,42 +608,45 @@ Answer: 68.1 g NH₃
 
 <div class="example-box">
 
-A power plant burns 32.0 g CH₄.
+A power plant burns 32.0 g CH<sub>4</sub>.
 
-How much O₂ is required?
+How much O<sub>2</sub> is required?
 
 <div class="formula">
-CH₄ + 2O₂ → CO₂ + 2H₂O
+CH<sub>4</sub> + 2O<sub>2</sub> &rarr; CO<sub>2</sub> + 2H<sub>2</sub>O
 </div>
 
 </div>
 
-<p><strong>Step 1:</strong> Convert CH₄ to moles.</p>
+<p><strong>Step 1:</strong> Convert CH<sub>4</sub> to moles.</p>
 
 <div class="formula">
-32.0 ÷ 16.04
-=
-1.995 mol CH₄
+32.0 &divide; 16.04 = 1.995 mol CH<sub>4</sub>
 </div>
 
 <p><strong>Step 2:</strong> Apply mole ratio.</p>
 
 <div class="formula">
-1.995 × 2
-=
-3.99 mol O₂
+<div class="equation-line">
+<span>1.995 mol CH<sub>4</sub></span>
+<span>&times;</span>
+<span class="fraction">
+<span class="fraction-top">2 mol O<sub>2</sub></span>
+<span class="fraction-bottom">1 mol CH<sub>4</sub></span>
+</span>
+<span>=</span>
+<span>3.99 mol O<sub>2</sub></span>
+</div>
 </div>
 
 <p><strong>Step 3:</strong> Convert to mass.</p>
 
 <div class="formula">
-3.99 × 32.00
-=
-127.7 g O₂
+3.99 &times; 32.00 = 127.7 g O<sub>2</sub>
 </div>
 
 <div class="key-box">
-Answer: 127.7 g O₂
+Answer: 127.7 g O<sub>2</sub>
 </div>
 
 </div>
@@ -636,63 +702,175 @@ src="https://phet.colorado.edu/sims/html/reactants-products-and-leftovers/latest
 <h2>Practice Drills</h2>
 
 <div class="activity">
-<p><strong>1.</strong> How many moles of H₂O are produced from 3.5 mol O₂?</p>
+<p><strong>1.</strong> How many moles of H<sub>2</sub>O are produced from 3.5 mol O<sub>2</sub>?</p>
 <button class="toggle-btn" onclick="toggleAnswer(this)">Show Solution</button>
-<div class="answer">7.0 mol H₂O</div>
+<div class="answer">
+<p>Balanced equation: <strong>2H<sub>2</sub> + O<sub>2</sub> &rarr; 2H<sub>2</sub>O</strong></p>
+<ol>
+<li>Use the coefficients to form the ratio: 1 mol O<sub>2</sub> produces 2 mol H<sub>2</sub>O.</li>
+<li>Multiply the given amount by the mole ratio.</li>
+</ol>
+<div class="formula">
+<div class="equation-line">
+<span>3.5 mol O<sub>2</sub></span>
+<span>&times;</span>
+<span class="fraction">
+<span class="fraction-top">2 mol H<sub>2</sub>O</span>
+<span class="fraction-bottom">1 mol O<sub>2</sub></span>
+</span>
+<span>=</span>
+<span>7.0 mol H<sub>2</sub>O</span>
+</div>
+</div>
+<strong>Answer: 7.0 mol H<sub>2</sub>O</strong>
+</div>
 </div>
 
 <div class="activity">
-<p><strong>2.</strong> How many moles of CO₂ are produced from 5.0 mol CH₄?</p>
+<p><strong>2.</strong> How many moles of CO<sub>2</sub> are produced from 5.0 mol CH<sub>4</sub>?</p>
 <button class="toggle-btn" onclick="toggleAnswer(this)">Show Solution</button>
-<div class="answer">5.0 mol CO₂</div>
+<div class="answer">
+<p>Balanced equation: <strong>CH<sub>4</sub> + 2O<sub>2</sub> &rarr; CO<sub>2</sub> + 2H<sub>2</sub>O</strong></p>
+<ol>
+<li>The coefficients show a 1:1 mole ratio between CH<sub>4</sub> and CO<sub>2</sub>.</li>
+<li>Because the ratio is 1:1, the number of moles stays the same.</li>
+</ol>
+<div class="formula">
+<div class="equation-line">
+<span>5.0 mol CH<sub>4</sub></span>
+<span>&times;</span>
+<span class="fraction">
+<span class="fraction-top">1 mol CO<sub>2</sub></span>
+<span class="fraction-bottom">1 mol CH<sub>4</sub></span>
+</span>
+<span>=</span>
+<span>5.0 mol CO<sub>2</sub></span>
+</div>
+</div>
+<strong>Answer: 5.0 mol CO<sub>2</sub></strong>
+</div>
 </div>
 
 <div class="activity">
 <p><strong>3.</strong> What mass of MgO is produced from 48.6 g Mg?</p>
 <button class="toggle-btn" onclick="toggleAnswer(this)">Show Solution</button>
-<div class="answer">80.6 g MgO</div>
+<div class="answer">
+<p>Balanced equation: <strong>2Mg + O<sub>2</sub> &rarr; 2MgO</strong></p>
+<ol>
+<li>Convert Mg to moles: 48.6 g &divide; 24.3 g/mol = 2.00 mol Mg.</li>
+<li>The mole ratio Mg:MgO is 2:2, so 2.00 mol Mg produces 2.00 mol MgO.</li>
+<li>Convert MgO to grams: 2.00 mol &times; 40.3 g/mol = 80.6 g MgO.</li>
+</ol>
+<strong>Answer: 80.6 g MgO</strong>
+</div>
 </div>
 
 <div class="activity">
-<p><strong>4.</strong> What mass of CO₂ is produced from 500 g CaCO₃?</p>
+<p><strong>4.</strong> What mass of CO<sub>2</sub> is produced from 500 g CaCO<sub>3</sub>?</p>
 <button class="toggle-btn" onclick="toggleAnswer(this)">Show Solution</button>
-<div class="answer">220 g CO₂</div>
+<div class="answer">
+<p>Balanced equation: <strong>CaCO<sub>3</sub> &rarr; CaO + CO<sub>2</sub></strong></p>
+<ol>
+<li>Convert CaCO<sub>3</sub> to moles: 500 g &divide; 100.09 g/mol = 5.00 mol CaCO<sub>3</sub>.</li>
+<li>The mole ratio CaCO<sub>3</sub>:CO<sub>2</sub> is 1:1, so 5.00 mol CO<sub>2</sub> is produced.</li>
+<li>Convert CO<sub>2</sub> to grams: 5.00 mol &times; 44.01 g/mol = 220 g CO<sub>2</sub>.</li>
+</ol>
+<strong>Answer: 220 g CO<sub>2</sub></strong>
+</div>
 </div>
 
 <div class="activity">
-<p><strong>5.</strong> How many grams of NH₃ can be produced from 84 g N₂?</p>
+<p><strong>5.</strong> How many grams of NH<sub>3</sub> can be produced from 84 g N<sub>2</sub>?</p>
 <button class="toggle-btn" onclick="toggleAnswer(this)">Show Solution</button>
-<div class="answer">102.2 g NH₃</div>
+<div class="answer">
+<p>Balanced equation: <strong>N<sub>2</sub> + 3H<sub>2</sub> &rarr; 2NH<sub>3</sub></strong></p>
+<ol>
+<li>Convert N<sub>2</sub> to moles: 84 g &divide; 28.0 g/mol = 3.00 mol N<sub>2</sub>.</li>
+<li>Use the mole ratio 1 mol N<sub>2</sub> : 2 mol NH<sub>3</sub>, giving 6.00 mol NH<sub>3</sub>.</li>
+<li>Convert NH<sub>3</sub> to grams: 6.00 mol &times; 17.03 g/mol = 102.2 g NH<sub>3</sub>.</li>
+</ol>
+<strong>Answer: 102.2 g NH<sub>3</sub></strong>
+</div>
 </div>
 
 <div class="activity">
-<p><strong>6.</strong> How many grams of O₂ are needed to burn 16.0 g CH₄?</p>
+<p><strong>6.</strong> How many grams of O<sub>2</sub> are needed to burn 16.0 g CH<sub>4</sub>?</p>
 <button class="toggle-btn" onclick="toggleAnswer(this)">Show Solution</button>
-<div class="answer">63.8 g O₂</div>
+<div class="answer">
+<p>Balanced equation: <strong>CH<sub>4</sub> + 2O<sub>2</sub> &rarr; CO<sub>2</sub> + 2H<sub>2</sub>O</strong></p>
+<ol>
+<li>Convert CH<sub>4</sub> to moles: 16.0 g &divide; 16.04 g/mol = 0.998 mol CH<sub>4</sub>.</li>
+<li>Use the mole ratio 1 mol CH<sub>4</sub> : 2 mol O<sub>2</sub>, giving 1.995 mol O<sub>2</sub>.</li>
+<li>Convert O<sub>2</sub> to grams: 1.995 mol &times; 32.00 g/mol = 63.8 g O<sub>2</sub>.</li>
+</ol>
+<strong>Answer: 63.8 g O<sub>2</sub></strong>
+</div>
 </div>
 
 <div class="activity">
-<p><strong>7.</strong> How many moles of Al₂O₃ are produced from 20 mol Al?</p>
+<p><strong>7.</strong> How many moles of Al<sub>2</sub>O<sub>3</sub> are produced from 20 mol Al?</p>
 <button class="toggle-btn" onclick="toggleAnswer(this)">Show Solution</button>
-<div class="answer">10 mol Al₂O₃</div>
+<div class="answer">
+<p>Balanced equation: <strong>4Al + 3O<sub>2</sub> &rarr; 2Al<sub>2</sub>O<sub>3</sub></strong></p>
+<ol>
+<li>Use the coefficients to form the ratio: 4 mol Al produces 2 mol Al<sub>2</sub>O<sub>3</sub>.</li>
+<li>Multiply 20 mol Al by the ratio 2/4.</li>
+</ol>
+<div class="formula">
+<div class="equation-line">
+<span>20 mol Al</span>
+<span>&times;</span>
+<span class="fraction">
+<span class="fraction-top">2 mol Al<sub>2</sub>O<sub>3</sub></span>
+<span class="fraction-bottom">4 mol Al</span>
+</span>
+<span>=</span>
+<span>10 mol Al<sub>2</sub>O<sub>3</sub></span>
+</div>
+</div>
+<strong>Answer: 10 mol Al<sub>2</sub>O<sub>3</sub></strong>
+</div>
 </div>
 
 <div class="activity">
-<p><strong>8.</strong> What mass of H₂O is produced from 4.0 mol H₂?</p>
+<p><strong>8.</strong> What mass of H<sub>2</sub>O is produced from 4.0 mol H<sub>2</sub>?</p>
 <button class="toggle-btn" onclick="toggleAnswer(this)">Show Solution</button>
-<div class="answer">72.1 g H₂O</div>
+<div class="answer">
+<p>Balanced equation: <strong>2H<sub>2</sub> + O<sub>2</sub> &rarr; 2H<sub>2</sub>O</strong></p>
+<ol>
+<li>The mole ratio H<sub>2</sub>:H<sub>2</sub>O is 2:2, so 4.0 mol H<sub>2</sub> produces 4.0 mol H<sub>2</sub>O.</li>
+<li>Convert H<sub>2</sub>O to grams: 4.0 mol &times; 18.02 g/mol = 72.1 g H<sub>2</sub>O.</li>
+</ol>
+<strong>Answer: 72.1 g H<sub>2</sub>O</strong>
+</div>
 </div>
 
 <div class="activity">
-<p><strong>9.</strong> What mass of CaO is produced from 300 g CaCO₃?</p>
+<p><strong>9.</strong> What mass of CaO is produced from 300 g CaCO<sub>3</sub>?</p>
 <button class="toggle-btn" onclick="toggleAnswer(this)">Show Solution</button>
-<div class="answer">168 g CaO</div>
+<div class="answer">
+<p>Balanced equation: <strong>CaCO<sub>3</sub> &rarr; CaO + CO<sub>2</sub></strong></p>
+<ol>
+<li>Convert CaCO<sub>3</sub> to moles: 300 g &divide; 100.09 g/mol = 3.00 mol CaCO<sub>3</sub>.</li>
+<li>The mole ratio CaCO<sub>3</sub>:CaO is 1:1, so 3.00 mol CaO is produced.</li>
+<li>Convert CaO to grams: 3.00 mol &times; 56.08 g/mol = 168 g CaO.</li>
+</ol>
+<strong>Answer: 168 g CaO</strong>
+</div>
 </div>
 
 <div class="activity">
-<p><strong>10.</strong> How many grams of CO₂ are produced from 44.0 g propane (C₃H₈)?</p>
+<p><strong>10.</strong> How many grams of CO<sub>2</sub> are produced from 44.0 g propane (C<sub>3</sub>H<sub>8</sub>)?</p>
 <button class="toggle-btn" onclick="toggleAnswer(this)">Show Solution</button>
-<div class="answer">132 g CO₂</div>
+<div class="answer">
+<p>Balanced equation: <strong>C<sub>3</sub>H<sub>8</sub> + 5O<sub>2</sub> &rarr; 3CO<sub>2</sub> + 4H<sub>2</sub>O</strong></p>
+<ol>
+<li>Convert propane to moles: 44.0 g &divide; 44.10 g/mol = 0.998 mol C<sub>3</sub>H<sub>8</sub>.</li>
+<li>Use the mole ratio 1 mol C<sub>3</sub>H<sub>8</sub> : 3 mol CO<sub>2</sub>, giving 2.99 mol CO<sub>2</sub>.</li>
+<li>Convert CO<sub>2</sub> to grams: 2.99 mol &times; 44.01 g/mol = 132 g CO<sub>2</sub>.</li>
+</ol>
+<strong>Answer: 132 g CO<sub>2</sub></strong>
+</div>
 </div>
 
 </div>
@@ -708,7 +886,7 @@ src="https://phet.colorado.edu/sims/html/reactants-products-and-leftovers/latest
 </ul>
 
 <div class="formula">
-Mass → Mole → Mole Ratio → Mole → Mass
+Mass &rarr; Mole &rarr; Mole Ratio &rarr; Mole &rarr; Mass
 </div>
 
 <ul>
@@ -721,7 +899,7 @@ Mass → Mole → Mole Ratio → Mole → Mass
 	<div style="text-align:center;margin-top:30px;">
 	<button class="quiz-button" id="takeQuizBtn">
 
-Take the Quiz →
+Take the Quiz &rarr;
 
 </button>
 
