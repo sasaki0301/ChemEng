@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nomenclature of Inorganic Compounds</title>
+
+<style>
+/* SAME STYLE AS TEMPLATE */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.quiz-container {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  width: 95%;
+  max-width: 850px;
+  text-align: center;
+}
+h2 { color: #136f63; margin-bottom: 25px; }
+.progress-wrapper { background:#e9f5ef; border-radius:8px; height:14px; width:100%; margin-bottom:25px; overflow:hidden;}
+.progress-bar { height:100%; background:linear-gradient(to right,#136f63,#2b7de9); width:0%; transition:width 0.4s;}
+.progress-text { text-align:right; font-size:0.95em; color:#174ea6; margin-bottom:10px; font-weight:600;}
+.question { font-size:1.3em; font-weight:600; color:#174ea6; margin-bottom:20px;}
+.choices { display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
+.choice { background:#e8ecf8; border:none; border-radius:10px; padding:14px; cursor:pointer; text-align:left;}
+.choice:hover { background:#d3dbf8; transform:translateY(-2px);}
+.choice.correct {background: #2b7de9;color: #fff;}
+.choice.incorrect {background: #e57373;color: #fff;}
+.explanation { background:#eef3ff; border-radius:10px; padding:14px; text-align:left; margin-bottom:20px; display:none;}
+.next-btn { background:#136f63; color:#fff; border:none; padding:12px 26px; border-radius:10px; cursor:pointer;}
+.result { font-size:1.4em; font-weight:bold; color:#174ea6;}
+.stars { font-size:2.5em; margin-top:10px;}
+.quiz-nav { margin-top:25px; display:flex; justify-content:center; gap:10px;}
+.quiz-btn { background:#e8ecf8; border:none; border-radius:8px; padding:10px 20px; cursor:pointer;}
+.quiz-btn.primary { background:#136f63; color:#fff;}
+@media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+
+.diagram-box {margin: 12px 0 20px; background: #f7fbff; border: 1px dashed #d8e9ff; padding: 10px; border-radius: 8px; }
+
+svg {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h2>Nomenclature of Inorganic Compounds - Quiz</h2>
+
+<div class="progress-text" id="progressText"></div>
+<div class="progress-wrapper">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<div id="quizBox"></div>
+
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+
+</div>
+
+<script>
+  
+const quizData = [
+
+{q:"Why is a standardized chemical naming system important?",c:["It reduces the number of elements","It prevents confusion and ensures accurate communication","It changes chemical formulas","It eliminates chemical reactions"],a:1,e:"Standardized nomenclature allows scientists and engineers worldwide to communicate accurately about chemicals."},
+
+{q:"Which of the following is the correct name for KBr?",c:["Potassium Bromine","Potassium Bromide","Potassium Bromate","Potassium Bromite"],a:1,e:"Binary ionic compounds are named by stating the metal first and changing the nonmetal ending to -ide."},
+
+{q:"Which compound is correctly named Lithium Sulfide?",c:["LiS","Li₂S","LiS₂","Li₂SO₄"],a:1,e:"Lithium forms Li⁺ and sulfide is S²⁻, giving Li₂S."},
+
+{q:"What is the correct name for BaO?",c:["Barium Oxide","Barium Oxygen","Barium Dioxide","Barium Oxyide"],a:0,e:"Ba is barium and O becomes oxide in binary ionic compounds."},
+
+{q:"Which polyatomic ion has the formula NO₂⁻?",c:["Nitrate","Nitrite","Nitride","Nitrous"],a:1,e:"NO₂⁻ is nitrite, while NO₃⁻ is nitrate."},
+
+{q:"What is the name of NaHCO₃?",c:["Sodium Carbonate","Sodium Bicarbonate","Sodium Hydroxide","Sodium Sulfate"],a:1,e:"HCO₃⁻ is the bicarbonate ion."},
+
+{q:"Which polyatomic ion carries a charge of -3?",c:["Carbonate","Sulfate","Phosphate","Hydroxide"],a:2,e:"Phosphate has the formula PO₄³⁻."},
+
+{q:"What is the correct name for (NH₄)₂SO₄?",c:["Ammonium Sulfide","Ammonium Sulfate","Ammonium Sulfite","Ammonium Sulfate Oxide"],a:1,e:"NH₄⁺ is ammonium and SO₄²⁻ is sulfate."},
+
+{q:"Which formula represents Potassium Phosphate?",c:["KPO₄","K₂PO₄","K₃PO₄","K₄PO₄"],a:2,e:"Three K⁺ ions are required to balance one PO₄³⁻ ion."},
+
+{q:"Why are Roman numerals used in some ionic compound names?",c:["To indicate the number of atoms","To identify polyatomic ions","To indicate the charge of certain metal ions","To identify covalent compounds"],a:2,e:"Roman numerals specify the oxidation state of metals that can form multiple ions."},
+
+{q:"What is the correct name for SnCl₄ if tin has a +4 charge?",c:["Tin Chloride","Tin(II) Chloride","Tin(III) Chloride","Tin(IV) Chloride"],a:3,e:"The Roman numeral IV indicates a +4 oxidation state."},
+
+{q:"Which formula corresponds to Lead(II) Nitrate?",c:["Pb(NO₃)₂","PbNO₃","Pb₂(NO₃)","Pb(NO₂)₂"],a:0,e:"Pb²⁺ combines with two nitrate ions to form Pb(NO₃)₂."},
+
+{q:"What is the correct name for P₂O₃?",c:["Phosphorus Oxide","Diphosphorus Trioxide","Phosphorus Trioxide","Diphosphorus Oxide"],a:1,e:"Prefixes are used for covalent compounds: di- for 2 and tri- for 3."},
+
+{q:"Which prefix indicates six atoms in a covalent compound?",c:["Penta","Hexa","Hepta","Octa"],a:1,e:"The prefix hexa- represents six atoms."},
+
+{q:"What is the correct formula for Tetraphosphorus Decoxide?",c:["P₄O₁₀","P₄O₅","P₁₀O₄","PO₄"],a:0,e:"Tetra = 4 phosphorus atoms and deca = 10 oxygen atoms."},
+
+{q:"Which acid is derived from the sulfate ion (SO₄²⁻)?",c:["Sulfurous Acid","Sulfuric Acid","Sulfuric Oxide","Sulfurous Oxide"],a:1,e:"Ions ending in -ate become acids ending in -ic."},
+
+{q:"Which acid corresponds to HCl(aq)?",c:["Hydrochlorous Acid","Hydrochloric Acid","Chloric Acid","Chlorous Acid"],a:1,e:"Binary acids are named hydro + root + ic acid."},
+
+{q:"What is the formula for Calcium Nitrate?",c:["CaNO₃","Ca(NO₃)₂","Ca₂NO₃","Ca₂(NO₃)₂"],a:1,e:"Ca²⁺ requires two nitrate ions to balance the charge."},
+
+{q:"What is the correct formula for Iron(III) Hydroxide?",c:["FeOH","Fe(OH)₂","Fe(OH)₃","Fe₃OH"],a:2,e:"Fe³⁺ requires three hydroxide ions for charge neutrality."},
+
+{q:"A water treatment engineer needs a compound containing calcium ions and hydroxide ions. Which formula should be selected?",c:["CaOH","Ca₂OH","Ca(OH)₂","CaOH₂"],a:2,e:"Calcium forms Ca²⁺ and hydroxide is OH⁻, requiring two hydroxide ions for a neutral compound."}
+
+];
+
+  let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+	${q.svg || ""}
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+
+  const q = quizData[current];
+  const buttons = document.querySelectorAll(".choice");
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+
+    if (idx === q.a) {
+      btn.classList.add("correct");
+    }
+
+    if (idx === i && idx !== q.a) {
+      btn.classList.add("incorrect");
+    }
+  });
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>
