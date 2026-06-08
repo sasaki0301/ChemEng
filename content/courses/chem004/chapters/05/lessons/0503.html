@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>Limiting Reactants and Percent Yield</title>
+
+<style>
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:#fafafa;
+  color:#222;
+  padding:24px;
+  line-height:1.8;
+  font-size:20px;
+}
+
+h1{color:#136f63;}
+h2{color:#136f63;margin-top:1.4em;}
+h3{color:#174ea6;}
+
+.section{margin-bottom:30px;}
+
+.key-box{
+  background:#e8f7f5;
+  border-left:6px solid #136f63;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.example-box{
+  background:#fff;
+  border-left:5px solid #2b7de9;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.visual-box{
+  background:#fff;
+  border-radius:12px;
+  padding:14px;
+  margin:16px 0;
+  border:1px solid #ddd;
+}
+
+.lesson-img{
+  width:100%;
+  max-width:720px;
+  display:block;
+  margin:0 auto;
+  border-radius:12px;
+}
+
+.caption{
+  text-align:center;
+  font-size:0.9em;
+  color:#555;
+}
+
+.activity{
+  background:#fff;
+  padding:14px;
+  border-radius:10px;
+  margin:14px 0;
+}
+
+.toggle-btn{
+  background:#136f63;
+  color:white;
+  border:none;
+  padding:6px 12px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.answer{
+  display:none;
+  margin-top:10px;
+  background:#eef3ff;
+  padding:10px;
+  border-radius:6px;
+}
+
+.formula{
+  font-size:22px;
+  font-weight:bold;
+  text-align:center;
+}
+
+.formula .equation-line{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:8px 0;
+}
+
+.formula .fraction{
+  display:inline-grid;
+  grid-template-rows:auto auto;
+  min-width:max-content;
+  text-align:center;
+  line-height:1.2;
+  vertical-align:middle;
+}
+
+.formula .fraction-top{
+  border-bottom:2px solid currentColor;
+  padding:0 10px 5px;
+}
+
+.formula .fraction-bottom{
+  padding:5px 10px 0;
+}
+
+.answer .formula{
+  font-size:20px;
+  margin:8px 0;
+}
+
+.answer ol{
+  margin-top:8px;
+}
+
+.quiz-button{
+  background:#136f63;
+  color:white;
+  padding:12px 22px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:16px 0;
+  background:#fff;
+}
+
+th,td{
+  border:1px solid #ddd;
+  padding:10px;
+}
+
+th{background:#e8f7f5;}
+
+iframe{
+  width:100%;
+  max-width:100%;
+}
+</style>
+</head>
+<body>
+
+  <h1>Chapter 5: Stoichiometry and Quantitative Chemistry</h1>
+<h2>Lesson 3: Limiting Reactants and Percent Yield</h2>
+
+<div class="key-box">
+<strong>Engineering Scenario</strong><br><br>
+
+A fertilizer company combines nitrogen and hydrogen to produce ammonia. According to stoichiometric calculations, the plant should produce 1,000 kg of ammonia. However, only 920 kg is collected.
+
+What happened?
+
+In real-world chemical processes, reactants are rarely present in perfect proportions and reactions rarely achieve 100% efficiency. Engineers must determine which reactant limits production and evaluate how efficiently the process performs.
+
+This is where the concepts of <strong>limiting reactants</strong> and <strong>percent yield</strong> become essential.
+</div>
+
+<div class="section">
+<h2>Learning Objectives</h2>
+
+<ul>
+<li>Define limiting reactants and excess reactants.</li>
+<li>Determine the limiting reactant in a chemical reaction.</li>
+<li>Calculate excess reactant remaining.</li>
+<li>Calculate theoretical yield.</li>
+<li>Calculate percent yield.</li>
+<li>Apply limiting reactant concepts to engineering problems.</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>Why Stoichiometric Predictions Sometimes Fail</h2>
+
+<p>
+In Lesson 2, we assumed that reactants were available in exactly the required proportions.
+</p>
+
+<p>
+However, in real chemical reactions:
+</p>
+
+<ul>
+<li>One reactant may run out first.</li>
+<li>Some products may be lost during collection.</li>
+<li>Side reactions may occur.</li>
+<li>Reactions may not proceed to completion.</li>
+</ul>
+
+<div class="key-box">
+The reactant that is completely consumed first determines the maximum amount of product that can be formed.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Limiting Reactant</h2>
+
+<p>
+The limiting reactant is the reactant that is consumed first during a reaction.
+</p>
+
+<p>
+Once the limiting reactant is exhausted, the reaction stops.
+</p>
+
+<div class="formula">
+Limiting Reactant = Reactant that limits product formation
+</div>
+
+</div>
+
+<div class="section">
+<h2>Excess Reactant</h2>
+
+<p>
+An excess reactant is a reactant that remains after the reaction is complete.
+</p>
+
+<div class="formula">
+Excess Reactant = Reactant left over after reaction
+</div>
+
+<div class="key-box">
+Limiting reactants determine product yield while excess reactants remain unused.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Visualizing Limiting Reactants</h2>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Sandwich Limiting Reactant Analogy -->
+
+<img
+src=""
+alt="Limiting Reactant Sandwich Analogy"
+class="lesson-img">
+
+<p class="caption">
+Figure 1. The ingredient that runs out first limits the number of sandwiches that can be made.
+</p>
+
+</div>
+
+<p>
+Imagine making sandwiches:
+</p>
+
+<ul>
+<li>10 slices of bread</li>
+<li>4 slices of cheese</li>
+</ul>
+
+<p>
+Each sandwich requires:
+</p>
+
+<div class="formula">
+2 Bread + 1 Cheese → 1 Sandwich
+</div>
+
+<p>
+Bread could make 5 sandwiches, but cheese can make only 4.
+</p>
+
+<div class="key-box">
+Cheese is the limiting ingredient.
+</div>
+
+<p>
+Chemical reactions behave the same way.
+</p>
+
+</div>
+
+<div class="section">
+<h2>Method 1: Determine the Limiting Reactant Using Mole Ratios</h2>
+
+<p>
+Compare the available reactants to the balanced equation requirements.
+</p>
+
+<div class="formula">
+N<sub>2</sub> + 3H<sub>2</sub> &rarr; 2NH<sub>3</sub>
+</div>
+
+<p>
+Suppose we have:
+</p>
+
+<ul>
+<li>2 mol N<sub>2</sub></li>
+<li>4 mol H<sub>2</sub></li>
+</ul>
+
+<p>
+Required hydrogen:
+</p>
+
+<div class="formula">
+2 mol N<sub>2</sub> × 3 = 6 mol H<sub>2</sub>
+</div>
+
+<p>
+Available hydrogen:
+</p>
+
+<div class="formula">
+4 mol H<sub>2</sub>
+</div>
+
+<div class="key-box">
+Hydrogen is the limiting reactant because only 4 mol are available while 6 mol are required.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Method 2: Product Comparison Method</h2>
+
+<p>
+Convert each reactant into the amount of product it could produce.
+</p>
+
+<p>
+The reactant producing the smaller amount of product is the limiting reactant.
+</p>
+
+<div class="key-box">
+This method is the most reliable and is commonly used in engineering calculations.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Worked Example 1</h2>
+
+<div class="example-box">
+
+Determine the limiting reactant.
+
+<div class="formula">
+2H<sub>2</sub> + O<sub>2</sub> &rarr; 2H<sub>2</sub>O
+</div>
+
+Given:
+
+<ul>
+<li>8.0 mol H<sub>2</sub></li>
+<li>3.0 mol O<sub>2</sub></li>
+</ul>
+
+</div>
+
+<p><strong>Step 1:</strong> Calculate water from hydrogen.</p>
+
+<div class="formula">
+<div class="equation-line">
+<span>8.0 mol H<sub>2</sub></span>
+<span>&times;</span>
+
+<span class="fraction">
+<span class="fraction-top">2 mol H<sub>2</sub>O</span>
+<span class="fraction-bottom">2 mol H<sub>2</sub></span>
+</span>
+
+<span>=</span>
+<span>8.0 mol H<sub>2</sub>O</span>
+</div>
+</div>
+
+<p><strong>Step 2:</strong> Calculate water from oxygen.</p>
+
+<div class="formula">
+<div class="equation-line">
+<span>3.0 mol O<sub>2</sub></span>
+<span>&times;</span>
+
+<span class="fraction">
+<span class="fraction-top">2 mol H<sub>2</sub>O</span>
+<span class="fraction-bottom">1 mol O<sub>2</sub></span>
+</span>
+
+<span>=</span>
+<span>6.0 mol H<sub>2</sub>O</span>
+</div>
+</div>
+
+<p>
+Hydrogen could produce 8.0 mol water.
+</p>
+
+<p>
+Oxygen could produce only 6.0 mol water.
+</p>
+
+<div class="key-box">
+Limiting Reactant: O<sub>2</sub>
+</div>
+
+</div>
+
+<div class="section">
+<h2>Worked Example 2</h2>
+
+<div class="example-box">
+
+Determine the limiting reactant.
+
+<div class="formula">
+N<sub>2</sub> + 3H<sub>2</sub> &rarr; 2NH<sub>3</sub>
+</div>
+
+Given:
+
+<ul>
+<li>5.0 mol N<sub>2</sub></li>
+<li>12.0 mol H<sub>2</sub></li>
+</ul>
+
+</div>
+
+<p><strong>From Nitrogen:</strong></p>
+
+<div class="formula">
+<div class="equation-line">
+<span>5.0 mol N<sub>2</sub></span>
+<span>&times;</span>
+
+<span class="fraction">
+<span class="fraction-top">2 mol NH<sub>3</sub></span>
+<span class="fraction-bottom">1 mol N<sub>2</sub></span>
+</span>
+
+<span>=</span>
+<span>10.0 mol NH<sub>3</sub></span>
+</div>
+</div>
+
+<p><strong>From Hydrogen:</strong></p>
+
+<div class="formula">
+<div class="equation-line">
+<span>12.0 mol H<sub>2</sub></span>
+<span>&times;</span>
+
+<span class="fraction">
+<span class="fraction-top">2 mol NH<sub>3</sub></span>
+<span class="fraction-bottom">3 mol H<sub>2</sub></span>
+</span>
+
+<span>=</span>
+<span>8.0 mol NH<sub>3</sub></span>
+</div>
+</div>
+
+<div class="key-box">
+Limiting Reactant: H<sub>2</sub>
+</div>
+
+</div>
+
+<div class="section">
+<h2>Theoretical Yield</h2>
+
+<p>
+The theoretical yield is the maximum amount of product that can be produced based on stoichiometric calculations.
+</p>
+
+<div class="formula">
+Theoretical Yield = Maximum Possible Product
+</div>
+
+<p>
+Theoretical yield is always determined from the limiting reactant.
+</p>
+
+</div>
+
+<div class="section">
+<h2>Worked Example 3</h2>
+
+<div class="example-box">
+
+Determine the theoretical yield of NH<sub>3</sub>.
+
+<div class="formula">
+N<sub>2</sub> + 3H<sub>2</sub> &rarr; 2NH<sub>3</sub>
+</div>
+
+Given:
+
+<ul>
+<li>28.0 g N<sub>2</sub></li>
+<li>6.0 g H<sub>2</sub></li>
+</ul>
+
+</div>
+
+<p><strong>Step 1:</strong> Convert to moles.</p>
+
+<div class="formula">
+28.0 &divide; 28.02 = 1.00 mol N<sub>2</sub>
+</div>
+
+<div class="formula">
+6.0 &divide; 2.02 = 2.97 mol H<sub>2</sub>
+</div>
+
+<p><strong>Step 2:</strong> Determine limiting reactant.</p>
+
+<p>
+1.00 mol N<sub>2</sub> requires 3.00 mol H<sub>2</sub>.
+</p>
+
+<p>
+Only 2.97 mol H<sub>2</sub> is available.
+</p>
+
+<div class="key-box">
+Limiting Reactant = H<sub>2</sub>
+</div>
+
+<p><strong>Step 3:</strong> Calculate theoretical yield.</p>
+
+<div class="formula">
+<div class="equation-line">
+<span>2.97 mol H<sub>2</sub></span>
+<span>&times;</span>
+
+<span class="fraction">
+<span class="fraction-top">2 mol NH<sub>3</sub></span>
+<span class="fraction-bottom">3 mol H<sub>2</sub></span>
+</span>
+
+<span>=</span>
+<span>1.98 mol NH<sub>3</sub></span>
+</div>
+</div>
+
+<div class="formula">
+1.98 × 17.03 = 33.7 g NH<sub>3</sub>
+</div>
+
+<div class="key-box">
+Theoretical Yield = 33.7 g NH<sub>3</sub>
+</div>
+
+</div>
+
+<div class="section">
+<h2>Actual Yield</h2>
+
+<p>
+The actual yield is the amount of product actually obtained from an experiment or industrial process.
+</p>
+
+<div class="formula">
+Actual Yield = Measured Product Obtained
+</div>
+
+</div>
+
+<div class="section">
+<h2>Percent Yield</h2>
+
+<p>
+Percent yield compares actual yield to theoretical yield.
+</p>
+
+<div class="formula">
+Percent Yield =
+(Actual Yield ÷ Theoretical Yield) × 100
+</div>
+
+<div class="key-box">
+Percent yield indicates the efficiency of a chemical process.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Worked Example 4</h2>
+
+<div class="example-box">
+
+Theoretical Yield = 50.0 g
+
+Actual Yield = 42.0 g
+
+Calculate the percent yield.
+
+</div>
+
+<div class="formula">
+Percent Yield =
+(42.0 ÷ 50.0) × 100
+</div>
+
+<div class="formula">
+84.0%
+</div>
+
+<div class="key-box">
+Percent Yield = 84.0%
+</div>
+
+</div>
+
+<div class="section">
+<h2>Why Are Yields Less Than 100%?</h2>
+
+<ul>
+<li>Incomplete reactions</li>
+<li>Product losses during collection</li>
+<li>Side reactions</li>
+<li>Impure reactants</li>
+<li>Equipment limitations</li>
+</ul>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Causes of Yield Loss -->
+
+<img
+src=""
+alt="Reasons for Low Percent Yield"
+class="lesson-img">
+
+<p class="caption">
+Figure 2. Real chemical processes rarely achieve 100% yield.
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Engineering Example</h2>
+
+<div class="example-box">
+
+A fertilizer plant predicts production of 5000 kg NH<sub>3</sub>.
+
+Actual production = 4600 kg NH<sub>3</sub>
+
+Determine percent yield.
+
+</div>
+
+<div class="formula">
+(4600 ÷ 5000) × 100
+</div>
+
+<div class="formula">
+92.0%
+</div>
+
+<div class="key-box">
+Plant Efficiency = 92.0%
+</div>
+
+</div>
+
+<div class="section">
+<h2>Interactive Simulation</h2>
+
+<div class="activity">
+
+<p>
+Use the simulation to explore how limiting reactants affect product formation.
+</p>
+
+<iframe
+height="500"
+src="https://phet.colorado.edu/sims/html/reactants-products-and-leftovers/latest/reactants-products-and-leftovers_en.html">
+</iframe>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Practice Drills</h2>
+
+<div class="activity">
+<p><strong>1.</strong> In the reaction 2H<sub>2</sub> + O<sub>2</sub> → 2H<sub>2</sub>O, which reactant is limiting if 4 mol H<sub>2</sub> and 1 mol O<sub>2</sub> are available?</p>
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Solution</button>
+<div class="answer">O<sub>2</sub> is limiting because 4 mol H<sub>2</sub> requires 2 mol O<sub>2</sub>.</div>
+</div>
+
+<div class="activity">
+<p><strong>2.</strong> Which reactant is limiting if 2 mol N<sub>2</sub> reacts with 4 mol H<sub>2</sub>?</p>
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Solution</button>
+<div class="answer">H<sub>2</sub> is limiting because 2 mol N<sub>2</sub> requires 6 mol H<sub>2</sub>.</div>
+</div>
+
+<div class="activity">
+<p><strong>3.</strong> Calculate the percent yield if actual yield is 72 g and theoretical yield is 80 g.</p>
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Solution</button>
+<div class="answer">90%</div>
+</div>
+
+<div class="activity">
+<p><strong>4.</strong> Calculate the percent yield if actual yield is 95 g and theoretical yield is 110 g.</p>
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Solution</button>
+<div class="answer">86.4%</div>
+</div>
+
+<div class="activity">
+<p><strong>5.</strong> Why is theoretical yield based on the limiting reactant?</p>
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Solution</button>
+<div class="answer">Because the limiting reactant is consumed first and determines the maximum product that can form.</div>
+</div>
+
+<div class="activity">
+<p><strong>6.</strong> Name two causes of low percent yield.</p>
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Solution</button>
+<div class="answer">Incomplete reactions and product losses during collection.</div>
+</div>
+
+<div class="activity">
+<p><strong>7.</strong> If theoretical yield is 250 g and actual yield is 225 g, calculate percent yield.</p>
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Solution</button>
+<div class="answer">90%</div>
+</div>
+
+<div class="activity">
+<p><strong>8.</strong> What does a percent yield of 100% indicate?</p>
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Solution</button>
+<div class="answer">Actual yield equals theoretical yield.</div>
+</div>
+
+</div>
+
+<div class="section">
+<h2>Lesson Summary</h2>
+
+<ul>
+<li>The limiting reactant is consumed first and limits product formation.</li>
+<li>The excess reactant remains after the reaction is complete.</li>
+<li>Theoretical yield is the maximum amount of product possible.</li>
+<li>Actual yield is the amount actually obtained.</li>
+<li>Percent yield measures process efficiency.</li>
+<li>Industrial processes rarely achieve 100% yield.</li>
+<li>Limiting reactant and yield calculations are essential in manufacturing, energy production, and chemical engineering.</li>
+</ul>
+
+</div>
+
+  <div style="text-align:center;margin-top:30px;">
+	<button class="quiz-button" id="takeQuizBtn">
+
+Take the Quiz →
+
+</button>
+
+</div>
+
+<script>
+function toggleAnswer(btn){
+  const ans = btn.nextElementSibling;
+  ans.style.display = ans.style.display === "block" ? "none" : "block";
+}
+
+document.getElementById("takeQuizBtn").addEventListener("click",(e)=>{
+  const quizId = e.target.dataset.quiz;
+  window.parent.postMessage({
+    type:"openQuiz",
+    quiz:quizId
+  },"*");
+});
+</script>
+</body>
+</html>
