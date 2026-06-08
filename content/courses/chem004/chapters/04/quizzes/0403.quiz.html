@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Types of Chemical Reactions</title>
+
+<style>
+/* SAME STYLE AS TEMPLATE */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.quiz-container {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  width: 95%;
+  max-width: 850px;
+  text-align: center;
+}
+h2 { color: #136f63; margin-bottom: 25px; }
+.progress-wrapper { background:#e9f5ef; border-radius:8px; height:14px; width:100%; margin-bottom:25px; overflow:hidden;}
+.progress-bar { height:100%; background:linear-gradient(to right,#136f63,#2b7de9); width:0%; transition:width 0.4s;}
+.progress-text { text-align:right; font-size:0.95em; color:#174ea6; margin-bottom:10px; font-weight:600;}
+.question { font-size:1.3em; font-weight:600; color:#174ea6; margin-bottom:20px;}
+.choices { display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
+.choice { background:#e8ecf8; border:none; border-radius:10px; padding:14px; cursor:pointer; text-align:left;}
+.choice:hover { background:#d3dbf8; transform:translateY(-2px);}
+.choice.correct {background: #2b7de9;color: #fff;}
+.choice.incorrect {background: #e57373;color: #fff;}
+.explanation { background:#eef3ff; border-radius:10px; padding:14px; text-align:left; margin-bottom:20px; display:none;}
+.next-btn { background:#136f63; color:#fff; border:none; padding:12px 26px; border-radius:10px; cursor:pointer;}
+.result { font-size:1.4em; font-weight:bold; color:#174ea6;}
+.stars { font-size:2.5em; margin-top:10px;}
+.quiz-nav { margin-top:25px; display:flex; justify-content:center; gap:10px;}
+.quiz-btn { background:#e8ecf8; border:none; border-radius:8px; padding:10px 20px; cursor:pointer;}
+.quiz-btn.primary { background:#136f63; color:#fff;}
+@media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+
+.diagram-box {margin: 12px 0 20px; background: #f7fbff; border: 1px dashed #d8e9ff; padding: 10px; border-radius: 8px; }
+
+svg {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h2>Types of Chemical Reactions - Quiz</h2>
+
+<div class="progress-text" id="progressText"></div>
+<div class="progress-wrapper">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<div id="quizBox"></div>
+
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+
+</div>
+
+<script>
+
+  const quizData = [
+
+{q:"Why do chemists classify chemical reactions into different types?",c:["To reduce the number of elements","To predict products and understand reaction behavior","To calculate atomic masses","To identify isotopes"],a:1,e:"Classifying reactions allows chemists and engineers to recognize patterns and predict products more efficiently."},
+
+{q:"Which general pattern represents a synthesis reaction?",c:["AB → A + B","A + BC → AC + B","A + B → AB","AB + CD → AD + CB"],a:2,e:"In a synthesis reaction, two or more substances combine to form a single product."},
+
+{q:"Which reaction is an example of a synthesis reaction?",c:["2H₂O₂ → 2H₂O + O₂","2Mg + O₂ → 2MgO","Zn + CuSO₄ → ZnSO₄ + Cu","AgNO₃ + NaCl → AgCl + NaNO₃"],a:1,e:"Magnesium and oxygen combine to form a single product, magnesium oxide."},
+
+{q:"What is the general pattern of a decomposition reaction?",c:["AB → A + B","A + B → AB","A + BC → AC + B","Fuel + O₂ → CO₂ + H₂O"],a:0,e:"A decomposition reaction occurs when one compound breaks into simpler substances."},
+
+{q:"Which reaction is classified as a decomposition reaction?",c:["CaCO₃ → CaO + CO₂","2Na + Cl₂ → 2NaCl","CH₄ + 2O₂ → CO₂ + 2H₂O","Mg + 2HCl → MgCl₂ + H₂"],a:0,e:"A single compound breaks into two simpler products."},
+
+{q:"In a single replacement reaction, what determines whether the reaction will occur?",c:["Color of reactants","Activity or reactivity of the elements involved","Temperature only","Number of atoms present"],a:1,e:"A more reactive element can replace a less reactive element in a compound."},
+
+{q:"Which reaction is an example of a single replacement reaction?",c:["Fe + CuSO₄ → FeSO₄ + Cu","N₂ + 3H₂ → 2NH₃","2KClO₃ → 2KCl + 3O₂","HCl + NaOH → NaCl + H₂O"],a:0,e:"Iron replaces copper in copper sulfate."},
+
+{q:"What is the general pattern for a double replacement reaction?",c:["AB → A + B","A + BC → AC + B","AB + CD → AD + CB","A + B → AB"],a:2,e:"In double replacement reactions, ions exchange partners."},
+
+{q:"Which reaction is classified as a double replacement reaction?",c:["Zn + HCl → ZnCl₂ + H₂","AgNO₃ + KBr → AgBr + KNO₃","2HgO → 2Hg + O₂","C₃H₈ + 5O₂ → 3CO₂ + 4H₂O"],a:1,e:"Silver nitrate and potassium bromide exchange ions."},
+
+{q:"What are the typical products of a hydrocarbon combustion reaction?",c:["Salt and water","Metal oxide and hydrogen","Carbon dioxide and water","Acid and base"],a:2,e:"Complete combustion of hydrocarbons produces carbon dioxide and water."},
+
+{q:"Which reaction is an example of combustion?",c:["CH₄ + 2O₂ → CO₂ + 2H₂O","CaCO₃ → CaO + CO₂","Mg + Cl₂ → MgCl₂","AgNO₃ + NaCl → AgCl + NaNO₃"],a:0,e:"Methane reacts with oxygen to produce carbon dioxide and water."},
+
+{q:"What is produced when an acid reacts with a base in a neutralization reaction?",c:["Metal and hydrogen","Salt and water","Carbon dioxide and water","Two acids"],a:1,e:"Neutralization reactions produce salt and water."},
+
+{q:"Which reaction represents a neutralization reaction?",c:["HNO₃ + KOH → KNO₃ + H₂O","Zn + HCl → ZnCl₂ + H₂","2Na + Cl₂ → 2NaCl","2H₂O₂ → 2H₂O + O₂"],a:0,e:"Nitric acid reacts with potassium hydroxide to form a salt and water."},
+
+{q:"What is a precipitate?",c:["A gas produced during a reaction","A catalyst","An insoluble solid formed during a reaction","A dissolved ion"],a:2,e:"A precipitate is an insoluble solid that forms from aqueous solutions."},
+
+{q:"Which reaction forms a precipitate?",c:["Na₂CO₃ + CaCl₂ → CaCO₃ + 2NaCl","CH₄ + 2O₂ → CO₂ + 2H₂O","N₂ + 3H₂ → 2NH₃","2KClO₃ → 2KCl + 3O₂"],a:0,e:"Calcium carbonate is insoluble and forms a precipitate."},
+
+{q:"A chemical engineer observes the reaction: 2Al + 3Br₂ → 2AlBr₃. What type of reaction is this?",c:["Combustion","Decomposition","Synthesis","Double Replacement"],a:2,e:"Two reactants combine to form a single product."},
+
+{q:"A wastewater treatment facility uses Ca(OH)₂ to neutralize acidic wastewater. This process is an example of:",c:["Combustion","Single Replacement","Precipitation","Neutralization"],a:3,e:"Neutralization is commonly used to adjust pH in wastewater treatment."},
+
+{q:"A water treatment plant adds a chemical that causes dissolved heavy metals to form solids that can be removed. Which reaction type is most likely involved?",c:["Synthesis","Combustion","Precipitation","Decomposition"],a:2,e:"Precipitation reactions are widely used to remove contaminants from water."},
+
+{q:"Classify the reaction: 2NaN₃ → 2Na + 3N₂",c:["Synthesis","Single Replacement","Combustion","Decomposition"],a:3,e:"One compound breaks apart into simpler substances."},
+
+{q:"A mechanical engineer is studying gasoline combustion inside an engine. Which reaction type is most directly involved in energy production?",c:["Combustion","Neutralization","Precipitation","Double Replacement"],a:0,e:"Combustion reactions release large amounts of energy used to power engines."}
+
+];
+  let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+	${q.svg || ""}
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+
+  const q = quizData[current];
+  const buttons = document.querySelectorAll(".choice");
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+
+    if (idx === q.a) {
+      btn.classList.add("correct");
+    }
+
+    if (idx === i && idx !== q.a) {
+      btn.classList.add("incorrect");
+    }
+  });
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>
