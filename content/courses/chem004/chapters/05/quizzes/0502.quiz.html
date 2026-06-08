@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mole-to-Mole and Mass-to-Mass Stoichiometry</title>
+
+<style>
+/* SAME STYLE AS TEMPLATE */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.quiz-container {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  width: 95%;
+  max-width: 850px;
+  text-align: center;
+}
+h2 { color: #136f63; margin-bottom: 25px; }
+.progress-wrapper { background:#e9f5ef; border-radius:8px; height:14px; width:100%; margin-bottom:25px; overflow:hidden;}
+.progress-bar { height:100%; background:linear-gradient(to right,#136f63,#2b7de9); width:0%; transition:width 0.4s;}
+.progress-text { text-align:right; font-size:0.95em; color:#174ea6; margin-bottom:10px; font-weight:600;}
+.question { font-size:1.3em; font-weight:600; color:#174ea6; margin-bottom:20px;}
+.choices { display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
+.choice { background:#e8ecf8; border:none; border-radius:10px; padding:14px; cursor:pointer; text-align:left;}
+.choice:hover { background:#d3dbf8; transform:translateY(-2px);}
+.choice.correct {background: #2b7de9;color: #fff;}
+.choice.incorrect {background: #e57373;color: #fff;}
+.explanation { background:#eef3ff; border-radius:10px; padding:14px; text-align:left; margin-bottom:20px; display:none;}
+.next-btn { background:#136f63; color:#fff; border:none; padding:12px 26px; border-radius:10px; cursor:pointer;}
+.result { font-size:1.4em; font-weight:bold; color:#174ea6;}
+.stars { font-size:2.5em; margin-top:10px;}
+.quiz-nav { margin-top:25px; display:flex; justify-content:center; gap:10px;}
+.quiz-btn { background:#e8ecf8; border:none; border-radius:8px; padding:10px 20px; cursor:pointer;}
+.quiz-btn.primary { background:#136f63; color:#fff;}
+@media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+
+.diagram-box {margin: 12px 0 20px; background: #f7fbff; border: 1px dashed #d8e9ff; padding: 10px; border-radius: 8px; }
+
+svg {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h2>Mole-to-Mole and Mass-to-Mass Stoichiometry - Quiz</h2>
+
+<div class="progress-text" id="progressText"></div>
+<div class="progress-wrapper">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<div id="quizBox"></div>
+
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+
+</div>
+
+<script>
+  const quizData = [
+
+{q:"What is stoichiometry?",c:["The study of atomic structure","The study of quantitative relationships in chemical reactions","The study of chemical bonding","The study of reaction rates"],a:1,e:"Stoichiometry involves calculating amounts of reactants and products using balanced chemical equations."},
+
+{q:"Where do mole ratios come from?",c:["Periodic table masses","Chemical formulas","Balanced equation coefficients","Reaction temperatures"],a:2,e:"The coefficients in a balanced equation provide the mole ratios used in stoichiometric calculations."},
+
+{q:"In the equation 2H₂ + O₂ → 2H₂O, what is the mole ratio of H₂ to H₂O?",c:["1:2","2:1","1:1","2:3"],a:2,e:"The coefficients show that 2 mol H₂ produce 2 mol H₂O, giving a 1:1 ratio."},
+
+{q:"In the equation N₂ + 3H₂ → 2NH₃, how many moles of NH₃ are produced from 1 mol N₂?",c:["1 mol","2 mol","3 mol","6 mol"],a:1,e:"The balanced equation shows that 1 mol N₂ produces 2 mol NH₃."},
+
+{q:"What is the first step in solving most stoichiometry problems?",c:["Apply the mole ratio","Balance the chemical equation","Convert to grams","Calculate molar mass"],a:1,e:"A balanced equation is necessary before any stoichiometric calculations can be performed."},
+
+{q:"Which roadmap correctly represents mass-to-mass stoichiometry?",c:["Mass → Mole Ratio → Mass","Mass → Mole → Mole Ratio → Mole → Mass","Mass → Mole → Mass","Mass → Product → Mole"],a:1,e:"This is the standard stoichiometric pathway used in chemistry calculations."},
+
+{q:"Using the equation 2Mg + O₂ → 2MgO, how many moles of MgO are produced from 5.0 mol Mg?",c:["2.5 mol","5.0 mol","7.5 mol","10.0 mol"],a:1,e:"The mole ratio between Mg and MgO is 1:1."},
+
+{q:"Using the equation 2Al + 3Cl₂ → 2AlCl₃, how many moles of AlCl₃ can be produced from 8.0 mol Al?",c:["4.0 mol","8.0 mol","12.0 mol","16.0 mol"],a:1,e:"The mole ratio between Al and AlCl₃ is 1:1."},
+
+{q:"Using the equation CH₄ + 2O₂ → CO₂ + 2H₂O, how many moles of CO₂ are produced from 3.0 mol CH₄?",c:["1.5 mol","3.0 mol","6.0 mol","9.0 mol"],a:1,e:"The mole ratio between CH₄ and CO₂ is 1:1."},
+
+{q:"Using the equation 2KClO₃ → 2KCl + 3O₂, how many moles of O₂ are produced from 4.0 mol KClO₃?",c:["2.0 mol","4.0 mol","6.0 mol","8.0 mol"],a:2,e:"4.0 mol KClO₃ × (3 mol O₂ / 2 mol KClO₃) = 6.0 mol O₂."},
+
+{q:"How many grams of H₂O can be produced from 2.0 mol H₂O?",c:["18.0 g","36.0 g","54.0 g","72.0 g"],a:1,e:"2.0 mol × 18.02 g/mol = approximately 36.0 g."},
+
+{q:"Using the equation CaCO₃ → CaO + CO₂, how many moles of CO₂ are produced from 5.0 mol CaCO₃?",c:["2.5 mol","5.0 mol","7.5 mol","10.0 mol"],a:1,e:"The mole ratio between CaCO₃ and CO₂ is 1:1."},
+
+{q:"What mass of CO₂ is produced from 2.0 mol CO₂?",c:["22.0 g","44.0 g","66.0 g","88.0 g"],a:3,e:"2.0 mol × 44.01 g/mol = approximately 88.0 g."},
+
+{q:"Using the equation N₂ + 3H₂ → 2NH₃, how many moles of NH₃ are produced from 6.0 mol H₂?",c:["2.0 mol","4.0 mol","6.0 mol","12.0 mol"],a:1,e:"6.0 mol H₂ × (2 mol NH₃ / 3 mol H₂) = 4.0 mol NH₃."},
+
+{q:"Using the equation 2Na + Cl₂ → 2NaCl, how many moles of NaCl are produced from 7.0 mol Na?",c:["3.5 mol","7.0 mol","10.5 mol","14.0 mol"],a:1,e:"The mole ratio between Na and NaCl is 1:1."},
+
+{q:"A cement plant decomposes 3.0 mol CaCO₃. How many moles of CaO are produced?",c:["1.5 mol","3.0 mol","4.5 mol","6.0 mol"],a:1,e:"The balanced equation shows a 1:1 ratio between CaCO₃ and CaO."},
+
+{q:"A chemical engineer burns methane according to CH₄ + 2O₂ → CO₂ + 2H₂O. If 2.0 mol CH₄ reacts completely, how many moles of O₂ are required?",c:["1.0 mol","2.0 mol","4.0 mol","8.0 mol"],a:2,e:"2.0 mol CH₄ × (2 mol O₂ / 1 mol CH₄) = 4.0 mol O₂."},
+
+{q:"What is the purpose of the mole ratio step in stoichiometry?",c:["To convert grams to moles","To convert one substance into another substance","To balance equations","To calculate atomic masses"],a:1,e:"The mole ratio allows conversion between reactants and products."},
+
+{q:"A fertilizer plant uses the reaction N₂ + 3H₂ → 2NH₃. If 5.0 mol N₂ reacts completely, how many moles of NH₃ can theoretically be produced?",c:["5.0 mol","7.5 mol","10.0 mol","15.0 mol"],a:2,e:"5.0 mol N₂ × (2 mol NH₃ / 1 mol N₂) = 10.0 mol NH₃."},
+
+{q:"Why are balanced chemical equations essential for stoichiometric calculations?",c:["They provide reaction temperatures","They provide correct mole ratios between substances","They provide atomic numbers","They identify catalysts"],a:1,e:"Balanced equations provide the quantitative relationships required for stoichiometric calculations."}
+
+];
+  let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+	${q.svg || ""}
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+
+  const q = quizData[current];
+  const buttons = document.querySelectorAll(".choice");
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+
+    if (idx === q.a) {
+      btn.classList.add("correct");
+    }
+
+    if (idx === i && idx !== q.a) {
+      btn.classList.add("incorrect");
+    }
+  });
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>
