@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>Applications of Gas Laws in Engineering and IT</title>
+
+<style>
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:#fafafa;
+  color:#222;
+  padding:24px;
+  line-height:1.8;
+  font-size:20px;
+}
+
+h1{color:#136f63;}
+h2{color:#136f63;margin-top:1.4em;}
+h3{color:#174ea6;}
+
+.section{margin-bottom:30px;}
+
+.key-box{
+  background:#e8f7f5;
+  border-left:6px solid #136f63;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.example-box{
+  background:#fff;
+  border-left:5px solid #2b7de9;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.visual-box{
+  background:#fff;
+  border-radius:12px;
+  padding:14px;
+  margin:16px 0;
+  border:1px solid #ddd;
+}
+
+.lesson-img{
+  width:100%;
+  max-width:720px;
+  display:block;
+  margin:0 auto;
+  border-radius:12px;
+}
+
+.caption{
+  text-align:center;
+  font-size:0.9em;
+  color:#555;
+}
+
+.activity{
+  background:#fff;
+  padding:14px;
+  border-radius:10px;
+  margin:14px 0;
+}
+
+.toggle-btn{
+  background:#136f63;
+  color:white;
+  border:none;
+  padding:6px 12px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.answer{
+  display:none;
+  margin-top:10px;
+  background:#eef3ff;
+  padding:10px;
+  border-radius:6px;
+}
+
+.formula{
+  font-size:22px;
+  font-weight:bold;
+  text-align:center;
+}
+
+.formula .equation-line{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:8px 0;
+}
+
+.formula .fraction{
+  display:inline-grid;
+  grid-template-rows:auto auto;
+  min-width:max-content;
+  text-align:center;
+  line-height:1.2;
+  vertical-align:middle;
+}
+
+.formula .fraction-top{
+  border-bottom:2px solid currentColor;
+  padding:0 10px 5px;
+}
+
+.formula .fraction-bottom{
+  padding:5px 10px 0;
+}
+
+.answer .formula{
+  font-size:20px;
+  margin:8px 0;
+}
+
+.answer ol{
+  margin-top:8px;
+}
+
+.quiz-button{
+  background:#136f63;
+  color:white;
+  padding:12px 22px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:16px 0;
+  background:#fff;
+}
+
+th,td{
+  border:1px solid #ddd;
+  padding:10px;
+}
+
+th{background:#e8f7f5;}
+
+iframe{
+  width:100%;
+  max-width:100%;
+}
+</style>
+</head>
+<body>
+
+  <h1>Chapter 7: Engineering Applications of Gases</h1>
+<h2>Lesson 1: Applications of Gas Laws in Engineering and IT</h2>
+
+<div class="key-box">
+<strong>Engineering Scenario</strong><br><br>
+
+Imagine a data center housing thousands of servers. The equipment continuously generates heat that must be removed to prevent system failure. Meanwhile, in a manufacturing plant, compressed air powers robotic arms and automated machines. In hospitals, oxygen cylinders deliver life-saving gases to patients. In vehicles, airbags inflate within milliseconds during a collision.
+
+All of these technologies depend on understanding how gases behave under different conditions of pressure, volume, and temperature.
+
+In this lesson, we will explore how the gas laws learned in the previous chapter are applied in real engineering and information technology systems.
+</div>
+
+<div class="section">
+<h2>Learning Objectives</h2>
+
+<ul>
+<li>Identify real-world applications of gas laws.</li>
+<li>Relate engineering systems to specific gas laws.</li>
+<li>Explain the role of gases in industrial and IT environments.</li>
+<li>Analyze how gas behavior influences safety and system design.</li>
+<li>Apply gas concepts to practical engineering situations.</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>Why Engineers Study Gases</h2>
+
+<p>
+Many engineering systems involve gases either as working fluids, energy carriers, cooling agents, or safety mechanisms.
+</p>
+
+<p>
+Engineers must predict how gases respond to changes in pressure, volume, and temperature to ensure systems operate safely and efficiently.
+</p>
+
+<table>
+<tr>
+<th>Field</th>
+<th>Gas Application</th>
+</tr>
+
+<tr>
+<td>Mechanical Engineering</td>
+<td>Air compressors, pneumatic systems</td>
+</tr>
+
+<tr>
+<td>Chemical Engineering</td>
+<td>Reactors, gas storage tanks</td>
+</tr>
+
+<tr>
+<td>Civil Engineering</td>
+<td>Ventilation systems</td>
+</tr>
+
+<tr>
+<td>Electrical Engineering</td>
+<td>Cooling systems</td>
+</tr>
+
+<tr>
+<td>Computer Engineering / IT</td>
+<td>Data center airflow management</td>
+</tr>
+
+<tr>
+<td>Biomedical Engineering</td>
+<td>Medical oxygen systems</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="section">
+<h2>Application 1: Compressed Air Systems</h2>
+
+<p>
+Compressed air is often called the "fourth utility" in manufacturing because it is used extensively in factories.
+</p>
+
+<p>
+Compressed air powers:
+</p>
+
+<ul>
+<li>Pneumatic drills</li>
+<li>Assembly line equipment</li>
+<li>Industrial robots</li>
+<li>Packaging machines</li>
+<li>Automated control systems</li>
+</ul>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Industrial Air Compressor System -->
+
+<img
+src=""
+alt="Industrial Compressed Air System"
+class="lesson-img">
+
+<p class="caption">
+Figure 1. Compressed air systems are widely used in industrial automation.
+</p>
+
+</div>
+
+<h3>Gas Law Involved</h3>
+
+<div class="key-box">
+
+<strong>Boyle's Law</strong>
+
+<div class="formula">
+P<sub>1</sub>V<sub>1</sub> =
+P<sub>2</sub>V<sub>2</sub>
+</div>
+
+Compressing air reduces volume and increases pressure.
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Application 2: Pneumatic Systems</h2>
+
+<p>
+Pneumatic systems use compressed gases to transmit force and motion.
+</p>
+
+<p>
+They are commonly found in:
+</p>
+
+<ul>
+<li>Factory automation</li>
+<li>Truck braking systems</li>
+<li>Industrial machinery</li>
+<li>Material handling equipment</li>
+</ul>
+
+<div class="example-box">
+
+When compressed air enters a pneumatic cylinder, the increased pressure pushes a piston and produces mechanical work.
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Application 3: Airbags</h2>
+
+<p>
+Modern airbags protect passengers by rapidly inflating during a collision.
+</p>
+
+<p>
+The inflation process typically takes less than 50 milliseconds.
+</p>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Vehicle Airbag Deployment -->
+
+<img
+src=""
+alt="Vehicle Airbag Deployment"
+class="lesson-img">
+
+<p class="caption">
+Figure 2. Airbags rely on rapid gas generation and expansion.
+</p>
+
+</div>
+
+<h3>Gas Principles Involved</h3>
+
+<ul>
+<li>Gas expansion</li>
+<li>Pressure generation</li>
+<li>Ideal Gas Law</li>
+</ul>
+
+<div class="key-box">
+
+The gas produced during airbag deployment rapidly fills the available volume, creating a protective cushion.
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Application 4: Scuba Diving Systems</h2>
+
+<p>
+Scuba tanks store highly compressed air that allows divers to breathe underwater.
+</p>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Scuba Tank and Diver -->
+
+<img
+src=""
+alt="Scuba Tank Containing Compressed Air"
+class="lesson-img">
+
+<p class="caption">
+Figure 3. Scuba systems store large amounts of air in compressed form.
+</p>
+
+</div>
+
+<h3>Gas Law Involved</h3>
+
+<div class="key-box">
+
+<strong>Boyle's Law</strong>
+
+As depth increases:
+
+<ul>
+<li>Pressure increases.</li>
+<li>Gas volume decreases.</li>
+</ul>
+
+</div>
+
+<div class="example-box">
+
+A diver ascending too quickly may experience dangerous expansion of gases within the body.
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Application 5: Aircraft Cabin Pressurization</h2>
+
+<p>
+Commercial aircraft fly at altitudes where atmospheric pressure is too low for comfortable breathing.
+</p>
+
+<p>
+Engineers use pressurization systems to maintain safe cabin conditions.
+</p>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Aircraft Cabin Pressurization -->
+
+<img
+src=""
+alt="Aircraft Cabin Pressure Control System"
+class="lesson-img">
+
+<p class="caption">
+Figure 4. Aircraft use pressurization systems to maintain passenger safety.
+</p>
+
+</div>
+
+<h3>Gas Laws Involved</h3>
+
+<ul>
+<li>Boyle's Law</li>
+<li>Combined Gas Law</li>
+<li>Ideal Gas Law</li>
+</ul>
+
+</div>
+
+<div class="section">
+<h2>Application 6: Medical Oxygen Systems</h2>
+
+<p>
+Hospitals store oxygen in compressed gas cylinders for patient treatment.
+</p>
+
+<p>
+Engineers and healthcare professionals must carefully monitor:
+</p>
+
+<ul>
+<li>Pressure</li>
+<li>Temperature</li>
+<li>Flow rates</li>
+<li>Storage conditions</li>
+</ul>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Medical Oxygen Cylinder -->
+
+<img
+src=""
+alt="Medical Oxygen Storage Cylinder"
+class="lesson-img">
+
+<p class="caption">
+Figure 5. Medical oxygen systems rely on safe compressed gas storage.
+</p>
+
+</div>
+
+<h3>Gas Law Involved</h3>
+
+<div class="key-box">
+
+<strong>Gay-Lussac's Law</strong>
+
+<div class="formula">
+P<sub>1</sub>/T<sub>1</sub> =
+P<sub>2</sub>/T<sub>2</sub>
+</div>
+
+Temperature increases can significantly increase cylinder pressure.
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Application 7: HVAC Systems</h2>
+
+<p>
+HVAC stands for:
+</p>
+
+<ul>
+<li>Heating</li>
+<li>Ventilation</li>
+<li>Air Conditioning</li>
+</ul>
+
+<p>
+HVAC systems regulate indoor temperature, humidity, and airflow.
+</p>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: HVAC Airflow System -->
+
+<img
+src=""
+alt="HVAC Airflow and Ventilation System"
+class="lesson-img">
+
+<p class="caption">
+Figure 6. HVAC systems use gas behavior to control indoor environments.
+</p>
+
+</div>
+
+<h3>Gas Laws Involved</h3>
+
+<ul>
+<li>Charles' Law</li>
+<li>Ideal Gas Law</li>
+</ul>
+
+<p>
+As air is heated, its volume changes and its density decreases, affecting airflow throughout a building.
+</p>
+
+</div>
+
+<div class="section">
+<h2>Application 8: Data Centers and IT Infrastructure</h2>
+
+<p>
+Modern data centers contain thousands of servers that generate enormous amounts of heat.
+</p>
+
+<p>
+Without proper airflow management, equipment temperatures can rise to damaging levels.
+</p>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Data Center Cooling System -->
+
+<img
+src=""
+alt="Data Center Cooling and Airflow Management"
+class="lesson-img">
+
+<p class="caption">
+Figure 7. Airflow management is critical for data center operation.
+</p>
+
+</div>
+
+<h3>Why Gas Behavior Matters</h3>
+
+<ul>
+<li>Cooling air transports heat away from servers.</li>
+<li>Air pressure influences ventilation efficiency.</li>
+<li>Temperature affects equipment reliability.</li>
+<li>Airflow design impacts energy consumption.</li>
+</ul>
+
+<div class="key-box">
+
+A poorly designed airflow system can significantly increase cooling costs and reduce hardware lifespan.
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Application 9: Semiconductor Manufacturing and Clean Rooms</h2>
+
+<p>
+Microchips are manufactured in highly controlled environments called clean rooms.
+</p>
+
+<p>
+Engineers carefully control:
+</p>
+
+<ul>
+<li>Air pressure</li>
+<li>Temperature</li>
+<li>Humidity</li>
+<li>Airborne particles</li>
+</ul>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Semiconductor Clean Room -->
+
+<img
+src=""
+alt="Semiconductor Manufacturing Clean Room"
+class="lesson-img">
+
+<p class="caption">
+Figure 8. Clean-room environments require precise control of gases and airflow.
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Application 10: Environmental Monitoring Systems</h2>
+
+<p>
+Environmental engineers use gas sensors to monitor:
+</p>
+
+<ul>
+<li>Carbon dioxide</li>
+<li>Methane</li>
+<li>Air pollutants</li>
+<li>Industrial emissions</li>
+</ul>
+
+<p>
+Gas behavior influences sensor calibration, accuracy, and measurement reliability.
+</p>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Environmental Gas Monitoring Station -->
+
+<img
+src=""
+alt="Environmental Air Quality Monitoring Station"
+class="lesson-img">
+
+<p class="caption">
+Figure 9. Gas monitoring systems help protect public health and the environment.
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Engineering Decision-Making and Gas Laws</h2>
+
+<p>
+Understanding gas behavior allows engineers to answer important questions:
+</p>
+
+<ul>
+<li>Will a storage tank withstand increased pressure?</li>
+<li>How much air must be supplied to a pneumatic system?</li>
+<li>Can a cooling system handle additional heat loads?</li>
+<li>What safety measures are needed for compressed gases?</li>
+<li>How should a ventilation system be designed?</li>
+</ul>
+
+<div class="key-box">
+
+Gas laws are not merely classroom equations—they are engineering tools used to design safer, more efficient systems.
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Interactive Exploration</h2>
+
+<div class="activity">
+
+<p>
+Use the simulation below to investigate how pressure, volume, temperature, and particle quantity influence engineering systems.
+</p>
+
+<iframe
+height="500"
+src="https://phet.colorado.edu/sims/html/gas-properties/latest/gas-properties_en.html">
+</iframe>
+
+<p>
+As you experiment, think about how the changes would affect real systems such as air compressors, scuba tanks, data centers, and HVAC equipment.
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Check Your Understanding</h2>
+
+<div class="activity">
+
+<p><strong>1.</strong> Why are compressed air systems widely used in manufacturing?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">
+Show Answer
+</button>
+
+<div class="answer">
+Compressed air provides a clean, reliable, and efficient method of transmitting force and operating machinery.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>2.</strong> Which gas law primarily explains the operation of air compressors?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">
+Show Answer
+</button>
+
+<div class="answer">
+
+Boyle's Law.
+
+<div class="formula">
+P<sub>1</sub>V<sub>1</sub> =
+P<sub>2</sub>V<sub>2</sub>
+</div>
+
+Reducing volume increases pressure.
+
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>3.</strong> Why must scuba divers ascend slowly?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">
+Show Answer
+</button>
+
+<div class="answer">
+Rapid decreases in pressure cause dissolved gases to expand quickly, which can lead to decompression sickness.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>4.</strong> How does airflow help cool data centers?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">
+Show Answer
+</button>
+
+<div class="answer">
+Moving air carries heat away from servers and transports it to cooling equipment.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>5.</strong> Which gas law explains why oxygen cylinder pressure increases when temperature rises?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">
+Show Answer
+</button>
+
+<div class="answer">
+
+Gay-Lussac's Law.
+
+<div class="formula">
+P<sub>1</sub>/T<sub>1</sub> =
+P<sub>2</sub>/T<sub>2</sub>
+</div>
+
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>6.</strong> Why are clean rooms maintained at carefully controlled air pressures?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">
+Show Answer
+</button>
+
+<div class="answer">
+Pressure control helps prevent contaminants from entering sensitive manufacturing areas.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>7.</strong> Name two engineering systems that rely heavily on gas behavior.</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">
+Show Answer
+</button>
+
+<div class="answer">
+Possible answers include air compressors, HVAC systems, gas storage tanks, scuba systems, aircraft cabins, airbags, and data centers.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>8.</strong> Why is understanding gas laws important for engineering design?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">
+Show Answer
+</button>
+
+<div class="answer">
+Gas laws help engineers predict system behavior, improve efficiency, and maintain safety.
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Lesson Summary</h2>
+
+<ul>
+<li>Gas laws have numerous applications in engineering and IT systems.</li>
+<li>Compressed air systems and pneumatic equipment rely heavily on Boyle's Law.</li>
+<li>Scuba systems, aircraft cabins, and airbags depend on predictable gas behavior.</li>
+<li>HVAC systems use gas principles to regulate indoor environments.</li>
+<li>Data centers require careful airflow and temperature management.</li>
+<li>Medical oxygen systems and gas storage facilities must account for pressure and temperature changes.</li>
+<li>Understanding gas behavior helps engineers design safe and efficient systems.</li>
+</ul>
+
+</div>
+
+  <div style="text-align:center;margin-top:30px;">
+	<button class="quiz-button" id="takeQuizBtn">
+
+Take the Quiz →
+
+</button>
+
+</div>
+
+<script>
+function toggleAnswer(btn){
+  const ans = btn.nextElementSibling;
+  ans.style.display = ans.style.display === "block" ? "none" : "block";
+}
+
+document.getElementById("takeQuizBtn").addEventListener("click",(e)=>{
+  const quizId = e.target.dataset.quiz;
+  window.parent.postMessage({
+    type:"openQuiz",
+    quiz:quizId
+  },"*");
+});
+</script>
+</body>
+</html>
