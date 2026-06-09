@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>Ideal Gas Law and Gas Calculations</title>
+
+<style>
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:#fafafa;
+  color:#222;
+  padding:24px;
+  line-height:1.8;
+  font-size:20px;
+}
+
+h1{color:#136f63;}
+h2{color:#136f63;margin-top:1.4em;}
+h3{color:#174ea6;}
+
+.section{margin-bottom:30px;}
+
+.key-box{
+  background:#e8f7f5;
+  border-left:6px solid #136f63;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.example-box{
+  background:#fff;
+  border-left:5px solid #2b7de9;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.visual-box{
+  background:#fff;
+  border-radius:12px;
+  padding:14px;
+  margin:16px 0;
+  border:1px solid #ddd;
+}
+
+.lesson-img{
+  width:100%;
+  max-width:720px;
+  display:block;
+  margin:0 auto;
+  border-radius:12px;
+}
+
+.caption{
+  text-align:center;
+  font-size:0.9em;
+  color:#555;
+}
+
+.activity{
+  background:#fff;
+  padding:14px;
+  border-radius:10px;
+  margin:14px 0;
+}
+
+.toggle-btn{
+  background:#136f63;
+  color:white;
+  border:none;
+  padding:6px 12px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.answer{
+  display:none;
+  margin-top:10px;
+  background:#eef3ff;
+  padding:10px;
+  border-radius:6px;
+}
+
+.formula{
+  font-size:22px;
+  font-weight:bold;
+  text-align:center;
+}
+
+.formula .equation-line{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:8px 0;
+}
+
+.formula .fraction{
+  display:inline-grid;
+  grid-template-rows:auto auto;
+  min-width:max-content;
+  text-align:center;
+  line-height:1.2;
+  vertical-align:middle;
+}
+
+.formula .fraction-top{
+  border-bottom:2px solid currentColor;
+  padding:0 10px 5px;
+}
+
+.formula .fraction-bottom{
+  padding:5px 10px 0;
+}
+
+.answer .formula{
+  font-size:20px;
+  margin:8px 0;
+}
+
+.answer ol{
+  margin-top:8px;
+}
+
+.quiz-button{
+  background:#136f63;
+  color:white;
+  padding:12px 22px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:16px 0;
+  background:#fff;
+}
+
+th,td{
+  border:1px solid #ddd;
+  padding:10px;
+}
+
+th{background:#e8f7f5;}
+
+iframe{
+  width:100%;
+  max-width:100%;
+}
+</style>
+</head>
+<body>
+
+  <h1>Chapter 6: Gases and Their Behavior</h1>
+<h2>Lesson 3: Ideal Gas Law and Gas Calculations</h2>
+
+<div class="key-box">
+<strong>Engineering Scenario</strong><br><br>
+
+A chemical engineer needs to determine how many moles of nitrogen gas are stored inside a pressurized tank. A mechanical engineer must calculate the pressure inside an air compressor. An environmental engineer needs to estimate the volume occupied by pollutants released into the atmosphere.
+
+These situations involve gases whose pressure, volume, temperature, and amount may all change simultaneously.
+
+To solve these problems, scientists use one of the most important equations in chemistry and engineering: the <strong>Ideal Gas Law</strong>.
+</div>
+
+<div class="section">
+<h2>Learning Objectives</h2>
+
+<ul>
+<li>Understand the Ideal Gas Law.</li>
+<li>Identify the variables in the Ideal Gas Equation.</li>
+<li>Perform pressure, volume, temperature, and mole calculations.</li>
+<li>Convert between common gas units.</li>
+<li>Apply the Ideal Gas Law to engineering situations.</li>
+<li>Calculate gas density using the Ideal Gas Equation.</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>From Gas Laws to the Ideal Gas Law</h2>
+
+<p>
+Previously, we studied Boyle's Law, Charles' Law, and Gay-Lussac's Law separately.
+</p>
+
+<p>
+Scientists eventually combined all of these relationships into a single equation capable of describing gas behavior under a wide range of conditions.
+</p>
+
+<div class="formula">
+PV = nRT
+</div>
+
+<div class="key-box">
+The Ideal Gas Law combines pressure, volume, temperature, and amount of gas into one powerful equation.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Understanding the Variables</h2>
+
+<table>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+<th>Typical Units</th>
+</tr>
+
+<tr>
+<td>P</td>
+<td>Pressure</td>
+<td>atm, kPa, mmHg</td>
+</tr>
+
+<tr>
+<td>V</td>
+<td>Volume</td>
+<td>L</td>
+</tr>
+
+<tr>
+<td>n</td>
+<td>Number of Moles</td>
+<td>mol</td>
+</tr>
+
+<tr>
+<td>R</td>
+<td>Gas Constant</td>
+<td>Depends on units used</td>
+</tr>
+
+<tr>
+<td>T</td>
+<td>Temperature</td>
+<td>K</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="section">
+<h2>The Gas Constant (R)</h2>
+
+<p>
+The value of R depends on the pressure units being used.
+</p>
+
+<table>
+<tr>
+<th>Value of R</th>
+<th>Pressure Unit</th>
+</tr>
+
+<tr>
+<td>0.0821 L·atm/mol·K</td>
+<td>atm</td>
+</tr>
+
+<tr>
+<td>8.314 L·kPa/mol·K</td>
+<td>kPa</td>
+</tr>
+
+<tr>
+<td>62.36 L·mmHg/mol·K</td>
+<td>mmHg</td>
+</tr>
+
+</table>
+
+<div class="key-box">
+Throughout this lesson, we will primarily use:
+<div class="formula">
+R = 0.0821 L·atm/mol·K
+</div>
+</div>
+
+</div>
+
+<div class="section">
+<h2>Temperature Must Always Be Kelvin</h2>
+
+<p>
+The Ideal Gas Law requires absolute temperature.
+</p>
+
+<div class="formula">
+K = °C + 273.15
+</div>
+
+<div class="example-box">
+
+25°C = ?
+
+<div class="formula">
+25 + 273.15 = 298.15 K
+</div>
+
+</div>
+
+<div class="key-box">
+Never substitute Celsius temperatures directly into the Ideal Gas Equation.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Solving for Pressure</h2>
+
+<p>
+Rearrange the Ideal Gas Law:
+</p>
+
+<div class="formula">
+P = nRT/V
+</div>
+
+</div>
+
+<div class="section">
+<h2>Worked Example 1</h2>
+
+<div class="example-box">
+
+Determine the pressure exerted by 2.00 mol of gas occupying 10.0 L at 27°C.
+
+</div>
+
+<p><strong>Step 1:</strong> Convert temperature.</p>
+
+<div class="formula">
+T = 27 + 273.15
+</div>
+
+<div class="formula">
+T = 300.15 K
+</div>
+
+<p><strong>Step 2:</strong> Write equation.</p>
+
+<div class="formula">
+P = nRT/V
+</div>
+
+<p><strong>Step 3:</strong> Substitute values.</p>
+
+<div class="formula">
+P =
+(2.00)(0.0821)(300.15)
+&divide;
+10.0
+</div>
+
+<p><strong>Step 4:</strong> Solve.</p>
+
+<div class="formula">
+P = 4.93 atm
+</div>
+
+<div class="key-box">
+Answer: 4.93 atm
+</div>
+
+</div>
+
+<div class="section">
+<h2>Solving for Volume</h2>
+
+<div class="formula">
+V = nRT/P
+</div>
+
+</div>
+
+<div class="section">
+<h2>Worked Example 2</h2>
+
+<div class="example-box">
+
+Determine the volume occupied by 3.00 mol of gas at 2.50 atm and 300 K.
+
+</div>
+
+<p><strong>Step 1:</strong> Write formula.</p>
+
+<div class="formula">
+V = nRT/P
+</div>
+
+<p><strong>Step 2:</strong> Substitute values.</p>
+
+<div class="formula">
+V =
+(3.00)(0.0821)(300)
+&divide;
+2.50
+</div>
+
+<p><strong>Step 3:</strong> Solve.</p>
+
+<div class="formula">
+V = 29.56 L
+</div>
+
+<div class="key-box">
+Answer: 29.56 L
+</div>
+
+</div>
+
+<div class="section">
+<h2>Solving for Number of Moles</h2>
+
+<div class="formula">
+n = PV/RT
+</div>
+
+</div>
+
+<div class="section">
+<h2>Worked Example 3</h2>
+
+<div class="example-box">
+
+A gas occupies 12.0 L at 1.50 atm and 298 K.
+
+Determine the number of moles present.
+
+</div>
+
+<p><strong>Step 1:</strong> Write equation.</p>
+
+<div class="formula">
+n = PV/RT
+</div>
+
+<p><strong>Step 2:</strong> Substitute values.</p>
+
+<div class="formula">
+n =
+(1.50)(12.0)
+&divide;
+(0.0821)(298)
+</div>
+
+<p><strong>Step 3:</strong> Solve.</p>
+
+<div class="formula">
+n = 0.736 mol
+</div>
+
+<div class="key-box">
+Answer: 0.736 mol
+</div>
+
+</div>
+
+<div class="section">
+<h2>Solving for Temperature</h2>
+
+<div class="formula">
+T = PV/nR
+</div>
+
+</div>
+
+<div class="section">
+<h2>Worked Example 4</h2>
+
+<div class="example-box">
+
+A gas occupies 15.0 L at 2.0 atm and contains 1.20 mol.
+
+Determine its temperature.
+
+</div>
+
+<p><strong>Step 1:</strong> Write equation.</p>
+
+<div class="formula">
+T = PV/nR
+</div>
+
+<p><strong>Step 2:</strong> Substitute values.</p>
+
+<div class="formula">
+T =
+(2.0)(15.0)
+&divide;
+(1.20)(0.0821)
+</div>
+
+<p><strong>Step 3:</strong> Solve.</p>
+
+<div class="formula">
+T = 304.5 K
+</div>
+
+<div class="key-box">
+Answer: 304.5 K
+</div>
+
+</div>
+
+<div class="section">
+<h2>Standard Temperature and Pressure (STP)</h2>
+
+<p>
+A standard reference condition is often used when studying gases.
+</p>
+
+<table>
+<tr>
+<th>Quantity</th>
+<th>Value</th>
+</tr>
+
+<tr>
+<td>Pressure</td>
+<td>1 atm</td>
+</tr>
+
+<tr>
+<td>Temperature</td>
+<td>273.15 K (0°C)</td>
+</tr>
+
+</table>
+
+<div class="key-box">
+
+At STP:
+
+<div class="formula">
+1 mol gas = 22.4 L
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Worked Example 5</h2>
+
+<div class="example-box">
+
+How many liters are occupied by 5.0 mol of an ideal gas at STP?
+
+</div>
+
+<div class="formula">
+5.0 mol × 22.4 L/mol
+</div>
+
+<div class="formula">
+112 L
+</div>
+
+<div class="key-box">
+Answer: 112 L
+</div>
+
+</div>
+
+<div class="section">
+<h2>Gas Density and the Ideal Gas Law</h2>
+
+<p>
+The Ideal Gas Law can also be used to calculate the density of gases.
+</p>
+
+<div class="formula">
+d = PM/RT
+</div>
+
+<p>
+where:
+</p>
+
+<ul>
+<li>d = density</li>
+<li>P = pressure</li>
+<li>M = molar mass</li>
+<li>R = gas constant</li>
+<li>T = temperature</li>
+</ul>
+
+</div>
+
+<div class="section">
+<h2>Worked Example 6</h2>
+
+<div class="example-box">
+
+Determine the density of oxygen gas (O<sub>2</sub>) at 1 atm and 298 K.
+
+Molar Mass O<sub>2</sub> = 32.00 g/mol
+
+</div>
+
+<p><strong>Step 1:</strong> Use density equation.</p>
+
+<div class="formula">
+d = PM/RT
+</div>
+
+<p><strong>Step 2:</strong> Substitute values.</p>
+
+<div class="formula">
+d =
+(1)(32.00)
+&divide;
+(0.0821)(298)
+</div>
+
+<p><strong>Step 3:</strong> Solve.</p>
+
+<div class="formula">
+d = 1.31 g/L
+</div>
+
+<div class="key-box">
+Answer: 1.31 g/L
+</div>
+
+</div>
+
+<div class="section">
+<h2>Engineering Applications</h2>
+
+<table>
+<tr>
+<th>Application</th>
+<th>Use of Ideal Gas Law</th>
+</tr>
+
+<tr>
+<td>Air Compressors</td>
+<td>Determining pressure and storage capacity</td>
+</tr>
+
+<tr>
+<td>Gas Cylinders</td>
+<td>Calculating safe operating conditions</td>
+</tr>
+
+<tr>
+<td>Natural Gas Pipelines</td>
+<td>Estimating transport volume</td>
+</tr>
+
+<tr>
+<td>HVAC Systems</td>
+<td>Modeling gas expansion and compression</td>
+</tr>
+
+<tr>
+<td>Chemical Reactors</td>
+<td>Predicting reactant quantities</td>
+</tr>
+
+</table>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Ideal Gas Variables -->
+
+<img
+src=""
+alt="Pressure Volume Temperature and Moles in Ideal Gas Law"
+class="lesson-img">
+
+<p class="caption">
+Figure 1. The Ideal Gas Law relates pressure, volume, temperature, and amount of gas.
+</p>
+
+</div>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Industrial Gas Storage Tank -->
+
+<img
+src=""
+alt="Industrial Gas Storage Tank"
+class="lesson-img">
+
+<p class="caption">
+Figure 2. Engineers use gas calculations when designing storage systems.
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Interactive Simulation</h2>
+
+<div class="activity">
+
+<p>
+Use the simulation to investigate how pressure, volume, temperature, and number of particles affect gas behavior.
+</p>
+
+<iframe
+height="500"
+src="https://phet.colorado.edu/sims/html/gas-properties/latest/gas-properties_en.html">
+</iframe>
+
+<p>
+Observe how changing one variable affects the others according to the Ideal Gas Law.
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Check Your Understanding</h2>
+
+<div class="activity">
+
+<p><strong>1.</strong> Convert 45°C to Kelvin.</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+
+<p><strong>Step 1:</strong> Use the conversion formula.</p>
+
+<div class="formula">
+K = °C + 273.15
+</div>
+
+<p><strong>Step 2:</strong> Substitute.</p>
+
+<div class="formula">
+45 + 273.15
+</div>
+
+<p><strong>Step 3:</strong> Solve.</p>
+
+<div class="formula">
+318.15 K
+</div>
+
+<p><strong>Answer:</strong> 318.15 K</p>
+
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>2.</strong> How many liters are occupied by 2.0 mol gas at STP?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+
+<div class="formula">
+2.0 × 22.4
+</div>
+
+<div class="formula">
+44.8 L
+</div>
+
+<p><strong>Answer:</strong> 44.8 L</p>
+
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>3.</strong> Determine the number of moles in 22.4 L at STP.</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+
+<div class="formula">
+22.4 ÷ 22.4
+</div>
+
+<div class="formula">
+1.0 mol
+</div>
+
+<p><strong>Answer:</strong> 1.0 mol</p>
+
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>4.</strong> Why must Kelvin be used in the Ideal Gas Law?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+The Ideal Gas Law requires absolute temperature values. Celsius temperatures would give incorrect results.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>5.</strong> Which variable represents the amount of gas?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+n = number of moles.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>6.</strong> Calculate the pressure exerted by 1.0 mol gas occupying 24.6 L at 300 K.</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+
+<div class="formula">
+P = nRT/V
+</div>
+
+<div class="formula">
+P =
+(1.0)(0.0821)(300)
+&divide;
+24.6
+</div>
+
+<div class="formula">
+P = 1.00 atm
+</div>
+
+<p><strong>Answer:</strong> 1.00 atm</p>
+
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>7.</strong> What is STP?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+Standard Temperature and Pressure:
+1 atm and 273.15 K.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>8.</strong> Calculate the volume occupied by 1.5 mol gas at STP.</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+
+<div class="formula">
+1.5 × 22.4
+</div>
+
+<div class="formula">
+33.6 L
+</div>
+
+<p><strong>Answer:</strong> 33.6 L</p>
+
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>9.</strong> Which equation is used to calculate gas density?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+
+<div class="formula">
+d = PM/RT
+</div>
+
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>10.</strong> Why is the Ideal Gas Law important in engineering?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+It allows engineers to predict pressure, volume, temperature, and gas quantities in real systems such as compressors, pipelines, and storage tanks.
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Lesson Summary</h2>
+
+<ul>
+<li>The Ideal Gas Law combines pressure, volume, temperature, and amount of gas into a single equation.</li>
+<li>The Ideal Gas Equation is PV = nRT.</li>
+<li>Temperature must always be expressed in Kelvin.</li>
+<li>The Ideal Gas Law can be rearranged to solve for pressure, volume, moles, or temperature.</li>
+<li>At STP, one mole of an ideal gas occupies 22.4 L.</li>
+<li>The equation d = PM/RT can be used to determine gas density.</li>
+<li>The Ideal Gas Law is widely used in engineering, industrial processes, environmental systems, and gas storage applications.</li>
+</ul>
+
+</div>
+
+  <div style="text-align:center;margin-top:30px;">
+	<button class="quiz-button" id="takeQuizBtn">
+
+Take the Quiz →
+
+</button>
+
+</div>
+
+<script>
+function toggleAnswer(btn){
+  const ans = btn.nextElementSibling;
+  ans.style.display = ans.style.display === "block" ? "none" : "block";
+}
+
+document.getElementById("takeQuizBtn").addEventListener("click",(e)=>{
+  const quizId = e.target.dataset.quiz;
+  window.parent.postMessage({
+    type:"openQuiz",
+    quiz:quizId
+  },"*");
+});
+</script>
+</body>
+</html>
