@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ideal Gas Law and Gas Calculations</title>
+
+<style>
+/* SAME STYLE AS TEMPLATE */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.quiz-container {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  width: 95%;
+  max-width: 850px;
+  text-align: center;
+}
+h2 { color: #136f63; margin-bottom: 25px; }
+.progress-wrapper { background:#e9f5ef; border-radius:8px; height:14px; width:100%; margin-bottom:25px; overflow:hidden;}
+.progress-bar { height:100%; background:linear-gradient(to right,#136f63,#2b7de9); width:0%; transition:width 0.4s;}
+.progress-text { text-align:right; font-size:0.95em; color:#174ea6; margin-bottom:10px; font-weight:600;}
+.question { font-size:1.3em; font-weight:600; color:#174ea6; margin-bottom:20px;}
+.choices { display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
+.choice { background:#e8ecf8; border:none; border-radius:10px; padding:14px; cursor:pointer; text-align:left;}
+.choice:hover { background:#d3dbf8; transform:translateY(-2px);}
+.choice.correct {background: #2b7de9;color: #fff;}
+.choice.incorrect {background: #e57373;color: #fff;}
+.explanation { background:#eef3ff; border-radius:10px; padding:14px; text-align:left; margin-bottom:20px; display:none;}
+.next-btn { background:#136f63; color:#fff; border:none; padding:12px 26px; border-radius:10px; cursor:pointer;}
+.result { font-size:1.4em; font-weight:bold; color:#174ea6;}
+.stars { font-size:2.5em; margin-top:10px;}
+.quiz-nav { margin-top:25px; display:flex; justify-content:center; gap:10px;}
+.quiz-btn { background:#e8ecf8; border:none; border-radius:8px; padding:10px 20px; cursor:pointer;}
+.quiz-btn.primary { background:#136f63; color:#fff;}
+@media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+
+.diagram-box {margin: 12px 0 20px; background: #f7fbff; border: 1px dashed #d8e9ff; padding: 10px; border-radius: 8px; }
+
+svg {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h2>Ideal Gas Law and Gas Calculations - Quiz</h2>
+
+<div class="progress-text" id="progressText"></div>
+<div class="progress-wrapper">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<div id="quizBox"></div>
+
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+
+</div>
+
+<script>
+const quizData = [
+
+{q:"What does the variable n represent in the Ideal Gas Law?",c:["Pressure of the gas","Volume occupied by the gas","Number of moles of gas","Density of the gas"],a:2,e:"In the equation PV = nRT, n represents the number of moles of gas."},
+
+{q:"Which equation represents the Ideal Gas Law?",c:["P₁V₁ = P₂V₂","V₁/T₁ = V₂/T₂","P₁/T₁ = P₂/T₂","PV = nRT"],a:3,e:"The Ideal Gas Law combines pressure, volume, temperature, and moles into a single equation."},
+
+{q:"Which variable in the Ideal Gas Law must always be expressed in Kelvin?",c:["Pressure","Volume","Temperature","Moles"],a:2,e:"Temperature must always be expressed in Kelvin for gas law calculations."},
+
+{q:"What is the value of the gas constant R when pressure is measured in atmospheres?",c:["8.314 L·atm/mol·K","0.0821 L·atm/mol·K","62.4 L·atm/mol·K","22.4 L·atm/mol·K"],a:1,e:"The commonly used gas constant is 0.0821 L·atm/mol·K."},
+
+{q:"Convert 50°C to Kelvin.",c:["223.15 K","273.15 K","323.15 K","373.15 K"],a:2,e:"K = °C + 273.15 = 50 + 273.15 = 323.15 K."},
+
+{q:"Which rearrangement of the Ideal Gas Law can be used to calculate pressure?",c:["P = nRT/V","P = PV/nRT","P = RT/nV","P = nV/RT"],a:0,e:"Pressure can be calculated using P = nRT/V."},
+
+{q:"Which rearrangement of the Ideal Gas Law can be used to calculate the number of moles?",c:["n = RT/PV","n = PV/RT","n = PR/VT","n = VT/PR"],a:1,e:"The number of moles can be determined using n = PV/RT."},
+
+{q:"A gas occupies 24.6 L at 1.0 atm and 300 K. Approximately how many moles are present?",c:["0.50 mol","1.00 mol","1.50 mol","2.00 mol"],a:1,e:"Using n = PV/RT gives approximately 1.00 mol."},
+
+{q:"A sample contains 2.0 mol of gas at 300 K and occupies 49.2 L. What is the pressure?",c:["0.50 atm","1.00 atm","2.00 atm","4.00 atm"],a:1,e:"Using P = nRT/V gives approximately 1.00 atm."},
+
+{q:"What are the standard conditions referred to as STP?",c:["1 atm and 0°C","1 atm and 25°C","100 kPa and 25°C","760 mmHg and 100°C"],a:0,e:"Standard Temperature and Pressure (STP) are 1 atm and 273.15 K (0°C)."},
+
+{q:"What volume does one mole of an ideal gas occupy at STP?",c:["11.2 L","22.4 L","44.8 L","24.5 L"],a:1,e:"At STP, one mole of an ideal gas occupies approximately 22.4 L."},
+
+{q:"How many liters would 3.0 mol of an ideal gas occupy at STP?",c:["22.4 L","44.8 L","67.2 L","89.6 L"],a:2,e:"3.0 × 22.4 L = 67.2 L."},
+
+{q:"Which variable increases if additional gas is added to a rigid container at constant temperature?",c:["Number of moles","Volume","Temperature","Gas constant"],a:0,e:"Adding gas increases the number of moles present."},
+
+{q:"A gas sample occupies 10.0 L at 2.0 atm and 300 K. If the amount of gas remains constant and temperature increases, which quantity must also increase according to the Ideal Gas Law?",c:["Pressure or volume","Gas constant","Molar mass","Density only"],a:0,e:"To maintain the equation balance, pressure or volume must increase when temperature increases."},
+
+{q:"Which statement best describes the gas constant R?",c:["A value that changes with temperature","A value that depends only on gas identity","A proportionality constant relating gas variables","A constant equal to atmospheric pressure"],a:2,e:"R is the proportionality constant that connects pressure, volume, moles, and temperature."},
+
+{q:"What is the primary advantage of the Ideal Gas Law compared to Boyle's or Charles' Law?",c:["It requires fewer variables","It can describe pressure, volume, temperature, and moles simultaneously","It eliminates the need for unit conversions","It applies only at STP"],a:1,e:"The Ideal Gas Law combines all major gas variables into one equation."},
+
+{q:"Which formula can be used to determine the density of a gas?",c:["d = PM/RT","d = RT/PM","d = PV/nRT","d = nRT/PV"],a:0,e:"Gas density can be calculated using d = PM/RT."},
+
+{q:"Why is the Ideal Gas Law useful in engineering applications?",c:["It predicts relationships among gas variables in practical systems","It determines atomic structure directly","It eliminates experimental measurements","It applies only to laboratory gases"],a:0,e:"Engineers use the Ideal Gas Law to model and design systems involving gases."},
+
+{q:"A storage tank contains gas at 25°C. Before using the Ideal Gas Law, what must be done with this temperature?",c:["Multiply by 273.15","Convert it to Kelvin","Convert it to atmospheres","Leave it unchanged"],a:1,e:"All temperatures used in the Ideal Gas Law must be expressed in Kelvin."},
+
+{q:"Which statement best summarizes the Ideal Gas Law?",c:["It relates pressure and volume only","It relates temperature and volume only","It describes the combined relationship among pressure, volume, temperature, and amount of gas","It applies exclusively at standard conditions"],a:2,e:"The Ideal Gas Law provides a comprehensive relationship among all major gas variables."}
+
+];
+  
+let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+	${q.svg || ""}
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+
+  const q = quizData[current];
+  const buttons = document.querySelectorAll(".choice");
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+
+    if (idx === q.a) {
+      btn.classList.add("correct");
+    }
+
+    if (idx === i && idx !== q.a) {
+      btn.classList.add("incorrect");
+    }
+  });
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>
