@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Properties of Gases and Kinetic Molecular Theory</title>
+
+<style>
+/* SAME STYLE AS TEMPLATE */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.quiz-container {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  width: 95%;
+  max-width: 850px;
+  text-align: center;
+}
+h2 { color: #136f63; margin-bottom: 25px; }
+.progress-wrapper { background:#e9f5ef; border-radius:8px; height:14px; width:100%; margin-bottom:25px; overflow:hidden;}
+.progress-bar { height:100%; background:linear-gradient(to right,#136f63,#2b7de9); width:0%; transition:width 0.4s;}
+.progress-text { text-align:right; font-size:0.95em; color:#174ea6; margin-bottom:10px; font-weight:600;}
+.question { font-size:1.3em; font-weight:600; color:#174ea6; margin-bottom:20px;}
+.choices { display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
+.choice { background:#e8ecf8; border:none; border-radius:10px; padding:14px; cursor:pointer; text-align:left;}
+.choice:hover { background:#d3dbf8; transform:translateY(-2px);}
+.choice.correct {background: #2b7de9;color: #fff;}
+.choice.incorrect {background: #e57373;color: #fff;}
+.explanation { background:#eef3ff; border-radius:10px; padding:14px; text-align:left; margin-bottom:20px; display:none;}
+.next-btn { background:#136f63; color:#fff; border:none; padding:12px 26px; border-radius:10px; cursor:pointer;}
+.result { font-size:1.4em; font-weight:bold; color:#174ea6;}
+.stars { font-size:2.5em; margin-top:10px;}
+.quiz-nav { margin-top:25px; display:flex; justify-content:center; gap:10px;}
+.quiz-btn { background:#e8ecf8; border:none; border-radius:8px; padding:10px 20px; cursor:pointer;}
+.quiz-btn.primary { background:#136f63; color:#fff;}
+@media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+
+.diagram-box {margin: 12px 0 20px; background: #f7fbff; border: 1px dashed #d8e9ff; padding: 10px; border-radius: 8px; }
+
+svg {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h2>Properties of Gases and Kinetic Molecular Theory - Quiz</h2>
+
+<div class="progress-text" id="progressText"></div>
+<div class="progress-wrapper">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<div id="quizBox"></div>
+
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+
+</div>
+
+<script>
+
+const quizData = [
+
+{q:"Which characteristic best distinguishes gases from solids and liquids?",c:["They possess a fixed volume and shape","They expand to occupy the entire container","They contain particles arranged in layers","They maintain a constant density under all conditions"],a:1,e:"Gases have neither fixed shape nor fixed volume and expand to fill any available space."},
+
+{q:"Which statement best describes gas particles according to the Kinetic Molecular Theory?",c:["They remain stationary until heated","They move continuously in random directions","They vibrate around fixed positions","They travel only in straight horizontal paths"],a:1,e:"Kinetic Molecular Theory states that gas particles are in constant random motion."},
+
+{q:"Why are gases generally much more compressible than liquids?",c:["Their particles move more slowly than liquids","Their particles contain less mass than liquids","Their particles are separated by large empty spaces","Their particles experience stronger attractions"],a:2,e:"Large empty spaces between gas particles allow gases to be compressed significantly."},
+
+{q:"What is the primary cause of gas pressure inside a container?",c:["Attraction between gas particles","Collisions of particles with container walls","Chemical reactions among particles","Changes in particle mass over time"],a:1,e:"Gas pressure results from countless collisions of particles against the container walls."},
+
+{q:"Which observation provides the strongest evidence that gas particles are constantly moving?",c:["A balloon maintains its shape","The pressure of a gas can be measured","The scent of perfume spreads through a room","Gas cylinders can be manufactured from steel"],a:2,e:"The spreading of perfume demonstrates diffusion, which occurs because gas particles are constantly moving."},
+
+{q:"What is diffusion?",c:["The compression of gas into a smaller volume","The escape of gas through a tiny opening","The mixing of particles due to random motion","The conversion of gas into a liquid"],a:2,e:"Diffusion is the spontaneous mixing of particles caused by their continuous random movement."},
+
+{q:"What is effusion?",c:["The mixing of gases throughout a container","The movement of gas through a small opening","The expansion of a gas when heated","The increase in pressure during compression"],a:1,e:"Effusion is the passage of gas particles through a tiny opening."},
+
+{q:"According to the Kinetic Molecular Theory, what happens during collisions between gas particles?",c:["Some kinetic energy is permanently lost","Particles stick together after impact","Total kinetic energy is conserved","Mass is transferred between particles"],a:2,e:"Gas particle collisions are assumed to be elastic, meaning kinetic energy is conserved."},
+
+{q:"Which assumption is made about the attractive forces between ideal gas particles?",c:["They are extremely strong at all times","They vary with container size","They are negligible under ideal conditions","They increase continuously with temperature"],a:2,e:"The Kinetic Molecular Theory assumes that intermolecular attractions are negligible."},
+
+{q:"What property of a gas changes most directly when its average kinetic energy increases?",c:["Chemical composition","Particle size","Particle speed","Particle mass"],a:2,e:"Higher average kinetic energy means particles move faster."},
+
+{q:"When the temperature of a gas increases, what happens to the average kinetic energy of its particles?",c:["It decreases gradually","It remains essentially constant","It increases proportionally","It becomes independent of motion"],a:2,e:"Temperature is directly related to average kinetic energy."},
+
+{q:"A sealed container of gas is heated while its volume remains constant. Which explanation best describes what happens inside?",c:["Particles move more slowly and collide less often","Particles move faster and collide more forcefully","Particles become larger and heavier","Particles stop moving randomly"],a:1,e:"Heating increases particle speed, producing more energetic collisions."},
+
+{q:"Which real-world application relies primarily on the compressibility of gases?",c:["Steel bridge construction","Compressed-air storage systems","Water filtration units","Concrete reinforcement"],a:1,e:"Compressed-air systems rely on the ability of gases to be compressed into smaller volumes."},
+
+{q:"Why can a relatively small scuba tank contain a large amount of air?",c:["Air molecules become larger under pressure","Gas particles can be packed closer together","The tank continuously creates oxygen","The mass of air decreases during storage"],a:1,e:"Gases are highly compressible, allowing large amounts to be stored in small volumes."},
+
+{q:"Which statement best explains why gases fill the entire volume of a container?",c:["Particles continuously move in random directions","Particles are arranged in fixed geometric patterns","Particles possess identical masses","Particles permanently attract container walls"],a:0,e:"Random motion causes gas particles to spread throughout all available space."},
+
+{q:"A helium balloon slowly shrinks over time because helium atoms:",c:["React chemically with the balloon material","Become heavier as they cool","Effuse through tiny openings in the material","Lose kinetic energy permanently"],a:2,e:"Helium atoms slowly escape through microscopic openings by effusion."},
+
+{q:"Which of the following would most likely increase the pressure exerted by a gas in a rigid container?",c:["Lowering the temperature significantly","Reducing the number of particles present","Increasing the temperature of the gas","Increasing the empty space between particles"],a:2,e:"Increasing temperature increases particle speed and collision force, raising pressure."},
+
+{q:"Which statement best summarizes the relationship between temperature and particle motion?",c:["Temperature is unrelated to particle movement","Higher temperature corresponds to faster particle motion","Higher temperature decreases molecular collisions","Temperature affects volume but not kinetic energy"],a:1,e:"Temperature is directly related to the average kinetic energy and speed of particles."},
+
+{q:"An engineer observes that a gas spreads evenly throughout a chamber after being released. Which gas property is being demonstrated?",c:["Compressibility","Effusion","Diffusion","Condensation"],a:2,e:"The spontaneous spreading and mixing of gas particles is diffusion."},
+
+{q:"Why is the Kinetic Molecular Theory important in understanding gas behavior?",c:["It explains gas behavior using particle motion and collisions","It determines the chemical composition of all gases","It predicts atomic structure from pressure measurements","It eliminates the need for experimental observations"],a:0,e:"The Kinetic Molecular Theory provides a particle-level explanation for gas properties and gas laws."}
+
+];
+
+  let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+	${q.svg || ""}
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+
+  const q = quizData[current];
+  const buttons = document.querySelectorAll(".choice");
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+
+    if (idx === q.a) {
+      btn.classList.add("correct");
+    }
+
+    if (idx === i && idx !== q.a) {
+      btn.classList.add("incorrect");
+    }
+  });
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>
