@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Applications of Gas Laws in Engineering and IT</title>
+
+<style>
+/* SAME STYLE AS TEMPLATE */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.quiz-container {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  width: 95%;
+  max-width: 850px;
+  text-align: center;
+}
+h2 { color: #136f63; margin-bottom: 25px; }
+.progress-wrapper { background:#e9f5ef; border-radius:8px; height:14px; width:100%; margin-bottom:25px; overflow:hidden;}
+.progress-bar { height:100%; background:linear-gradient(to right,#136f63,#2b7de9); width:0%; transition:width 0.4s;}
+.progress-text { text-align:right; font-size:0.95em; color:#174ea6; margin-bottom:10px; font-weight:600;}
+.question { font-size:1.3em; font-weight:600; color:#174ea6; margin-bottom:20px;}
+.choices { display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
+.choice { background:#e8ecf8; border:none; border-radius:10px; padding:14px; cursor:pointer; text-align:left;}
+.choice:hover { background:#d3dbf8; transform:translateY(-2px);}
+.choice.correct {background: #2b7de9;color: #fff;}
+.choice.incorrect {background: #e57373;color: #fff;}
+.explanation { background:#eef3ff; border-radius:10px; padding:14px; text-align:left; margin-bottom:20px; display:none;}
+.next-btn { background:#136f63; color:#fff; border:none; padding:12px 26px; border-radius:10px; cursor:pointer;}
+.result { font-size:1.4em; font-weight:bold; color:#174ea6;}
+.stars { font-size:2.5em; margin-top:10px;}
+.quiz-nav { margin-top:25px; display:flex; justify-content:center; gap:10px;}
+.quiz-btn { background:#e8ecf8; border:none; border-radius:8px; padding:10px 20px; cursor:pointer;}
+.quiz-btn.primary { background:#136f63; color:#fff;}
+@media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+
+.diagram-box {margin: 12px 0 20px; background: #f7fbff; border: 1px dashed #d8e9ff; padding: 10px; border-radius: 8px; }
+
+svg {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h2>Applications of Gas Laws in Engineering and IT - Quiz</h2>
+
+<div class="progress-text" id="progressText"></div>
+<div class="progress-wrapper">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<div id="quizBox"></div>
+
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+
+</div>
+
+<script>
+const quizData = [
+
+{q:"Why do engineers study the behavior of gases?",c:["To classify all chemical elements into groups","To predict how gases respond in practical systems","To determine atomic structures without experiments","To replace the need for engineering measurements"],a:1,e:"Engineers study gases to predict and control the behavior of systems involving pressure, volume, temperature, and flow."},
+
+{q:"Which engineering application relies most directly on Boyle's Law?",c:["Data center cooling systems","Compressed air storage systems","Environmental gas monitoring","Semiconductor clean rooms"],a:1,e:"Compressed air systems rely on Boyle's Law because reducing volume increases pressure."},
+
+{q:"What is the primary function of an industrial air compressor?",c:["To convert gases into liquids","To increase air pressure by reducing volume","To remove gases from industrial processes","To cool machinery using compressed gases"],a:1,e:"Air compressors increase gas pressure by compressing air into a smaller volume."},
+
+{q:"Which engineering system uses compressed air to produce mechanical motion?",c:["Semiconductor fabrication systems","Pneumatic systems","Environmental monitoring stations","Medical oxygen networks"],a:1,e:"Pneumatic systems use compressed air to move pistons and actuators."},
+
+{q:"Why is compressed air often called the 'fourth utility' in manufacturing?",c:["It is only used in four major industries","It is as widely used as electricity, water, and natural gas","It is generated from four different gases","It can only be used in utility systems"],a:1,e:"Compressed air is considered essential in manufacturing alongside electricity, water, and gas."},
+
+{q:"Which application depends on the rapid expansion of gas to provide protection during collisions?",c:["HVAC systems","Aircraft cabins","Automotive airbags","Environmental sensors"],a:2,e:"Airbags rapidly inflate using expanding gases to protect vehicle occupants."},
+
+{q:"Why must airbag deployment occur within milliseconds after a collision?",c:["To reduce fuel consumption","To improve vehicle aerodynamics","To provide protection before occupants move forward significantly","To decrease the pressure inside the vehicle cabin"],a:2,e:"Rapid deployment is necessary to cushion occupants during the earliest stage of impact."},
+
+{q:"Which gas law is most important when analyzing changes in gas volume experienced by scuba divers?",c:["Charles' Law","Boyle's Law","Gay-Lussac's Law","Avogadro's Law"],a:1,e:"Boyle's Law explains how increasing pressure causes gas volume to decrease."},
+
+{q:"Why are scuba tanks able to store large amounts of air?",c:["Air becomes heavier under pressure","Gas particles become smaller under pressure","Air is compressed into a smaller volume","The tanks continuously generate oxygen"],a:2,e:"Compressed air allows more gas to be stored in a limited volume."},
+
+{q:"What is the primary purpose of aircraft cabin pressurization systems?",c:["To increase aircraft speed","To improve fuel efficiency","To maintain safe and comfortable breathing conditions","To reduce the weight of the aircraft"],a:2,e:"Cabin pressurization maintains sufficient pressure for passenger comfort and safety."},
+
+{q:"Which gas law best explains why oxygen cylinder pressure increases when temperature rises?",c:["Boyle's Law","Charles' Law","Gay-Lussac's Law","Combined Gas Law"],a:2,e:"Gay-Lussac's Law states that pressure increases with temperature when volume remains constant."},
+
+{q:"Why must medical oxygen cylinders be stored away from excessive heat?",c:["Heat may increase cylinder pressure to unsafe levels","Heat decreases oxygen purity","Heat converts oxygen into liquid form","Heat causes oxygen to lose mass"],a:0,e:"Rising temperatures can significantly increase pressure inside the cylinder."},
+
+{q:"What does HVAC stand for?",c:["Heat, Volume, Airflow, Cooling","Heating, Ventilation, and Air Conditioning","Heat Transfer and Air Velocity Control","Heating, Vacuum, and Atmospheric Conditioning"],a:1,e:"HVAC stands for Heating, Ventilation, and Air Conditioning."},
+
+{q:"How does airflow contribute to effective HVAC operation?",c:["It removes heat and distributes conditioned air","It increases atmospheric pressure outdoors","It decreases the number of gas particles indoors","It eliminates the need for temperature control"],a:0,e:"Proper airflow helps distribute temperature and remove excess heat."},
+
+{q:"Why are cooling systems essential in data centers?",c:["To increase internet speed","To reduce software errors","To remove heat generated by servers","To improve wireless signal strength"],a:2,e:"Servers generate large amounts of heat that must be removed to prevent overheating."},
+
+{q:"Which consequence is most likely to result from poor airflow management in a data center?",c:["Lower electrical consumption","Improved hardware lifespan","Server overheating and reduced reliability","Increased storage capacity"],a:2,e:"Poor airflow can create hot spots and damage equipment."},
+
+{q:"Why are semiconductor manufacturing facilities operated as clean rooms?",c:["To increase gas pressure for chemical reactions","To prevent contamination during production","To maximize airflow resistance","To reduce electricity usage"],a:1,e:"Even tiny contaminants can damage microelectronic devices."},
+
+{q:"What is the purpose of maintaining positive air pressure in many clean rooms?",c:["To increase humidity levels","To reduce airflow requirements","To prevent contaminants from entering the room","To decrease gas density"],a:2,e:"Positive pressure pushes air outward, helping keep contaminants out."},
+
+{q:"Which engineering application commonly uses gas sensors to measure pollutants and greenhouse gases?",c:["Environmental monitoring systems","Airbag deployment systems","Pneumatic control systems","Aircraft pressurization systems"],a:0,e:"Environmental monitoring systems rely on gas sensors to assess air quality."},
+
+{q:"What is the most important reason engineers use gas laws when designing systems?",c:["To eliminate all uncertainty in design","To predict how gases behave under changing conditions","To avoid using measurements during operation","To simplify all engineering calculations into one equation"],a:1,e:"Gas laws help engineers predict system performance, improve safety, and optimize design."}
+
+];
+  
+let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+	${q.svg || ""}
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+
+  const q = quizData[current];
+  const buttons = document.querySelectorAll(".choice");
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+
+    if (idx === q.a) {
+      btn.classList.add("correct");
+    }
+
+    if (idx === i && idx !== q.a) {
+      btn.classList.add("incorrect");
+    }
+  });
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>
