@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>Molarity, Dilution, and Engineering Applications of Solutions</title>
+
+<style>
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:#fafafa;
+  color:#222;
+  padding:24px;
+  line-height:1.8;
+  font-size:20px;
+}
+
+h1{color:#136f63;}
+h2{color:#136f63;margin-top:1.4em;}
+h3{color:#174ea6;}
+
+.section{margin-bottom:30px;}
+
+.key-box{
+  background:#e8f7f5;
+  border-left:6px solid #136f63;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.example-box{
+  background:#fff;
+  border-left:5px solid #2b7de9;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.visual-box{
+  background:#fff;
+  border-radius:12px;
+  padding:14px;
+  margin:16px 0;
+  border:1px solid #ddd;
+}
+
+.lesson-img{
+  width:100%;
+  max-width:720px;
+  display:block;
+  margin:0 auto;
+  border-radius:12px;
+}
+
+.caption{
+  text-align:center;
+  font-size:0.9em;
+  color:#555;
+}
+
+.activity{
+  background:#fff;
+  padding:14px;
+  border-radius:10px;
+  margin:14px 0;
+}
+
+.toggle-btn{
+  background:#136f63;
+  color:white;
+  border:none;
+  padding:6px 12px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.answer{
+  display:none;
+  margin-top:10px;
+  background:#eef3ff;
+  padding:10px;
+  border-radius:6px;
+}
+
+.formula{
+  font-size:22px;
+  font-weight:bold;
+  text-align:center;
+}
+
+.formula .equation-line{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:8px 0;
+}
+
+.formula .fraction{
+  display:inline-grid;
+  grid-template-rows:auto auto;
+  min-width:max-content;
+  text-align:center;
+  line-height:1.2;
+  vertical-align:middle;
+}
+
+.formula .fraction-top{
+  border-bottom:2px solid currentColor;
+  padding:0 10px 5px;
+}
+
+.formula .fraction-bottom{
+  padding:5px 10px 0;
+}
+
+.answer .formula{
+  font-size:20px;
+  margin:8px 0;
+}
+
+.answer ol{
+  margin-top:8px;
+}
+
+.quiz-button{
+  background:#136f63;
+  color:white;
+  padding:12px 22px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:16px 0;
+  background:#fff;
+}
+
+th,td{
+  border:1px solid #ddd;
+  padding:10px;
+}
+
+th{background:#e8f7f5;}
+
+iframe{
+  width:100%;
+  max-width:100%;
+}
+</style>
+</head>
+<body>
+
+<h1>Chapter 8: Solutions and Concentration</h1>
+<h2>Lesson 2: Molarity, Dilution, and Engineering Applications of Solutions</h2>
+
+<div class="key-box">
+<strong>Engineering Scenario</strong><br><br>
+
+A water treatment engineer needs to prepare a chlorine solution with a specific concentration for disinfecting drinking water. A pharmaceutical engineer must prepare intravenous fluids with precise concentrations. A semiconductor engineer dilutes concentrated acids for cleaning silicon wafers. An environmental engineer prepares standards used for pollutant testing.
+
+In all these situations, engineers must accurately determine solution concentrations and prepare solutions with the required strength.
+
+This lesson introduces molarity, dilution, and the engineering applications of solution chemistry.
+</div>
+
+<div class="section">
+<h2>Learning Objectives</h2>
+
+<ul>
+<li>Define molarity and its units.</li>
+<li>Calculate molarity from moles and volume.</li>
+<li>Determine the number of moles in a solution.</li>
+<li>Perform dilution calculations.</li>
+<li>Apply solution chemistry to engineering systems.</li>
+<li>Analyze real-world applications of solution preparation.</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>What is Molarity?</h2>
+
+<p>
+Molarity is one of the most commonly used concentration units in chemistry and engineering.
+</p>
+
+<p>
+It describes the number of moles of solute dissolved in one liter of solution.
+</p>
+
+<div class="formula">
+M =
+(Moles of Solute)
+÷
+(Liters of Solution)
+</div>
+
+<div class="key-box">
+
+<strong>Unit of Molarity:</strong>
+
+<div class="formula">
+mol/L
+</div>
+
+or simply
+
+<div class="formula">
+M
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Understanding Molarity</h2>
+
+<table>
+<tr>
+<th>Molarity</th>
+<th>Meaning</th>
+</tr>
+
+<tr>
+<td>1.0 M NaCl</td>
+<td>1 mole NaCl in 1 L solution</td>
+</tr>
+
+<tr>
+<td>2.0 M HCl</td>
+<td>2 moles HCl in 1 L solution</td>
+</tr>
+
+<tr>
+<td>0.50 M KNO₃</td>
+<td>0.50 mole KNO₃ in 1 L solution</td>
+</tr>
+
+</table>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Different Molarity Solutions -->
+
+<img
+src=""
+alt="Comparison of Solutions with Different Molarities"
+class="lesson-img">
+
+<p class="caption">
+Figure 1. Higher molarity means more solute particles per unit volume.
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Worked Example 1: Calculating Molarity</h2>
+
+<div class="example-box">
+
+A solution contains 2.50 moles of NaCl dissolved to make 0.500 L of solution.
+
+Determine the molarity.
+
+</div>
+
+<p><strong>Given:</strong></p>
+
+Moles = 2.50 mol<br>
+Volume = 0.500 L
+
+<p><strong>Step 1:</strong> Use the molarity formula.</p>
+
+<div class="formula">
+M = n/V
+</div>
+
+<p><strong>Step 2:</strong> Substitute values.</p>
+
+<div class="formula">
+M = 2.50 ÷ 0.500
+</div>
+
+<p><strong>Step 3:</strong> Solve.</p>
+
+<div class="formula">
+M = 5.00 M
+</div>
+
+<div class="key-box">
+Answer: 5.00 M
+</div>
+
+</div>
+
+<div class="section">
+<h2>Calculating Moles from Molarity</h2>
+
+<p>
+Sometimes engineers know the concentration and volume but need to determine the amount of solute present.
+</p>
+
+<div class="formula">
+n = MV
+</div>
+
+<p>
+where:
+</p>
+
+<ul>
+<li>n = moles</li>
+<li>M = molarity</li>
+<li>V = volume in liters</li>
+</ul>
+
+</div>
+
+<div class="section">
+<h2>Worked Example 2</h2>
+
+<div class="example-box">
+
+How many moles of HCl are present in 750 mL of 2.0 M HCl?
+
+</div>
+
+<p><strong>Step 1:</strong> Convert volume to liters.</p>
+
+<div class="formula">
+750 mL = 0.750 L
+</div>
+
+<p><strong>Step 2:</strong> Use the formula.</p>
+
+<div class="formula">
+n = MV
+</div>
+
+<p><strong>Step 3:</strong> Substitute values.</p>
+
+<div class="formula">
+n = (2.0)(0.750)
+</div>
+
+<p><strong>Step 4:</strong> Solve.</p>
+
+<div class="formula">
+n = 1.50 mol
+</div>
+
+<div class="key-box">
+Answer: 1.50 mol
+</div>
+
+</div>
+
+<div class="section">
+<h2>Preparing Solutions</h2>
+
+<p>
+Engineers and laboratory technicians frequently prepare solutions of specified concentration.
+</p>
+
+<p>
+The general procedure involves:
+</p>
+
+<ol>
+<li>Calculate required moles.</li>
+<li>Convert moles to mass.</li>
+<li>Measure the mass.</li>
+<li>Dissolve in solvent.</li>
+<li>Adjust to the desired volume.</li>
+</ol>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Laboratory Solution Preparation -->
+
+<img
+src=""
+alt="Laboratory Preparation of Standard Solutions"
+class="lesson-img">
+
+<p class="caption">
+Figure 2. Accurate solution preparation is essential in engineering and laboratory work.
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Worked Example 3: Preparing a Solution</h2>
+
+<div class="example-box">
+
+How many grams of NaCl are needed to prepare 500 mL of 1.50 M NaCl solution?
+
+Molar Mass NaCl = 58.44 g/mol
+
+</div>
+
+<p><strong>Step 1:</strong> Convert volume to liters.</p>
+
+<div class="formula">
+500 mL = 0.500 L
+</div>
+
+<p><strong>Step 2:</strong> Calculate moles.</p>
+
+<div class="formula">
+n = MV
+</div>
+
+<div class="formula">
+n = (1.50)(0.500)
+</div>
+
+<div class="formula">
+n = 0.750 mol
+</div>
+
+<p><strong>Step 3:</strong> Convert moles to mass.</p>
+
+<div class="formula">
+Mass = n × Molar Mass
+</div>
+
+<div class="formula">
+Mass = (0.750)(58.44)
+</div>
+
+<div class="formula">
+Mass = 43.83 g
+</div>
+
+<div class="key-box">
+Answer: 43.83 g NaCl
+</div>
+
+</div>
+
+<div class="section">
+<h2>What is Dilution?</h2>
+
+<p>
+Dilution is the process of reducing concentration by adding solvent.
+</p>
+
+<p>
+The amount of solute remains constant, but the volume increases.
+</p>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Solution Dilution Process -->
+
+<img
+src=""
+alt="Dilution of a Concentrated Solution by Adding Solvent"
+class="lesson-img">
+
+<p class="caption">
+Figure 3. Dilution decreases concentration by increasing solution volume.
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Dilution Equation</h2>
+
+<p>
+Since the number of moles remains constant during dilution:
+</p>
+
+<div class="formula">
+M<sub>1</sub>V<sub>1</sub>
+=
+M<sub>2</sub>V<sub>2</sub>
+</div>
+
+<p>
+where:
+</p>
+
+<ul>
+<li>M₁ = initial concentration</li>
+<li>V₁ = initial volume</li>
+<li>M₂ = final concentration</li>
+<li>V₂ = final volume</li>
+</ul>
+
+</div>
+
+<div class="section">
+<h2>Worked Example 4: Dilution Calculation</h2>
+
+<div class="example-box">
+
+A laboratory has 1.50 M HCl.
+
+How many milliliters are needed to prepare 500 mL of 0.300 M HCl?
+
+</div>
+
+<p><strong>Given:</strong></p>
+
+M₁ = 1.50 M<br>
+M₂ = 0.300 M<br>
+V₂ = 500 mL
+
+<p><strong>Step 1:</strong> Use the dilution equation.</p>
+
+<div class="formula">
+M₁V₁ = M₂V₂
+</div>
+
+<p><strong>Step 2:</strong> Substitute values.</p>
+
+<div class="formula">
+(1.50)V₁
+=
+(0.300)(500)
+</div>
+
+<p><strong>Step 3:</strong> Solve.</p>
+
+<div class="formula">
+V₁ = 100 mL
+</div>
+
+<div class="key-box">
+Answer: 100 mL of stock solution is required.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Engineering Application: Water Treatment</h2>
+
+<p>
+Water treatment facilities use solutions to:
+</p>
+
+<ul>
+<li>Disinfect water</li>
+<li>Control pH</li>
+<li>Remove contaminants</li>
+<li>Prevent microbial growth</li>
+</ul>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Water Treatment Chemical Dosing -->
+
+<img
+src=""
+alt="Water Treatment Chemical Dosing System"
+class="lesson-img">
+
+<p class="caption">
+Figure 4. Engineers carefully control chemical solution concentrations during water treatment.
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Engineering Application: Pharmaceutical Manufacturing</h2>
+
+<p>
+Drug formulations require highly accurate concentrations to ensure:
+</p>
+
+<ul>
+<li>Safety</li>
+<li>Effectiveness</li>
+<li>Regulatory compliance</li>
+</ul>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Pharmaceutical Solution Preparation -->
+
+<img
+src=""
+alt="Pharmaceutical Manufacturing Solution Preparation"
+class="lesson-img">
+
+<p class="caption">
+Figure 5. Pharmaceutical engineers prepare solutions with precise concentrations.
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Engineering Application: Semiconductor Manufacturing</h2>
+
+<p>
+Microchip production relies on chemical solutions for:
+</p>
+
+<ul>
+<li>Etching</li>
+<li>Cleaning</li>
+<li>Surface preparation</li>
+<li>Contamination removal</li>
+</ul>
+
+<p>
+Even small concentration errors can damage entire production batches.
+</p>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Semiconductor Chemical Processing -->
+
+<img
+src=""
+alt="Semiconductor Chemical Processing Solutions"
+class="lesson-img">
+
+<p class="caption">
+Figure 6. Semiconductor fabrication requires precise control of solution concentrations.
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Engineering Application: Environmental Analysis</h2>
+
+<p>
+Environmental laboratories prepare standard solutions used to:
+</p>
+
+<ul>
+<li>Calibrate instruments</li>
+<li>Measure pollutants</li>
+<li>Analyze water quality</li>
+<li>Monitor environmental contamination</li>
+</ul>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Environmental Chemistry Laboratory -->
+
+<img
+src=""
+alt="Environmental Analysis and Standard Solution Preparation"
+class="lesson-img">
+
+<p class="caption">
+Figure 7. Environmental engineers rely on accurate solution preparation for monitoring programs.
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Check Your Understanding</h2>
+
+<div class="activity">
+
+<p><strong>1.</strong> Calculate the molarity of a solution containing 3.0 mol solute in 1.5 L solution.</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+
+<p><strong>Given:</strong></p>
+
+n = 3.0 mol<br>
+V = 1.5 L
+
+<p><strong>Step 1:</strong></p>
+
+<div class="formula">
+M = n/V
+</div>
+
+<p><strong>Step 2:</strong></p>
+
+<div class="formula">
+M = 3.0 ÷ 1.5
+</div>
+
+<p><strong>Step 3:</strong></p>
+
+<div class="formula">
+M = 2.0 M
+</div>
+
+<p><strong>Answer:</strong> 2.0 M</p>
+
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>2.</strong> Why is molarity widely used in chemistry and engineering?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+Molarity directly relates the amount of solute to solution volume, making calculations and solution preparation easier.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>3.</strong> How many moles are present in 2.0 L of 0.50 M solution?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+
+<div class="formula">
+n = MV
+</div>
+
+<div class="formula">
+n = (0.50)(2.0)
+</div>
+
+<div class="formula">
+n = 1.0 mol
+</div>
+
+<p><strong>Answer:</strong> 1.0 mol</p>
+
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>4.</strong> What happens during dilution?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+The concentration decreases because solvent is added while the amount of solute remains constant.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>5.</strong> Calculate the volume of 2.0 M stock solution needed to prepare 250 mL of 0.50 M solution.</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+
+<p><strong>Given:</strong></p>
+
+M₁ = 2.0 M<br>
+M₂ = 0.50 M<br>
+V₂ = 250 mL
+
+<p><strong>Step 1:</strong></p>
+
+<div class="formula">
+M₁V₁ = M₂V₂
+</div>
+
+<p><strong>Step 2:</strong></p>
+
+<div class="formula">
+(2.0)V₁
+=
+(0.50)(250)
+</div>
+
+<p><strong>Step 3:</strong></p>
+
+<div class="formula">
+V₁ = 62.5 mL
+</div>
+
+<p><strong>Answer:</strong> 62.5 mL</p>
+
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>6.</strong> Why are accurate solution concentrations important in pharmaceutical manufacturing?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+Incorrect concentrations can make medications ineffective or unsafe.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>7.</strong> Calculate the moles present in 750 mL of 1.20 M solution.</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+
+<p><strong>Step 1:</strong> Convert volume.</p>
+
+<div class="formula">
+750 mL = 0.750 L
+</div>
+
+<p><strong>Step 2:</strong></p>
+
+<div class="formula">
+n = MV
+</div>
+
+<div class="formula">
+n = (1.20)(0.750)
+</div>
+
+<div class="formula">
+n = 0.900 mol
+</div>
+
+<p><strong>Answer:</strong> 0.900 mol</p>
+
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>8.</strong> Why are dilution calculations important in environmental laboratories?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+They allow preparation of calibration standards and accurate testing solutions for environmental analysis.
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Lesson Summary</h2>
+
+<ul>
+<li>Molarity is the number of moles of solute per liter of solution.</li>
+<li>The molarity equation is M = n/V.</li>
+<li>The number of moles can be calculated using n = MV.</li>
+<li>Dilution decreases concentration by increasing volume.</li>
+<li>The dilution equation is M₁V₁ = M₂V₂.</li>
+<li>Engineers use solution chemistry in water treatment, pharmaceutical production, semiconductor manufacturing, and environmental analysis.</li>
+<li>Accurate solution preparation is essential for safety, quality control, and process reliability.</li>
+</ul>
+
+</div>
+
+ <div style="text-align:center;margin-top:30px;">
+	<button class="quiz-button" id="takeQuizBtn">
+
+Take the Quiz →
+
+</button>
+
+</div>
+
+<script>
+function toggleAnswer(btn){
+  const ans = btn.nextElementSibling;
+  ans.style.display = ans.style.display === "block" ? "none" : "block";
+}
+
+document.getElementById("takeQuizBtn").addEventListener("click",(e)=>{
+  const quizId = e.target.dataset.quiz;
+  window.parent.postMessage({
+    type:"openQuiz",
+    quiz:quizId
+  },"*");
+});
+</script>
+</body>
+</html> 
+  
