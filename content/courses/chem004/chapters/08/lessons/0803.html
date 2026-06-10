@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>Chapter 8: Solutions and Concentration</title>
+
+<style>
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:#fafafa;
+  color:#222;
+  padding:24px;
+  line-height:1.8;
+  font-size:20px;
+}
+
+h1{color:#136f63;}
+h2{color:#136f63;margin-top:1.4em;}
+h3{color:#174ea6;}
+
+.section{margin-bottom:30px;}
+
+.key-box{
+  background:#e8f7f5;
+  border-left:6px solid #136f63;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.example-box{
+  background:#fff;
+  border-left:5px solid #2b7de9;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.visual-box{
+  background:#fff;
+  border-radius:12px;
+  padding:14px;
+  margin:16px 0;
+  border:1px solid #ddd;
+}
+
+.lesson-img{
+  width:100%;
+  max-width:720px;
+  display:block;
+  margin:0 auto;
+  border-radius:12px;
+}
+
+.caption{
+  text-align:center;
+  font-size:0.9em;
+  color:#555;
+}
+
+.activity{
+  background:#fff;
+  padding:14px;
+  border-radius:10px;
+  margin:14px 0;
+}
+
+.toggle-btn{
+  background:#136f63;
+  color:white;
+  border:none;
+  padding:6px 12px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.answer{
+  display:none;
+  margin-top:10px;
+  background:#eef3ff;
+  padding:10px;
+  border-radius:6px;
+}
+
+.formula{
+  font-size:22px;
+  font-weight:bold;
+  text-align:center;
+}
+
+.formula .equation-line{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:8px 0;
+}
+
+.formula .fraction{
+  display:inline-grid;
+  grid-template-rows:auto auto;
+  min-width:max-content;
+  text-align:center;
+  line-height:1.2;
+  vertical-align:middle;
+}
+
+.formula .fraction-top{
+  border-bottom:2px solid currentColor;
+  padding:0 10px 5px;
+}
+
+.formula .fraction-bottom{
+  padding:5px 10px 0;
+}
+
+.answer .formula{
+  font-size:20px;
+  margin:8px 0;
+}
+
+.answer ol{
+  margin-top:8px;
+}
+
+.quiz-button{
+  background:#136f63;
+  color:white;
+  padding:12px 22px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:16px 0;
+  background:#fff;
+}
+
+th,td{
+  border:1px solid #ddd;
+  padding:10px;
+}
+
+th{background:#e8f7f5;}
+
+iframe{
+  width:100%;
+  max-width:100%;
+}
+</style>
+</head>
+<body>
+<h1>Chapter 8 Summary</h1>
+<h2>Solutions and Concentration</h2>
+
+<div class="key-box">
+<strong>Chapter Overview</strong><br><br>
+
+Solutions are among the most important substances encountered in engineering, science, medicine, manufacturing, and environmental systems. Engineers routinely prepare, analyze, dilute, and monitor solutions to ensure product quality, process efficiency, and public safety.
+
+In this chapter, we explored the nature of solutions, concentration units, molarity, dilution, and the practical engineering applications of solution chemistry.
+</div>
+
+<div class="section">
+<h2>Lesson 1 Recap: Solutions and Concentration Units</h2>
+
+<h3>What is a Solution?</h3>
+
+<p>
+A solution is a homogeneous mixture consisting of one or more solutes dissolved in a solvent.
+</p>
+
+<div class="key-box">
+
+<strong>Components of a Solution</strong>
+
+<ul>
+<li><strong>Solute</strong> – the substance being dissolved</li>
+<li><strong>Solvent</strong> – the substance that dissolves the solute</li>
+</ul>
+
+</div>
+
+<div class="example-box">
+
+Saltwater:
+
+<ul>
+<li>Salt = Solute</li>
+<li>Water = Solvent</li>
+</ul>
+
+</div>
+
+<h3>Characteristics of Solutions</h3>
+
+<ul>
+<li>Uniform composition throughout.</li>
+<li>Single visible phase.</li>
+<li>Stable over time.</li>
+<li>Cannot be separated by simple filtration.</li>
+</ul>
+
+<h3>Types of Solutions</h3>
+
+<table>
+<tr>
+<th>Solute</th>
+<th>Solvent</th>
+<th>Example</th>
+</tr>
+
+<tr>
+<td>Gas</td>
+<td>Gas</td>
+<td>Air</td>
+</tr>
+
+<tr>
+<td>Gas</td>
+<td>Liquid</td>
+<td>Carbonated beverages</td>
+</tr>
+
+<tr>
+<td>Liquid</td>
+<td>Liquid</td>
+<td>Alcohol-water mixtures</td>
+</tr>
+
+<tr>
+<td>Solid</td>
+<td>Liquid</td>
+<td>Saltwater</td>
+</tr>
+
+<tr>
+<td>Solid</td>
+<td>Solid</td>
+<td>Brass alloy</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="section">
+<h2>Solubility</h2>
+
+<p>
+Solubility is the maximum amount of solute that can dissolve in a given amount of solvent under specified conditions.
+</p>
+
+<h3>Types of Solutions Based on Solubility</h3>
+
+<table>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td>Unsaturated</td>
+<td>Can still dissolve more solute</td>
+</tr>
+
+<tr>
+<td>Saturated</td>
+<td>Contains the maximum dissolved solute</td>
+</tr>
+
+<tr>
+<td>Supersaturated</td>
+<td>Contains more dissolved solute than normally possible</td>
+</tr>
+
+</table>
+
+<h3>Factors Affecting Solubility</h3>
+
+<ul>
+<li><strong>Temperature</strong></li>
+<li><strong>Pressure</strong> (important for gases)</li>
+<li><strong>Nature of solute and solvent</strong></li>
+</ul>
+
+<div class="key-box">
+
+<strong>Like Dissolves Like</strong>
+
+<ul>
+<li>Polar substances dissolve polar substances.</li>
+<li>Nonpolar substances dissolve nonpolar substances.</li>
+</ul>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Concentration Units</h2>
+
+<p>
+Concentration describes the amount of solute present in a solution.
+</p>
+
+<h3>Mass Percent (% w/w)</h3>
+
+<div class="formula">
+% w/w =
+(Mass of Solute ÷ Mass of Solution)
+× 100
+</div>
+
+<p>
+Commonly used in industrial mixtures and manufacturing.
+</p>
+
+<h3>Volume Percent (% v/v)</h3>
+
+<div class="formula">
+% v/v =
+(Volume of Solute ÷ Volume of Solution)
+× 100
+</div>
+
+<p>
+Commonly used for liquid-liquid solutions.
+</p>
+
+<h3>Mass-Volume Percent (% m/v)</h3>
+
+<div class="formula">
+% m/v =
+(Mass of Solute ÷ Volume of Solution)
+× 100
+</div>
+
+<p>
+Frequently used in medicine and laboratory applications.
+</p>
+
+<h3>Parts Per Million (ppm)</h3>
+
+<div class="formula">
+ppm =
+(Mass of Solute ÷ Mass of Solution)
+× 10<sup>6</sup>
+</div>
+
+<div class="key-box">
+
+For dilute aqueous solutions:
+
+<div class="formula">
+1 ppm ≈ 1 mg/L
+</div>
+
+</div>
+
+<h3>Parts Per Billion (ppb)</h3>
+
+<div class="formula">
+ppb =
+(Mass of Solute ÷ Mass of Solution)
+× 10<sup>9</sup>
+</div>
+
+<div class="key-box">
+
+For dilute aqueous solutions:
+
+<div class="formula">
+1 ppb ≈ 1 μg/L
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Engineering Applications of Concentration Units</h2>
+
+<table>
+<tr>
+<th>Field</th>
+<th>Application</th>
+</tr>
+
+<tr>
+<td>Water Treatment</td>
+<td>Chlorine and contaminant monitoring</td>
+</tr>
+
+<tr>
+<td>Environmental Engineering</td>
+<td>Pollutant analysis using ppm and ppb</td>
+</tr>
+
+<tr>
+<td>Chemical Manufacturing</td>
+<td>Process solution control</td>
+</tr>
+
+<tr>
+<td>Food Engineering</td>
+<td>Beverage concentration control</td>
+</tr>
+
+<tr>
+<td>Semiconductor Manufacturing</td>
+<td>Ultra-pure chemical preparation</td>
+</tr>
+
+<tr>
+<td>Pharmaceutical Engineering</td>
+<td>Drug formulation</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="section">
+<h2>Lesson 2 Recap: Molarity, Dilution, and Engineering Applications of Solutions</h2>
+
+<h3>Molarity</h3>
+
+<p>
+Molarity is the number of moles of solute dissolved in one liter of solution.
+</p>
+
+<div class="formula">
+M =
+n ÷ V
+</div>
+
+<p>
+where:
+</p>
+
+<ul>
+<li>M = molarity (mol/L)</li>
+<li>n = moles of solute</li>
+<li>V = volume in liters</li>
+</ul>
+
+<div class="key-box">
+
+Examples:
+
+<ul>
+<li>1.0 M NaCl = 1 mole NaCl per liter</li>
+<li>2.0 M HCl = 2 moles HCl per liter</li>
+<li>0.50 M KNO₃ = 0.50 mole KNO₃ per liter</li>
+</ul>
+
+</div>
+
+<h3>Calculating Moles</h3>
+
+<p>
+When concentration and volume are known:
+</p>
+
+<div class="formula">
+n = MV
+</div>
+
+<p>
+This relationship is commonly used in engineering calculations involving solution preparation and chemical dosing.
+</p>
+
+</div>
+
+<div class="section">
+<h2>Preparing Solutions</h2>
+
+<p>
+Engineers frequently prepare solutions with specific concentrations.
+</p>
+
+<p>
+General procedure:
+</p>
+
+<ol>
+<li>Determine required concentration.</li>
+<li>Calculate required moles.</li>
+<li>Convert moles to mass.</li>
+<li>Dissolve the solute.</li>
+<li>Adjust to the desired volume.</li>
+</ol>
+
+<div class="key-box">
+Accurate solution preparation is critical for process control, safety, and product quality.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Dilution</h2>
+
+<p>
+Dilution decreases concentration by adding solvent while keeping the amount of solute constant.
+</p>
+
+<div class="formula">
+M<sub>1</sub>V<sub>1</sub>
+=
+M<sub>2</sub>V<sub>2</sub>
+</div>
+
+<p>
+where:
+</p>
+
+<ul>
+<li>M₁ = initial concentration</li>
+<li>V₁ = initial volume</li>
+<li>M₂ = final concentration</li>
+<li>V₂ = final volume</li>
+</ul>
+
+<div class="key-box">
+
+During dilution:
+
+<ul>
+<li>Volume increases.</li>
+<li>Concentration decreases.</li>
+<li>Moles remain constant.</li>
+</ul>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Engineering Applications of Solution Chemistry</h2>
+
+<h3>Water Treatment</h3>
+
+<ul>
+<li>Chlorination</li>
+<li>Coagulation chemicals</li>
+<li>pH adjustment</li>
+<li>Disinfection processes</li>
+</ul>
+
+<h3>Pharmaceutical Manufacturing</h3>
+
+<ul>
+<li>Drug formulations</li>
+<li>IV solutions</li>
+<li>Quality control</li>
+<li>Sterile preparations</li>
+</ul>
+
+<h3>Semiconductor Manufacturing</h3>
+
+<ul>
+<li>Etching solutions</li>
+<li>Cleaning chemicals</li>
+<li>Surface preparation</li>
+<li>Contamination control</li>
+</ul>
+
+<h3>Environmental Engineering</h3>
+
+<ul>
+<li>Water quality testing</li>
+<li>Pollutant monitoring</li>
+<li>Calibration standards</li>
+<li>Environmental sampling</li>
+</ul>
+
+<h3>Chemical Manufacturing</h3>
+
+<ul>
+<li>Industrial mixing</li>
+<li>Process control</li>
+<li>Chemical dosing</li>
+<li>Reaction optimization</li>
+</ul>
+
+</div>
+
+<div class="section">
+<h2>Key Equations from Chapter 8</h2>
+
+<h3>Mass Percent</h3>
+
+<div class="formula">
+% w/w =
+(Mass of Solute ÷ Mass of Solution)
+× 100
+</div>
+
+<h3>Volume Percent</h3>
+
+<div class="formula">
+% v/v =
+(Volume of Solute ÷ Volume of Solution)
+× 100
+</div>
+
+<h3>Mass-Volume Percent</h3>
+
+<div class="formula">
+% m/v =
+(Mass of Solute ÷ Volume of Solution)
+× 100
+</div>
+
+<h3>Parts Per Million</h3>
+
+<div class="formula">
+ppm =
+(Mass of Solute ÷ Mass of Solution)
+× 10<sup>6</sup>
+</div>
+
+<h3>Parts Per Billion</h3>
+
+<div class="formula">
+ppb =
+(Mass of Solute ÷ Mass of Solution)
+× 10<sup>9</sup>
+</div>
+
+<h3>Molarity</h3>
+
+<div class="formula">
+M =
+n ÷ V
+</div>
+
+<h3>Moles in Solution</h3>
+
+<div class="formula">
+n = MV
+</div>
+
+<h3>Dilution Equation</h3>
+
+<div class="formula">
+M<sub>1</sub>V<sub>1</sub>
+=
+M<sub>2</sub>V<sub>2</sub>
+</div>
+
+</div>
+
+<div class="section">
+<h2>Engineering Problem-Solving Strategy</h2>
+
+<ol>
+<li>Identify the concentration unit required.</li>
+<li>Gather known values.</li>
+<li>Select the appropriate equation.</li>
+<li>Convert units if necessary.</li>
+<li>Perform calculations carefully.</li>
+<li>Verify that the result is reasonable.</li>
+<li>Consider safety and process implications.</li>
+</ol>
+
+<div class="key-box">
+Successful engineers not only calculate concentrations correctly but also understand how those concentrations affect system performance and safety.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Quick Concept Check</h2>
+
+<div class="activity">
+
+<p><strong>1.</strong> What is the difference between a solute and a solvent?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">
+Show Answer
+</button>
+
+<div class="answer">
+The solute is the substance being dissolved, while the solvent is the substance that dissolves the solute.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>2.</strong> Which concentration unit is commonly used for environmental pollutants?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">
+Show Answer
+</button>
+
+<div class="answer">
+Parts per million (ppm) and parts per billion (ppb).
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>3.</strong> What does a 2.0 M solution mean?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">
+Show Answer
+</button>
+
+<div class="answer">
+The solution contains 2.0 moles of solute per liter of solution.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>4.</strong> What remains constant during dilution?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">
+Show Answer
+</button>
+
+<div class="answer">
+The amount of solute (number of moles) remains constant.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>5.</strong> Why is accurate solution preparation important in engineering?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">
+Show Answer
+</button>
+
+<div class="answer">
+Accurate concentrations are essential for safety, quality control, process efficiency, and reliable operation.
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Key Takeaways</h2>
+
+<div class="key-box">
+
+<ul>
+<li>Solutions are homogeneous mixtures consisting of solutes dissolved in solvents.</li>
+<li>Solubility determines how much solute can dissolve under specific conditions.</li>
+<li>Common concentration units include % w/w, % v/v, % m/v, ppm, and ppb.</li>
+<li>Molarity is the most widely used concentration unit in chemistry and engineering.</li>
+<li>Dilution calculations use the equation M₁V₁ = M₂V₂.</li>
+<li>Solution chemistry is essential in water treatment, pharmaceuticals, semiconductor manufacturing, and environmental monitoring.</li>
+<li>Accurate concentration calculations support safe and efficient engineering operations.</li>
+</ul>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Ready for the Chapter Assessment?</h2>
+
+<div class="key-box">
+
+You are ready for the Chapter 8 Assessment if you can:
+
+<ul>
+<li>Identify solutes and solvents.</li>
+<li>Explain solubility and factors affecting it.</li>
+<li>Calculate % w/w, % v/v, and % m/v.</li>
+<li>Interpret ppm and ppb measurements.</li>
+<li>Calculate molarity and moles in solution.</li>
+<li>Perform dilution calculations.</li>
+<li>Apply solution chemistry concepts to engineering applications.</li>
+<li>Analyze real-world concentration and solution preparation problems.</li>
+</ul>
+
+</div>
+
+</div>
+<div style="text-align:center;margin-top:30px;">
+	<button class="quiz-button" id="takeQuizBtn">
+
+Take the Assessment →
+
+</button>
+
+</div>
+
+<script>
+function toggleAnswer(btn){
+  const ans = btn.nextElementSibling;
+  ans.style.display = ans.style.display === "block" ? "none" : "block";
+}
+
+document.getElementById("takeQuizBtn").addEventListener("click",(e)=>{
+  const quizId = e.target.dataset.quiz;
+  window.parent.postMessage({
+    type:"openQuiz",
+    quiz:quizId
+  },"*");
+});
+</script>
+</body>
+</html>
