@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Chapter 7 Assessment: Engineering Applications of Gases</title>
+
+<style>
+/* SAME STYLE AS TEMPLATE */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.quiz-container {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  width: 95%;
+  max-width: 850px;
+  text-align: center;
+}
+h2 { color: #136f63; margin-bottom: 25px; }
+.progress-wrapper { background:#e9f5ef; border-radius:8px; height:14px; width:100%; margin-bottom:25px; overflow:hidden;}
+.progress-bar { height:100%; background:linear-gradient(to right,#136f63,#2b7de9); width:0%; transition:width 0.4s;}
+.progress-text { text-align:right; font-size:0.95em; color:#174ea6; margin-bottom:10px; font-weight:600;}
+.question { font-size:1.3em; font-weight:600; color:#174ea6; margin-bottom:20px;}
+.choices { display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
+.choice { background:#e8ecf8; border:none; border-radius:10px; padding:14px; cursor:pointer; text-align:left;}
+.choice:hover { background:#d3dbf8; transform:translateY(-2px);}
+.choice.correct {background: #2b7de9;color: #fff;}
+.choice.incorrect {background: #e57373;color: #fff;}
+.explanation { background:#eef3ff; border-radius:10px; padding:14px; text-align:left; margin-bottom:20px; display:none;}
+.next-btn { background:#136f63; color:#fff; border:none; padding:12px 26px; border-radius:10px; cursor:pointer;}
+.result { font-size:1.4em; font-weight:bold; color:#174ea6;}
+.stars { font-size:2.5em; margin-top:10px;}
+.quiz-nav { margin-top:25px; display:flex; justify-content:center; gap:10px;}
+.quiz-btn { background:#e8ecf8; border:none; border-radius:8px; padding:10px 20px; cursor:pointer;}
+.quiz-btn.primary { background:#136f63; color:#fff;}
+@media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+
+.diagram-box {margin: 12px 0 20px; background: #f7fbff; border: 1px dashed #d8e9ff; padding: 10px; border-radius: 8px; }
+
+svg {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h2>Chapter 7 Assessment: Engineering Applications of Gases</h2>
+
+<div class="progress-text" id="progressText"></div>
+<div class="progress-wrapper">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<div id="quizBox"></div>
+
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+
+</div>
+
+<script>
+const quizData = [
+
+{q:"Why are gas laws important in engineering practice?",c:["They describe how gases behave in practical systems and help guide design decisions","They eliminate the need for measurements and testing during engineering projects","They are used primarily to classify gases according to chemical composition","They provide exact solutions for all engineering problems regardless of conditions"],a:0,e:"Gas laws help engineers predict and control the behavior of real-world systems involving gases."},
+
+{q:"Which engineering system relies most directly on Boyle's Law for normal operation?",c:["Compressed air storage systems","Environmental monitoring stations","Semiconductor clean rooms","Medical imaging equipment"],a:0,e:"Compressed air systems use Boyle's Law because pressure increases when volume decreases."},
+
+{q:"Why is compressed air often considered a major industrial utility?",c:["It can be transported without pipes or equipment","It provides a flexible and reliable source of power for machinery","It completely replaces electricity in manufacturing facilities","It eliminates the need for mechanical systems"],a:1,e:"Compressed air powers many industrial tools, actuators, and automated systems."},
+
+{q:"Which application uses compressed gas to create controlled mechanical motion?",c:["Aircraft cabin pressurization","Pneumatic actuation systems","Data center cooling systems","Environmental sampling stations"],a:1,e:"Pneumatic systems convert gas pressure into mechanical movement."},
+
+{q:"What is the primary engineering purpose of an automotive airbag?",c:["To reduce aerodynamic drag during travel","To cushion occupants during a collision","To increase cabin air circulation","To improve vehicle fuel efficiency"],a:1,e:"Airbags rapidly inflate to reduce injury during crashes."},
+
+{q:"Why must airbag deployment occur within a very short period of time?",c:["To maximize fuel efficiency","To protect occupants before significant impact occurs","To reduce pressure inside the tires","To improve engine performance"],a:1,e:"Rapid deployment provides protection during the critical moments of a collision."},
+
+{q:"Which gas law helps explain changes in air volume experienced by scuba divers at different depths?",c:["Boyle's Law","Charles' Law","Gay-Lussac's Law","Ideal Gas Law"],a:0,e:"Increasing pressure at greater depths causes gas volume to decrease."},
+
+{q:"What makes scuba tanks capable of storing large quantities of breathable air?",c:["Air becomes lighter under pressure","Compressed air occupies a much smaller volume","The tanks continuously generate oxygen","The gas constant changes inside the tank"],a:1,e:"Compressing air allows more gas to be stored in a limited volume."},
+
+{q:"What is the primary purpose of aircraft cabin pressurization?",c:["To increase engine power output","To maintain safe and comfortable breathing conditions","To reduce aircraft structural weight","To increase aerodynamic performance"],a:1,e:"Pressurization ensures passengers can breathe comfortably at high altitude."},
+
+{q:"Which gas law explains why heating a sealed oxygen cylinder can increase its pressure?",c:["Boyle's Law","Charles' Law","Gay-Lussac's Law","Combined Gas Law"],a:2,e:"Pressure increases with temperature when volume remains constant."},
+
+{q:"Why must medical oxygen cylinders be stored according to strict temperature guidelines?",c:["Temperature changes can significantly affect pressure","Temperature changes alter oxygen's chemical identity","Temperature affects cylinder color and labeling","Temperature prevents oxygen from being compressed"],a:0,e:"Excessive heating can raise pressure to unsafe levels."},
+
+{q:"What does HVAC stand for?",c:["Heat, Velocity, and Cooling","Heating, Ventilation, and Air Conditioning","Heat Transfer and Ventilation Control","Heating, Vacuum, and Air Compression"],a:1,e:"HVAC systems regulate indoor environmental conditions."},
+
+{q:"How does airflow contribute to effective HVAC performance?",c:["By transporting heat and conditioned air throughout a space","By eliminating the need for cooling equipment","By reducing atmospheric pressure inside buildings","By changing the chemical composition of air"],a:0,e:"Airflow distributes heat and maintains comfortable conditions."},
+
+{q:"Why are cooling systems essential in modern data centers?",c:["To improve wireless network strength","To remove heat generated by computing equipment","To increase data storage capacity","To reduce the number of servers required"],a:1,e:"Servers produce significant heat that must be removed."},
+
+{q:"What is the most likely result of poor airflow management in a data center?",c:["Increased storage capacity","Reduced server temperatures","Localized overheating and equipment failure","Improved cooling efficiency"],a:2,e:"Poor airflow creates hot spots that can damage hardware."},
+
+{q:"Why are semiconductor manufacturing facilities operated as clean rooms?",c:["To increase production temperature","To prevent contamination during fabrication","To reduce the pressure of gases used in production","To eliminate airflow within the facility"],a:1,e:"Even microscopic contaminants can damage semiconductor devices."},
+
+{q:"What is the purpose of maintaining positive pressure inside many clean rooms?",c:["To increase humidity levels","To prevent contaminants from entering the facility","To reduce airflow through the room","To increase gas density during manufacturing"],a:1,e:"Positive pressure forces air outward and helps block contaminants."},
+
+{q:"Which engineering field commonly uses gas sensors to monitor air quality and emissions?",c:["Environmental engineering","Structural engineering","Transportation engineering","Geotechnical engineering"],a:0,e:"Environmental monitoring systems rely on gas sensing technologies."},
+
+{q:"What is the primary objective of environmental gas monitoring?",c:["To increase atmospheric pressure","To evaluate air quality and detect pollutants","To improve gas storage efficiency","To reduce industrial equipment costs"],a:1,e:"Monitoring systems help assess environmental conditions and pollutant levels."},
+
+{q:"Which gas law is most useful when pressure, volume, temperature, and amount of gas must all be considered simultaneously?",c:["Boyle's Law","Charles' Law","Gay-Lussac's Law","Ideal Gas Law"],a:3,e:"The Ideal Gas Law incorporates all major gas variables."},
+
+{q:"An engineer is sizing a nitrogen storage tank. Which equation would most likely be used?",c:["PV = nRT","P₁V₁ = P₂V₂","P₁/T₁ = P₂/T₂","V₁/T₁ = V₂/T₂"],a:0,e:"The Ideal Gas Law is commonly used in storage tank design calculations."},
+
+{q:"Why must engineers calculate compressed air consumption in industrial systems?",c:["To determine whether the compressor can meet system demand","To reduce the molecular mass of air","To increase atmospheric oxygen levels","To eliminate maintenance requirements"],a:0,e:"Proper sizing prevents insufficient air supply during operation."},
+
+{q:"Which factor is most important when determining safe gas storage conditions?",c:["Maximum operating pressure","Container color","Ambient lighting conditions","Atmospheric humidity alone"],a:0,e:"Pressure limits are a major safety consideration in gas systems."},
+
+{q:"Why are compressor stations installed along long-distance natural gas pipelines?",c:["To change the gas composition","To restore pressure lost during transport","To increase pipeline diameter","To decrease gas temperature permanently"],a:1,e:"Pressure losses occur as gas flows through pipelines."},
+
+{q:"What engineering challenge is commonly encountered in natural gas transmission systems?",c:["Continuous pressure reduction along the pipeline","Loss of molecular mass during transport","Conversion of gas into liquid form","Permanent reduction in gas temperature"],a:0,e:"Friction and flow resistance reduce pressure over distance."},
+
+{q:"Why is airflow design important in server rooms and data centers?",c:["It improves heat removal and equipment reliability","It eliminates the need for electrical power","It changes the chemical properties of air","It increases internet speed directly"],a:0,e:"Proper airflow improves cooling performance and system reliability."},
+
+{q:"What is the purpose of pressure relief valves in gas systems?",c:["To increase gas density","To prevent dangerous overpressure conditions","To improve gas purity","To reduce operating temperatures"],a:1,e:"Pressure relief valves protect equipment and personnel."},
+
+{q:"Why are gas leak detection systems installed in industrial facilities?",c:["To identify hazardous releases quickly","To reduce gas temperatures automatically","To increase system pressure","To replace safety inspections"],a:0,e:"Leak detection helps prevent accidents and environmental damage."},
+
+{q:"After completing a gas calculation, what should an engineer do next?",c:["Accept the result without review","Evaluate whether the answer is physically reasonable","Change units repeatedly until the answer changes","Ignore any safety implications"],a:1,e:"Engineers must verify that results make practical sense."},
+
+{q:"Which statement best describes professional engineering problem solving?",c:["Obtaining a numerical answer is the final step","Calculations must be followed by evaluation of performance and safety","Engineering problems can always be solved using one equation","Experimental validation is unnecessary when calculations are available"],a:1,e:"Engineers must evaluate whether solutions satisfy practical and safety requirements."},
+
+{q:"A storage tank contains 200 mol of gas at 300 K and 10.0 atm. What volume is required? (R = 0.0821 L·atm/mol·K)",c:["246 L","492.6 L","1231.5 L","1642 L"],a:1,e:"V = nRT/P = (200)(0.0821)(300)/10 = 492.6 L."},
+
+{q:"A compressed-air tank contains 100 mol of air at 298 K occupying 200 L. What is the pressure? (R = 0.0821 L·atm/mol·K)",c:["6.1 atm","8.2 atm","12.2 atm","16.4 atm"],a:2,e:"P = nRT/V = (100)(0.0821)(298)/200 ≈ 12.2 atm."},
+
+{q:"An oxygen cylinder contains 150 mol of gas in a 300 L container at 293 K. What is the pressure? (R = 0.0821 L·atm/mol·K)",c:["8.0 atm","10.2 atm","12.0 atm","15.5 atm"],a:2,e:"P = (150)(0.0821)(293)/300 ≈ 12.0 atm."},
+
+{q:"A gas storage vessel must hold 400 mol of nitrogen at 350 K and 8.0 atm. What minimum volume is required? (R = 0.0821 L·atm/mol·K)",c:["1025 L","1235 L","1437 L","1640 L"],a:2,e:"V=(400)(0.0821)(350)/8 ≈ 1437 L."},
+
+{q:"Which statement best summarizes the role of gas laws in engineering and IT applications?",c:["They are useful only in laboratory exercises","They provide tools for analyzing, designing, and safely operating real systems","They eliminate the need for engineering judgment and testing","They apply only to storage tanks and compressed-air systems"],a:1,e:"Gas laws are fundamental tools used across engineering, manufacturing, healthcare, transportation, and IT infrastructure."}
+
+];
+
+  let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+	${q.svg || ""}
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+
+  const q = quizData[current];
+  const buttons = document.querySelectorAll(".choice");
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+
+    if (idx === q.a) {
+      btn.classList.add("correct");
+    }
+
+    if (idx === i && idx !== q.a) {
+      btn.classList.add("incorrect");
+    }
+  });
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>
+  
