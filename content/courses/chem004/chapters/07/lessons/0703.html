@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>Chapter 7: Engineering Applications of Gases</title>
+
+<style>
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:#fafafa;
+  color:#222;
+  padding:24px;
+  line-height:1.8;
+  font-size:20px;
+}
+
+h1{color:#136f63;}
+h2{color:#136f63;margin-top:1.4em;}
+h3{color:#174ea6;}
+
+.section{margin-bottom:30px;}
+
+.key-box{
+  background:#e8f7f5;
+  border-left:6px solid #136f63;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.example-box{
+  background:#fff;
+  border-left:5px solid #2b7de9;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.visual-box{
+  background:#fff;
+  border-radius:12px;
+  padding:14px;
+  margin:16px 0;
+  border:1px solid #ddd;
+}
+
+.lesson-img{
+  width:100%;
+  max-width:720px;
+  display:block;
+  margin:0 auto;
+  border-radius:12px;
+}
+
+.caption{
+  text-align:center;
+  font-size:0.9em;
+  color:#555;
+}
+
+.activity{
+  background:#fff;
+  padding:14px;
+  border-radius:10px;
+  margin:14px 0;
+}
+
+.toggle-btn{
+  background:#136f63;
+  color:white;
+  border:none;
+  padding:6px 12px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.answer{
+  display:none;
+  margin-top:10px;
+  background:#eef3ff;
+  padding:10px;
+  border-radius:6px;
+}
+
+.formula{
+  font-size:22px;
+  font-weight:bold;
+  text-align:center;
+}
+
+.formula .equation-line{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:8px 0;
+}
+
+.formula .fraction{
+  display:inline-grid;
+  grid-template-rows:auto auto;
+  min-width:max-content;
+  text-align:center;
+  line-height:1.2;
+  vertical-align:middle;
+}
+
+.formula .fraction-top{
+  border-bottom:2px solid currentColor;
+  padding:0 10px 5px;
+}
+
+.formula .fraction-bottom{
+  padding:5px 10px 0;
+}
+
+.answer .formula{
+  font-size:20px;
+  margin:8px 0;
+}
+
+.answer ol{
+  margin-top:8px;
+}
+
+.quiz-button{
+  background:#136f63;
+  color:white;
+  padding:12px 22px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:16px 0;
+  background:#fff;
+}
+
+th,td{
+  border:1px solid #ddd;
+  padding:10px;
+}
+
+th{background:#e8f7f5;}
+
+iframe{
+  width:100%;
+  max-width:100%;
+}
+</style>
+</head>
+<body>
+
+ <h1>Chapter 7 Summary</h1>
+<h2>Engineering Applications of Gases</h2>
+
+<div class="key-box">
+<strong>Chapter Overview</strong><br><br>
+
+In this chapter, we explored how the gas laws and gas principles learned in previous chapters are applied in real engineering and information technology systems.
+
+Rather than studying gases only as theoretical concepts, we examined how engineers use gas behavior to design storage tanks, operate pneumatic systems, maintain safe medical gas supplies, cool data centers, transport natural gas, and manufacture advanced semiconductor devices.
+
+The ability to understand and predict gas behavior is critical for safety, efficiency, reliability, and cost-effective engineering design.
+</div>
+
+<div class="section">
+<h2>Lesson 1 Recap: Applications of Gas Laws in Engineering and IT</h2>
+
+<p>
+Gas laws are used in a wide variety of engineering fields because gases serve as working fluids, energy carriers, cooling agents, and safety systems.
+</p>
+
+<h3>Compressed Air Systems</h3>
+
+<ul>
+<li>Power industrial machinery</li>
+<li>Operate automation equipment</li>
+<li>Drive pneumatic systems</li>
+</ul>
+
+<div class="key-box">
+
+<strong>Gas Law Involved:</strong>
+
+<div class="formula">
+P<sub>1</sub>V<sub>1</sub> =
+P<sub>2</sub>V<sub>2</sub>
+</div>
+
+Boyle's Law explains how air compressors increase pressure by reducing volume.
+
+</div>
+
+<h3>Pneumatic Systems</h3>
+
+<p>
+Compressed gases can transmit force and motion through cylinders and actuators.
+</p>
+
+<p>
+Applications include:
+</p>
+
+<ul>
+<li>Factory automation</li>
+<li>Truck braking systems</li>
+<li>Industrial robots</li>
+<li>Material handling equipment</li>
+</ul>
+
+<h3>Airbags</h3>
+
+<p>
+Airbags protect vehicle occupants through rapid gas generation and expansion.
+</p>
+
+<p>
+Engineers must carefully control:
+</p>
+
+<ul>
+<li>Inflation time</li>
+<li>Gas quantity</li>
+<li>Internal pressure</li>
+</ul>
+
+<h3>Scuba Systems</h3>
+
+<p>
+Scuba tanks store highly compressed air.
+</p>
+
+<div class="key-box">
+
+<strong>Boyle's Law</strong>
+
+As pressure increases:
+
+<ul>
+<li>Gas volume decreases.</li>
+<li>Air can be stored more efficiently.</li>
+</ul>
+
+</div>
+
+<h3>Aircraft Cabin Pressurization</h3>
+
+<p>
+Aircraft cabins must maintain safe pressures at high altitudes where atmospheric pressure is low.
+</p>
+
+<p>
+Engineers use:
+</p>
+
+<ul>
+<li>Boyle's Law</li>
+<li>Combined Gas Law</li>
+<li>Ideal Gas Law</li>
+</ul>
+
+<h3>Medical Oxygen Systems</h3>
+
+<p>
+Hospitals rely on compressed oxygen cylinders for patient care.
+</p>
+
+<div class="key-box">
+
+<strong>Gay-Lussac's Law</strong>
+
+<div class="formula">
+P<sub>1</sub>/T<sub>1</sub> =
+P<sub>2</sub>/T<sub>2</sub>
+</div>
+
+Rising temperature increases cylinder pressure.
+
+</div>
+
+<h3>HVAC Systems</h3>
+
+<p>
+Heating, ventilation, and air-conditioning systems use gas behavior to control:
+</p>
+
+<ul>
+<li>Temperature</li>
+<li>Humidity</li>
+<li>Air circulation</li>
+</ul>
+
+<h3>Data Centers</h3>
+
+<p>
+Data centers require carefully designed airflow systems to remove heat generated by servers.
+</p>
+
+<p>
+Poor airflow can lead to:
+</p>
+
+<ul>
+<li>Overheating</li>
+<li>Reduced reliability</li>
+<li>Higher energy costs</li>
+</ul>
+
+<h3>Semiconductor Manufacturing</h3>
+
+<p>
+Clean rooms use carefully controlled pressure, temperature, and airflow to protect sensitive electronic components from contamination.
+</p>
+
+<h3>Environmental Monitoring</h3>
+
+<p>
+Gas sensors help engineers monitor:
+</p>
+
+<ul>
+<li>Air quality</li>
+<li>Industrial emissions</li>
+<li>Greenhouse gases</li>
+<li>Hazardous pollutants</li>
+</ul>
+
+</div>
+
+<div class="section">
+<h2>Lesson 2 Recap: Real-World Engineering Gas Calculations and Case Studies</h2>
+
+<p>
+Engineering applications often require quantitative analysis using gas laws.
+</p>
+
+<h3>Gas Storage Design</h3>
+
+<p>
+Engineers use the Ideal Gas Law to determine:
+</p>
+
+<ul>
+<li>Required tank volume</li>
+<li>Maximum operating pressure</li>
+<li>Storage capacity</li>
+</ul>
+
+<div class="formula">
+PV = nRT
+</div>
+
+<h3>Compressed Air Systems</h3>
+
+<p>
+Engineers calculate:
+</p>
+
+<ul>
+<li>Air consumption</li>
+<li>Compressor capacity</li>
+<li>System efficiency</li>
+</ul>
+
+<h3>Medical Oxygen Systems</h3>
+
+<p>
+Gas calculations help determine:
+</p>
+
+<ul>
+<li>Cylinder pressure</li>
+<li>Storage requirements</li>
+<li>Emergency reserves</li>
+</ul>
+
+<h3>Automotive Airbags</h3>
+
+<p>
+Engineers use gas calculations to estimate:
+</p>
+
+<ul>
+<li>Required gas quantity</li>
+<li>Inflation pressure</li>
+<li>Deployment performance</li>
+</ul>
+
+<h3>Data Center Cooling</h3>
+
+<p>
+Airflow calculations help ensure:
+</p>
+
+<ul>
+<li>Adequate cooling</li>
+<li>Reduced hot spots</li>
+<li>Energy-efficient operation</li>
+</ul>
+
+<h3>Natural Gas Pipelines</h3>
+
+<p>
+Pipeline engineers use gas laws to:
+</p>
+
+<ul>
+<li>Predict pressure losses</li>
+<li>Determine compressor placement</li>
+<li>Manage flow rates</li>
+</ul>
+
+<h3>Semiconductor Manufacturing</h3>
+
+<p>
+Engineers maintain precise environmental conditions by controlling:
+</p>
+
+<ul>
+<li>Pressure</li>
+<li>Temperature</li>
+<li>Humidity</li>
+<li>Airflow</li>
+</ul>
+
+</div>
+
+<div class="section">
+<h2>Engineering Safety Considerations</h2>
+
+<p>
+Gas systems must be designed with safety as a primary concern.
+</p>
+
+<table>
+<tr>
+<th>Hazard</th>
+<th>Engineering Solution</th>
+</tr>
+
+<tr>
+<td>Overpressure</td>
+<td>Pressure relief valves</td>
+</tr>
+
+<tr>
+<td>Gas Leakage</td>
+<td>Leak detection systems</td>
+</tr>
+
+<tr>
+<td>Overheating</td>
+<td>Temperature monitoring</td>
+</tr>
+
+<tr>
+<td>Explosion Risk</td>
+<td>Ventilation systems</td>
+</tr>
+
+<tr>
+<td>Contamination</td>
+<td>Filtration and clean-room controls</td>
+</tr>
+
+</table>
+
+<div class="key-box">
+Successful engineering design balances performance, efficiency, reliability, and safety.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Engineering Problem-Solving Framework</h2>
+
+<p>
+When solving gas-related engineering problems:
+</p>
+
+<ol>
+<li>Identify the known variables.</li>
+<li>Select the appropriate gas law.</li>
+<li>Convert all units correctly.</li>
+<li>Perform calculations.</li>
+<li>Verify that the answer is physically reasonable.</li>
+<li>Evaluate safety implications.</li>
+</ol>
+
+<div class="key-box">
+Professional engineers do not simply calculate answers—they analyze whether those answers make sense in real-world systems.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Gas Laws Review</h2>
+
+<h3>Boyle's Law</h3>
+
+<div class="formula">
+P<sub>1</sub>V<sub>1</sub> =
+P<sub>2</sub>V<sub>2</sub>
+</div>
+
+<p>
+Pressure and volume are inversely proportional.
+</p>
+
+<h3>Charles' Law</h3>
+
+<div class="formula">
+V<sub>1</sub>/T<sub>1</sub> =
+V<sub>2</sub>/T<sub>2</sub>
+</div>
+
+<p>
+Volume and temperature are directly proportional.
+</p>
+
+<h3>Gay-Lussac's Law</h3>
+
+<div class="formula">
+P<sub>1</sub>/T<sub>1</sub> =
+P<sub>2</sub>/T<sub>2</sub>
+</div>
+
+<p>
+Pressure and temperature are directly proportional.
+</p>
+
+<h3>Combined Gas Law</h3>
+
+<div class="formula">
+(P<sub>1</sub>V<sub>1</sub>)/T<sub>1</sub> =
+(P<sub>2</sub>V<sub>2</sub>)/T<sub>2</sub>
+</div>
+
+<p>
+Relates pressure, volume, and temperature simultaneously.
+</p>
+
+<h3>Ideal Gas Law</h3>
+
+<div class="formula">
+PV = nRT
+</div>
+
+<p>
+Relates pressure, volume, temperature, and moles.
+</p>
+
+</div>
+
+<div class="section">
+<h2>Key Takeaways</h2>
+
+<div class="key-box">
+
+<ul>
+<li>Gas laws are powerful engineering tools used in real-world systems.</li>
+<li>Compressed gases power industrial automation and pneumatic equipment.</li>
+<li>Medical oxygen systems and gas storage tanks require careful pressure management.</li>
+<li>Aircraft cabins, scuba systems, and airbags rely on predictable gas behavior.</li>
+<li>HVAC systems and data centers depend on airflow and temperature control.</li>
+<li>Semiconductor manufacturing requires precise environmental regulation.</li>
+<li>Natural gas pipelines use gas laws for transportation and pressure management.</li>
+<li>Engineering decisions must prioritize safety, reliability, and efficiency.</li>
+</ul>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Quick Concept Check</h2>
+
+<div class="activity">
+
+<p><strong>1.</strong> Which gas law is most commonly associated with air compressors?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">
+Show Answer
+</button>
+
+<div class="answer">
+
+Boyle's Law
+
+<div class="formula">
+P<sub>1</sub>V<sub>1</sub> =
+P<sub>2</sub>V<sub>2</sub>
+</div>
+
+Compressing volume increases pressure.
+
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>2.</strong> Why is airflow management important in data centers?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">
+Show Answer
+</button>
+
+<div class="answer">
+Proper airflow removes heat, prevents overheating, improves reliability, and reduces energy consumption.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>3.</strong> Which engineering field relies heavily on clean-room pressure control?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">
+Show Answer
+</button>
+
+<div class="answer">
+Semiconductor manufacturing and microelectronics production.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>4.</strong> Why are pressure relief valves installed in gas systems?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">
+Show Answer
+</button>
+
+<div class="answer">
+To prevent dangerous overpressure conditions that could damage equipment or endanger personnel.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>5.</strong> What is the most important equation for engineering gas calculations?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">
+Show Answer
+</button>
+
+<div class="answer">
+
+<div class="formula">
+PV = nRT
+</div>
+
+The Ideal Gas Law.
+
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Ready for the Chapter Assessment?</h2>
+
+<div class="key-box">
+
+You are ready for the Chapter 7 Assessment if you can:
+
+<ul>
+<li>Identify engineering applications of gas laws.</li>
+<li>Explain how compressed air systems operate.</li>
+<li>Analyze gas behavior in scuba systems and aircraft cabins.</li>
+<li>Describe the role of gases in HVAC systems and data centers.</li>
+<li>Apply the Ideal Gas Law to engineering situations.</li>
+<li>Evaluate safety considerations in gas storage and handling.</li>
+<li>Interpret engineering case studies involving gases.</li>
+<li>Connect gas laws to real-world engineering design decisions.</li>
+</ul>
+
+</div>
+
+</div> 
+
+  <div style="text-align:center;margin-top:30px;">
+	<button class="quiz-button" id="takeQuizBtn">
+
+Take the Assessment →
+
+</button>
+
+</div>
+
+<script>
+function toggleAnswer(btn){
+  const ans = btn.nextElementSibling;
+  ans.style.display = ans.style.display === "block" ? "none" : "block";
+}
+
+document.getElementById("takeQuizBtn").addEventListener("click",(e)=>{
+  const quizId = e.target.dataset.quiz;
+  window.parent.postMessage({
+    type:"openQuiz",
+    quiz:quizId
+  },"*");
+});
+</script>
+</body>
+</html>
