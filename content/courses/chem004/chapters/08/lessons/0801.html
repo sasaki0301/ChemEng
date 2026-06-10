@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>Solutions and Concentration Units</title>
+
+<style>
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:#fafafa;
+  color:#222;
+  padding:24px;
+  line-height:1.8;
+  font-size:20px;
+}
+
+h1{color:#136f63;}
+h2{color:#136f63;margin-top:1.4em;}
+h3{color:#174ea6;}
+
+.section{margin-bottom:30px;}
+
+.key-box{
+  background:#e8f7f5;
+  border-left:6px solid #136f63;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.example-box{
+  background:#fff;
+  border-left:5px solid #2b7de9;
+  padding:14px;
+  border-radius:8px;
+  margin:16px 0;
+}
+
+.visual-box{
+  background:#fff;
+  border-radius:12px;
+  padding:14px;
+  margin:16px 0;
+  border:1px solid #ddd;
+}
+
+.lesson-img{
+  width:100%;
+  max-width:720px;
+  display:block;
+  margin:0 auto;
+  border-radius:12px;
+}
+
+.caption{
+  text-align:center;
+  font-size:0.9em;
+  color:#555;
+}
+
+.activity{
+  background:#fff;
+  padding:14px;
+  border-radius:10px;
+  margin:14px 0;
+}
+
+.toggle-btn{
+  background:#136f63;
+  color:white;
+  border:none;
+  padding:6px 12px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.answer{
+  display:none;
+  margin-top:10px;
+  background:#eef3ff;
+  padding:10px;
+  border-radius:6px;
+}
+
+.formula{
+  font-size:22px;
+  font-weight:bold;
+  text-align:center;
+}
+
+.formula .equation-line{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:8px 0;
+}
+
+.formula .fraction{
+  display:inline-grid;
+  grid-template-rows:auto auto;
+  min-width:max-content;
+  text-align:center;
+  line-height:1.2;
+  vertical-align:middle;
+}
+
+.formula .fraction-top{
+  border-bottom:2px solid currentColor;
+  padding:0 10px 5px;
+}
+
+.formula .fraction-bottom{
+  padding:5px 10px 0;
+}
+
+.answer .formula{
+  font-size:20px;
+  margin:8px 0;
+}
+
+.answer ol{
+  margin-top:8px;
+}
+
+.quiz-button{
+  background:#136f63;
+  color:white;
+  padding:12px 22px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:16px 0;
+  background:#fff;
+}
+
+th,td{
+  border:1px solid #ddd;
+  padding:10px;
+}
+
+th{background:#e8f7f5;}
+
+iframe{
+  width:100%;
+  max-width:100%;
+}
+</style>
+</head>
+<body>
+
+<h1>Chapter 8: Solutions and Concentration</h1>
+<h2>Lesson 1: Solutions and Concentration Units</h2>
+
+<div class="key-box">
+<strong>Engineering Scenario</strong><br><br>
+
+A water treatment engineer must determine the concentration of chlorine needed to disinfect drinking water. A chemical engineer prepares cleaning solutions used in manufacturing. An environmental engineer monitors pollutant levels in rivers and reports contamination in parts per million (ppm). A semiconductor engineer prepares ultra-pure chemical solutions used in chip fabrication.
+
+In all these situations, engineers must understand how substances dissolve, how solution concentration is measured, and how concentration affects system performance.
+
+This lesson introduces solutions and the concentration units commonly used in engineering and industry.
+</div>
+
+<div class="section">
+<h2>Learning Objectives</h2>
+
+<ul>
+<li>Define solutions, solutes, and solvents.</li>
+<li>Identify different types of solutions.</li>
+<li>Explain solubility and factors affecting solubility.</li>
+<li>Calculate various concentration units.</li>
+<li>Interpret ppm and ppb values.</li>
+<li>Apply concentration concepts to engineering systems.</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>What is a Solution?</h2>
+
+<p>
+A solution is a homogeneous mixture composed of two or more substances uniformly distributed throughout the mixture.
+</p>
+
+<div class="key-box">
+
+A solution contains:
+
+<ul>
+<li><strong>Solute</strong> – the substance being dissolved</li>
+<li><strong>Solvent</strong> – the substance doing the dissolving</li>
+</ul>
+
+</div>
+
+<div class="example-box">
+
+Saltwater:
+
+<ul>
+<li>Salt = Solute</li>
+<li>Water = Solvent</li>
+</ul>
+
+</div>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Salt Dissolving in Water -->
+
+<img
+src=""
+alt="Salt Dissolving Uniformly in Water"
+class="lesson-img">
+
+<p class="caption">
+Figure 1. A solution forms when a solute dissolves uniformly within a solvent.
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Characteristics of Solutions</h2>
+
+<ul>
+<li>Uniform composition throughout.</li>
+<li>Components cannot be separated by simple filtration.</li>
+<li>Particles are extremely small.</li>
+<li>Appear as a single phase.</li>
+<li>Remain stable over time.</li>
+</ul>
+
+</div>
+
+<div class="section">
+<h2>Types of Solutions</h2>
+
+<table>
+<tr>
+<th>Solute</th>
+<th>Solvent</th>
+<th>Example</th>
+</tr>
+
+<tr>
+<td>Gas</td>
+<td>Gas</td>
+<td>Air</td>
+</tr>
+
+<tr>
+<td>Gas</td>
+<td>Liquid</td>
+<td>Carbonated beverages</td>
+</tr>
+
+<tr>
+<td>Liquid</td>
+<td>Liquid</td>
+<td>Alcohol in water</td>
+</tr>
+
+<tr>
+<td>Solid</td>
+<td>Liquid</td>
+<td>Saltwater</td>
+</tr>
+
+<tr>
+<td>Solid</td>
+<td>Solid</td>
+<td>Brass alloy</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="section">
+<h2>Engineering Applications of Solutions</h2>
+
+<p>
+Solutions play important roles in engineering processes:
+</p>
+
+<table>
+<tr>
+<th>Field</th>
+<th>Application</th>
+</tr>
+
+<tr>
+<td>Water Treatment</td>
+<td>Disinfection chemicals</td>
+</tr>
+
+<tr>
+<td>Chemical Manufacturing</td>
+<td>Reaction mixtures</td>
+</tr>
+
+<tr>
+<td>Food Engineering</td>
+<td>Beverage production</td>
+</tr>
+
+<tr>
+<td>Environmental Engineering</td>
+<td>Pollutant analysis</td>
+</tr>
+
+<tr>
+<td>Semiconductor Manufacturing</td>
+<td>Cleaning and etching solutions</td>
+</tr>
+
+<tr>
+<td>Pharmaceutical Engineering</td>
+<td>Drug preparation</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="section">
+<h2>Solubility</h2>
+
+<p>
+Solubility refers to the maximum amount of solute that can dissolve in a given amount of solvent at a specified temperature.
+</p>
+
+<div class="key-box">
+
+Solubility answers the question:
+
+<strong>"How much can dissolve?"</strong>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Saturated, Unsaturated, and Supersaturated Solutions</h2>
+
+<table>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td>Unsaturated</td>
+<td>Can dissolve more solute</td>
+</tr>
+
+<tr>
+<td>Saturated</td>
+<td>Contains maximum dissolved solute</td>
+</tr>
+
+<tr>
+<td>Supersaturated</td>
+<td>Contains more dissolved solute than normally possible</td>
+</tr>
+
+</table>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Saturated Unsaturated Supersaturated Solutions -->
+
+<img
+src=""
+alt="Comparison of Unsaturated Saturated and Supersaturated Solutions"
+class="lesson-img">
+
+<p class="caption">
+Figure 2. Different levels of dissolved solute produce different types of solutions.
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Factors Affecting Solubility</h2>
+
+<h3>1. Temperature</h3>
+
+<p>
+For most solids:
+</p>
+
+<ul>
+<li>Higher temperature → Higher solubility</li>
+</ul>
+
+<p>
+For gases:
+</p>
+
+<ul>
+<li>Higher temperature → Lower solubility</li>
+</ul>
+
+<h3>2. Pressure</h3>
+
+<p>
+Pressure primarily affects gases.
+</p>
+
+<p>
+Higher pressure increases gas solubility.
+</p>
+
+<div class="example-box">
+
+Carbonated drinks remain fizzy because carbon dioxide is dissolved under high pressure.
+
+</div>
+
+<h3>3. Nature of Solute and Solvent</h3>
+
+<div class="key-box">
+
+"Like dissolves like"
+
+<ul>
+<li>Polar dissolves polar</li>
+<li>Nonpolar dissolves nonpolar</li>
+</ul>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Concentration of Solutions</h2>
+
+<p>
+Concentration indicates the amount of solute present in a given amount of solution.
+</p>
+
+<div class="key-box">
+
+Concentration answers the question:
+
+<strong>"How much solute is present?"</strong>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Mass Percent (% w/w)</h2>
+
+<p>
+Mass percent expresses the mass of solute relative to the total mass of solution.
+</p>
+
+<div class="formula">
+% w/w =
+(Mass of Solute ÷ Mass of Solution)
+× 100
+</div>
+
+</div>
+
+<div class="section">
+<h2>Worked Example 1</h2>
+
+<div class="example-box">
+
+A solution contains 15 g NaCl dissolved in 85 g water.
+
+Determine the mass percent.
+
+</div>
+
+<p><strong>Given:</strong></p>
+
+Mass of solute = 15 g<br>
+Mass of solution = 15 + 85 = 100 g
+
+<p><strong>Step 1:</strong> Use the formula.</p>
+
+<div class="formula">
+% w/w =
+(Mass of Solute ÷ Mass of Solution)
+× 100
+</div>
+
+<p><strong>Step 2:</strong> Substitute values.</p>
+
+<div class="formula">
+(15 ÷ 100)
+× 100
+</div>
+
+<p><strong>Step 3:</strong> Solve.</p>
+
+<div class="formula">
+15%
+</div>
+
+<div class="key-box">
+Answer: 15% w/w
+</div>
+
+</div>
+
+<div class="section">
+<h2>Volume Percent (% v/v)</h2>
+
+<p>
+Volume percent is commonly used for liquid-liquid solutions.
+</p>
+
+<div class="formula">
+% v/v =
+(Volume of Solute ÷ Volume of Solution)
+× 100
+</div>
+
+</div>
+
+<div class="section">
+<h2>Worked Example 2</h2>
+
+<div class="example-box">
+
+A solution contains 25 mL ethanol in 200 mL solution.
+
+Determine the volume percent.
+
+</div>
+
+<p><strong>Step 1:</strong> Use the formula.</p>
+
+<div class="formula">
+% v/v =
+(25 ÷ 200)
+× 100
+</div>
+
+<p><strong>Step 2:</strong> Solve.</p>
+
+<div class="formula">
+12.5%
+</div>
+
+<div class="key-box">
+Answer: 12.5% v/v
+</div>
+
+</div>
+
+<div class="section">
+<h2>Mass-Volume Percent (% m/v)</h2>
+
+<p>
+Mass-volume percent is widely used in medicine and laboratory work.
+</p>
+
+<div class="formula">
+% m/v =
+(Mass of Solute ÷ Volume of Solution)
+× 100
+</div>
+
+</div>
+
+<div class="section">
+<h2>Worked Example 3</h2>
+
+<div class="example-box">
+
+A solution contains 8 g glucose in 200 mL solution.
+
+Determine the mass-volume percent.
+
+</div>
+
+<p><strong>Step 1:</strong> Use formula.</p>
+
+<div class="formula">
+% m/v =
+(8 ÷ 200)
+× 100
+</div>
+
+<p><strong>Step 2:</strong> Solve.</p>
+
+<div class="formula">
+4%
+</div>
+
+<div class="key-box">
+Answer: 4% m/v
+</div>
+
+</div>
+
+<div class="section">
+<h2>Parts Per Million (ppm)</h2>
+
+<p>
+Very dilute solutions are often expressed using parts per million.
+</p>
+
+<div class="formula">
+ppm =
+(Mass of Solute ÷ Mass of Solution)
+× 10<sup>6</sup>
+</div>
+
+<div class="key-box">
+
+1 ppm ≈ 1 mg/L (for dilute aqueous solutions)
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Engineering Application: Water Quality</h2>
+
+<p>
+Environmental engineers commonly report contaminants in ppm.
+</p>
+
+Examples:
+
+<ul>
+<li>Lead concentration</li>
+<li>Nitrate concentration</li>
+<li>Chlorine concentration</li>
+<li>Heavy metal contamination</li>
+</ul>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Water Treatment Laboratory -->
+
+<img
+src=""
+alt="Water Quality Testing Laboratory"
+class="lesson-img">
+
+<p class="caption">
+Figure 3. Water treatment engineers monitor contaminant concentrations using ppm.
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Worked Example 4</h2>
+
+<div class="example-box">
+
+A water sample contains 3 mg lead in 1 L water.
+
+Determine the concentration in ppm.
+
+</div>
+
+<p><strong>Step 1:</strong> Apply the ppm relationship.</p>
+
+<div class="formula">
+1 ppm ≈ 1 mg/L
+</div>
+
+<p><strong>Step 2:</strong> Calculate.</p>
+
+<div class="formula">
+3 mg/L = 3 ppm
+</div>
+
+<div class="key-box">
+Answer: 3 ppm
+</div>
+
+</div>
+
+<div class="section">
+<h2>Parts Per Billion (ppb)</h2>
+
+<p>
+Extremely low concentrations are expressed in parts per billion.
+</p>
+
+<div class="formula">
+ppb =
+(Mass of Solute ÷ Mass of Solution)
+× 10<sup>9</sup>
+</div>
+
+<div class="key-box">
+
+1 ppb ≈ 1 μg/L
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Engineering Application: Semiconductor Manufacturing</h2>
+
+<p>
+Microchip fabrication requires extraordinarily pure chemicals.
+</p>
+
+<p>
+Contaminants are often measured in ppb or even lower concentrations.
+</p>
+
+<div class="visual-box">
+
+<!-- IMAGE PLACEHOLDER: Semiconductor Chemical Processing -->
+
+<img
+src=""
+alt="Semiconductor Manufacturing Chemical Processing Facility"
+class="lesson-img">
+
+<p class="caption">
+Figure 4. Semiconductor production requires contamination levels measured in ppb.
+</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Comparison of Concentration Units</h2>
+
+<table>
+<tr>
+<th>Unit</th>
+<th>Common Use</th>
+</tr>
+
+<tr>
+<td>% w/w</td>
+<td>Industrial mixtures</td>
+</tr>
+
+<tr>
+<td>% v/v</td>
+<td>Liquid solutions</td>
+</tr>
+
+<tr>
+<td>% m/v</td>
+<td>Medical and laboratory solutions</td>
+</tr>
+
+<tr>
+<td>ppm</td>
+<td>Environmental monitoring</td>
+</tr>
+
+<tr>
+<td>ppb</td>
+<td>Ultra-trace contamination analysis</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="section">
+<h2>Check Your Understanding</h2>
+
+<div class="activity">
+
+<p><strong>1.</strong> Identify the solute and solvent in sugar water.</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+Solute = Sugar<br>
+Solvent = Water
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>2.</strong> What type of solution is air?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+Gas dissolved in gas.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>3.</strong> Calculate the mass percent of a solution containing 20 g salt in 180 g water.</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+
+<p><strong>Given:</strong></p>
+
+Mass of solute = 20 g<br>
+Mass of solution = 200 g
+
+<p><strong>Step 1:</strong></p>
+
+<div class="formula">
+% w/w =
+(20 ÷ 200)
+× 100
+</div>
+
+<p><strong>Step 2:</strong></p>
+
+<div class="formula">
+10%
+</div>
+
+<p><strong>Answer:</strong> 10% w/w</p>
+
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>4.</strong> Why is ppm commonly used in environmental engineering?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+Many pollutants exist in very low concentrations, making ppm a convenient unit.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>5.</strong> Calculate the volume percent of 40 mL ethanol in 500 mL solution.</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+
+<div class="formula">
+% v/v =
+(40 ÷ 500)
+× 100
+</div>
+
+<div class="formula">
+8%
+</div>
+
+<p><strong>Answer:</strong> 8% v/v</p>
+
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>6.</strong> What does the phrase "like dissolves like" mean?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+Polar substances tend to dissolve polar substances, while nonpolar substances dissolve nonpolar substances.
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>7.</strong> A sample contains 5 mg/L nitrate. Express the concentration in ppm.</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+
+<div class="formula">
+1 mg/L = 1 ppm
+</div>
+
+<div class="formula">
+5 ppm
+</div>
+
+<p><strong>Answer:</strong> 5 ppm</p>
+
+</div>
+
+</div>
+
+<div class="activity">
+
+<p><strong>8.</strong> Why are ppb measurements important in semiconductor manufacturing?</p>
+
+<button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+
+<div class="answer">
+Extremely small amounts of contamination can damage microelectronic components.
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+<h2>Lesson Summary</h2>
+
+<ul>
+<li>A solution is a homogeneous mixture of solute and solvent.</li>
+<li>Solubility refers to the maximum amount of solute that can dissolve.</li>
+<li>Temperature, pressure, and chemical nature affect solubility.</li>
+<li>Concentration describes the amount of solute present in a solution.</li>
+<li>Common concentration units include % w/w, % v/v, % m/v, ppm, and ppb.</li>
+<li>ppm and ppb are widely used in environmental and industrial monitoring.</li>
+<li>Solutions play critical roles in water treatment, manufacturing, medicine, and semiconductor production.</li>
+</ul>
+
+</div>
+
+<div style="text-align:center;margin-top:30px;">
+	<button class="quiz-button" id="takeQuizBtn">
+
+Take the Quiz →
+
+</button>
+
+</div>
+
+<script>
+function toggleAnswer(btn){
+  const ans = btn.nextElementSibling;
+  ans.style.display = ans.style.display === "block" ? "none" : "block";
+}
+
+document.getElementById("takeQuizBtn").addEventListener("click",(e)=>{
+  const quizId = e.target.dataset.quiz;
+  window.parent.postMessage({
+    type:"openQuiz",
+    quiz:quizId
+  },"*");
+});
+</script>
+</body>
+</html>
