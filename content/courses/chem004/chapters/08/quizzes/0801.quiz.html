@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Solutions and Concentration Units</title>
+
+<style>
+/* SAME STYLE AS TEMPLATE */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.quiz-container {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  width: 95%;
+  max-width: 850px;
+  text-align: center;
+}
+h2 { color: #136f63; margin-bottom: 25px; }
+.progress-wrapper { background:#e9f5ef; border-radius:8px; height:14px; width:100%; margin-bottom:25px; overflow:hidden;}
+.progress-bar { height:100%; background:linear-gradient(to right,#136f63,#2b7de9); width:0%; transition:width 0.4s;}
+.progress-text { text-align:right; font-size:0.95em; color:#174ea6; margin-bottom:10px; font-weight:600;}
+.question { font-size:1.3em; font-weight:600; color:#174ea6; margin-bottom:20px;}
+.choices { display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
+.choice { background:#e8ecf8; border:none; border-radius:10px; padding:14px; cursor:pointer; text-align:left;}
+.choice:hover { background:#d3dbf8; transform:translateY(-2px);}
+.choice.correct {background: #2b7de9;color: #fff;}
+.choice.incorrect {background: #e57373;color: #fff;}
+.explanation { background:#eef3ff; border-radius:10px; padding:14px; text-align:left; margin-bottom:20px; display:none;}
+.next-btn { background:#136f63; color:#fff; border:none; padding:12px 26px; border-radius:10px; cursor:pointer;}
+.result { font-size:1.4em; font-weight:bold; color:#174ea6;}
+.stars { font-size:2.5em; margin-top:10px;}
+.quiz-nav { margin-top:25px; display:flex; justify-content:center; gap:10px;}
+.quiz-btn { background:#e8ecf8; border:none; border-radius:8px; padding:10px 20px; cursor:pointer;}
+.quiz-btn.primary { background:#136f63; color:#fff;}
+@media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+
+.diagram-box {margin: 12px 0 20px; background: #f7fbff; border: 1px dashed #d8e9ff; padding: 10px; border-radius: 8px; }
+
+svg {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h2>Solutions and Concentration Units - Quiz</h2>
+
+<div class="progress-text" id="progressText"></div>
+<div class="progress-wrapper">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<div id="quizBox"></div>
+
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+
+</div>
+
+<script>
+
+const quizData = [
+
+{q:"What is a solution?",c:["A heterogeneous mixture with visible phases","A homogeneous mixture with uniformly distributed components","A pure substance containing only one compound","A suspension that settles over time"],a:1,e:"A solution is a homogeneous mixture in which the components are uniformly distributed."},
+
+{q:"In a saltwater solution, what is the solvent?",c:["Salt","Water","Sodium ions","Chloride ions"],a:1,e:"The solvent is the substance that dissolves the solute. In saltwater, water is the solvent."},
+
+{q:"Which component of a solution is present in the greater amount?",c:["Solute","Solvent","Precipitate","Suspended particle"],a:1,e:"The solvent is usually the component present in the greater amount."},
+
+{q:"Which of the following is an example of a gas dissolved in a liquid?",c:["Brass","Air","Carbonated beverage","Saltwater"],a:2,e:"Carbon dioxide dissolved in a liquid forms a gas-in-liquid solution."},
+
+{q:"Which characteristic is true for all solutions?",c:["Particles can be separated by filtration","They contain visible particles","They have uniform composition throughout","They always contain water"],a:2,e:"Solutions are homogeneous mixtures with uniform composition."},
+
+{q:"What does solubility describe?",c:["The speed at which a solute dissolves","The amount of solvent present","The maximum amount of solute that can dissolve under specified conditions","The concentration of a solution"],a:2,e:"Solubility is the maximum amount of solute that can dissolve in a given amount of solvent."},
+
+{q:"Which type of solution can still dissolve additional solute?",c:["Saturated","Supersaturated","Unsaturated","Concentrated"],a:2,e:"An unsaturated solution can still dissolve more solute."},
+
+{q:"A solution that contains the maximum amount of dissolved solute is called:",c:["Unsaturated","Supersaturated","Dilute","Saturated"],a:3,e:"A saturated solution contains the maximum amount of dissolved solute under given conditions."},
+
+{q:"Which factor generally increases the solubility of most solid solutes in liquids?",c:["Increasing temperature","Decreasing temperature","Reducing particle size only","Lowering pressure"],a:0,e:"Most solids become more soluble as temperature increases."},
+
+{q:"Which factor has the greatest effect on the solubility of gases in liquids?",c:["Color of the solvent","Pressure","Mass of the container","Density of the solute"],a:1,e:"Pressure strongly affects gas solubility in liquids."},
+
+{q:"What does the phrase 'like dissolves like' mean?",c:["Large particles dissolve faster","Polar substances tend to dissolve polar substances","All substances dissolve equally well","Solids dissolve only in liquids"],a:1,e:"Polar substances generally dissolve polar substances, while nonpolar substances dissolve nonpolar substances."},
+
+{q:"Which concentration unit expresses the mass of solute per mass of solution?",c:["% v/v","ppm","% w/w","% m/v"],a:2,e:"Mass percent (% w/w) compares solute mass to total solution mass."},
+
+{q:"A solution contains 12 g of solute in 100 g of solution. What is its mass percent?",c:["10%","12%","15%","20%"],a:1,e:"% w/w = (12/100) × 100 = 12%."},
+
+{q:"Which concentration unit is most appropriate for expressing the amount of ethanol in an alcoholic beverage?",c:["% v/v","ppm","ppb","% w/w only"],a:0,e:"Volume percent is commonly used for liquid-liquid mixtures such as alcoholic beverages."},
+
+{q:"A solution contains 30 mL of ethanol in 200 mL of solution. What is the volume percent?",c:["10%","12%","15%","18%"],a:2,e:"% v/v = (30/200) × 100 = 15%."},
+
+{q:"Which concentration unit expresses grams of solute per 100 mL of solution?",c:["% w/w","% v/v","% m/v","ppm"],a:2,e:"Mass-volume percent (% m/v) compares mass of solute to solution volume."},
+
+{q:"A solution contains 6 g of glucose in 150 mL of solution. What is the % m/v concentration?",c:["2%","3%","4%","5%"],a:2,e:"% m/v = (6/150) × 100 = 4%."},
+
+{q:"Which concentration unit is commonly used to report contaminants in drinking water?",c:["% v/v","% w/w","ppm","Molarity"],a:2,e:"Environmental engineers commonly use ppm for pollutant concentrations."},
+
+{q:"For dilute aqueous solutions, 1 ppm is approximately equal to:",c:["1 g/L","1 mg/L","1 μg/L","1 kg/L"],a:1,e:"For dilute water solutions, 1 ppm ≈ 1 mg/L."},
+
+{q:"A water sample contains 8 mg/L nitrate. What is its concentration in ppm?",c:["0.8 ppm","8 ppm","80 ppm","800 ppm"],a:1,e:"For dilute aqueous solutions, 8 mg/L = 8 ppm."},
+
+{q:"Which concentration unit is used for extremely small contaminant levels?",c:["% w/w","% v/v","ppm","ppb"],a:3,e:"Parts per billion (ppb) is used for very low concentrations."},
+
+{q:"For dilute aqueous solutions, 1 ppb is approximately equal to:",c:["1 mg/L","1 μg/L","1 g/L","1 ng/L"],a:1,e:"For dilute water solutions, 1 ppb ≈ 1 μg/L."},
+
+{q:"Why are ppb measurements important in semiconductor manufacturing?",c:["To monitor large-scale production volumes","To detect extremely small contamination levels","To measure equipment temperatures","To calculate electrical resistance"],a:1,e:"Even tiny amounts of contamination can damage semiconductor devices."},
+
+{q:"Which engineering field commonly uses ppm and ppb measurements for pollutant monitoring?",c:["Structural engineering","Environmental engineering","Mechanical design","Transportation engineering"],a:1,e:"Environmental engineers monitor contaminants using ppm and ppb."},
+
+{q:"A chemical engineer prepares a solution containing 25 g of solute and 225 g of solvent. What is the mass percent concentration?",c:["8%","10%","11.1%","12.5%"],a:1,e:"Mass of solution = 25 + 225 = 250 g. % w/w = (25/250) × 100 = 10%."}
+
+];
+
+let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+	${q.svg || ""}
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+
+  const q = quizData[current];
+  const buttons = document.querySelectorAll(".choice");
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+
+    if (idx === q.a) {
+      btn.classList.add("correct");
+    }
+
+    if (idx === i && idx !== q.a) {
+      btn.classList.add("incorrect");
+    }
+  });
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>
+  
