@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Molarity, Dilution, and Engineering Applications of Solutions</title>
+
+<style>
+/* SAME STYLE AS TEMPLATE */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f9f1, #f7faff);
+  margin: 0;
+  padding: 40px 20px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.quiz-container {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 50px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  width: 95%;
+  max-width: 850px;
+  text-align: center;
+}
+h2 { color: #136f63; margin-bottom: 25px; }
+.progress-wrapper { background:#e9f5ef; border-radius:8px; height:14px; width:100%; margin-bottom:25px; overflow:hidden;}
+.progress-bar { height:100%; background:linear-gradient(to right,#136f63,#2b7de9); width:0%; transition:width 0.4s;}
+.progress-text { text-align:right; font-size:0.95em; color:#174ea6; margin-bottom:10px; font-weight:600;}
+.question { font-size:1.3em; font-weight:600; color:#174ea6; margin-bottom:20px;}
+.choices { display:flex; flex-direction:column; gap:12px; margin-bottom:20px;}
+.choice { background:#e8ecf8; border:none; border-radius:10px; padding:14px; cursor:pointer; text-align:left;}
+.choice:hover { background:#d3dbf8; transform:translateY(-2px);}
+.choice.correct {background: #2b7de9;color: #fff;}
+.choice.incorrect {background: #e57373;color: #fff;}
+.explanation { background:#eef3ff; border-radius:10px; padding:14px; text-align:left; margin-bottom:20px; display:none;}
+.next-btn { background:#136f63; color:#fff; border:none; padding:12px 26px; border-radius:10px; cursor:pointer;}
+.result { font-size:1.4em; font-weight:bold; color:#174ea6;}
+.stars { font-size:2.5em; margin-top:10px;}
+.quiz-nav { margin-top:25px; display:flex; justify-content:center; gap:10px;}
+.quiz-btn { background:#e8ecf8; border:none; border-radius:8px; padding:10px 20px; cursor:pointer;}
+.quiz-btn.primary { background:#136f63; color:#fff;}
+@media (max-width: 600px) {
+    .quiz-container { padding: 25px; }
+    .question { font-size: 1.1em; }
+    .stars { font-size: 2em; }
+  }
+
+.diagram-box {margin: 12px 0 20px; background: #f7fbff; border: 1px dashed #d8e9ff; padding: 10px; border-radius: 8px; }
+
+svg {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h2>Molarity, Dilution, and Engineering Applications of Solutions - Quiz</h2>
+
+<div class="progress-text" id="progressText"></div>
+<div class="progress-wrapper">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<div id="quizBox"></div>
+
+<button id="nextBtn" class="next-btn" style="display:none;">Next</button>
+
+</div>
+
+<script>
+
+const quizData = [
+
+{q:"What does molarity measure?",c:["Mass of solute per kilogram of solvent","Moles of solute per liter of solution","Volume of solute per volume of solution","Mass of solute per volume of solvent"],a:1,e:"Molarity is defined as the number of moles of solute per liter of solution."},
+
+{q:"Which equation is used to calculate molarity?",c:["M = m/V","M = n/V","M = V/n","M = n×V"],a:1,e:"Molarity is calculated using M = n/V, where n is moles and V is volume in liters."},
+
+{q:"What is the standard unit of molarity?",c:["g/L","mol/kg","mol/L","g/mol"],a:2,e:"The standard unit of molarity is moles per liter (mol/L)."},
+
+{q:"A solution contains 3.0 mol of NaCl in 1.5 L of solution. What is its molarity?",c:["1.0 M","1.5 M","2.0 M","4.5 M"],a:2,e:"M = n/V = 3.0/1.5 = 2.0 M."},
+
+{q:"A solution contains 0.50 mol of solute in 250 mL of solution. What is its molarity?",c:["0.50 M","1.0 M","2.0 M","4.0 M"],a:2,e:"250 mL = 0.250 L. M = 0.50/0.250 = 2.0 M."},
+
+{q:"Which equation is used to determine the number of moles in a solution?",c:["n = M/V","n = MV","n = V/M","n = M+V"],a:1,e:"The number of moles is calculated using n = MV."},
+
+{q:"How many moles of solute are present in 2.0 L of a 1.5 M solution?",c:["0.75 mol","1.5 mol","2.0 mol","3.0 mol"],a:3,e:"n = MV = (1.5)(2.0) = 3.0 mol."},
+
+{q:"A laboratory contains 500 mL of a 2.0 M solution. How many moles of solute are present?",c:["0.50 mol","1.0 mol","1.5 mol","2.0 mol"],a:1,e:"500 mL = 0.500 L. n = MV = (2.0)(0.500) = 1.0 mol."},
+
+{q:"What is the first step when calculating molarity from a volume given in milliliters?",c:["Multiply by 1000","Convert the volume to liters","Convert moles to grams","Divide by molar mass"],a:1,e:"Molarity calculations require volume in liters."},
+
+{q:"Which statement best describes dilution?",c:["Increasing concentration by removing solvent","Reducing concentration by adding solvent","Removing solute from a solution","Converting a solution into a solid"],a:1,e:"Dilution lowers concentration by increasing the amount of solvent."},
+
+{q:"During a dilution process, which quantity remains constant?",c:["Volume","Concentration","Number of moles of solute","Density"],a:2,e:"Dilution changes concentration and volume, but the amount of solute remains constant."},
+
+{q:"Which equation is used for dilution calculations?",c:["PV = nRT","M = n/V","M₁V₁ = M₂V₂","n = MV"],a:2,e:"The dilution equation is M₁V₁ = M₂V₂."},
+
+{q:"A chemist has a 2.0 M stock solution and wants to prepare a less concentrated solution. Which process should be used?",c:["Evaporation","Filtration","Dilution","Crystallization"],a:2,e:"Dilution lowers concentration by adding solvent."},
+
+{q:"How many milliliters of 2.0 M HCl are needed to prepare 200 mL of 0.50 M HCl?",c:["25 mL","50 mL","75 mL","100 mL"],a:1,e:"M₁V₁ = M₂V₂. V₁=(0.50×200)/2.0=50 mL."},
+
+{q:"A laboratory needs 500 mL of 0.20 M NaCl from a 1.0 M stock solution. What volume of stock solution is required?",c:["50 mL","100 mL","150 mL","200 mL"],a:1,e:"V₁=(0.20×500)/1.0 = 100 mL."},
+
+{q:"Why is molarity widely used in engineering and chemistry laboratories?",c:["It directly relates amount of solute to solution volume","It eliminates the need for measurements","It depends only on the solvent used","It can only be applied to aqueous solutions"],a:0,e:"Molarity provides a convenient way to express concentration based on moles and volume."},
+
+{q:"Which engineering field frequently uses dilution calculations to prepare calibration standards for pollutant testing?",c:["Environmental engineering","Civil engineering","Structural engineering","Transportation engineering"],a:0,e:"Environmental laboratories often prepare standard solutions through dilution."},
+
+{q:"Why is precise solution preparation important in pharmaceutical manufacturing?",c:["To improve product color","To ensure safe and effective drug concentrations","To reduce production time only","To eliminate quality testing"],a:1,e:"Accurate concentrations are critical for patient safety and drug effectiveness."},
+
+{q:"Which application requires highly controlled chemical solution concentrations during microchip production?",c:["Bridge construction","Semiconductor manufacturing","Road design","Hydroelectric generation"],a:1,e:"Semiconductor fabrication requires extremely precise chemical solutions."},
+
+{q:"What is the primary purpose of preparing standard solutions in analytical laboratories?",c:["To reduce equipment size","To calibrate instruments and verify measurements","To increase solvent purity","To decrease sample volume"],a:1,e:"Standard solutions are used to calibrate analytical instruments and ensure accuracy."},
+
+{q:"A water treatment plant uses solution chemistry primarily to:",c:["Increase atmospheric pressure","Control chemical dosing and treatment processes","Reduce the amount of water processed","Eliminate filtration systems"],a:1,e:"Water treatment facilities rely on accurately prepared solutions for effective treatment."},
+
+{q:"How many moles of KNO₃ are present in 750 mL of a 0.80 M solution?",c:["0.40 mol","0.60 mol","0.75 mol","1.20 mol"],a:1,e:"750 mL = 0.750 L. n = MV = (0.80)(0.750) = 0.60 mol."},
+
+{q:"What volume of a 3.0 M stock solution is needed to prepare 300 mL of 1.0 M solution?",c:["50 mL","75 mL","100 mL","150 mL"],a:2,e:"V₁=(1.0×300)/3.0 = 100 mL."},
+
+{q:"A solution has a molarity of 4.0 M. What does this mean?",c:["4.0 grams of solute per liter","4.0 moles of solute per liter of solution","4.0 liters of solute per mole","4.0 moles of solvent per liter"],a:1,e:"A 4.0 M solution contains 4.0 moles of solute in every liter of solution."},
+
+{q:"Which statement best summarizes the importance of molarity and dilution in engineering applications?",c:["They are useful only in classroom laboratories","They allow engineers to prepare and control solution concentrations accurately","They eliminate the need for quality control","They are only important in pharmaceutical industries"],a:1,e:"Molarity and dilution are fundamental tools for preparing, controlling, and analyzing solutions in many engineering fields."}
+
+];
+
+let current = 0, score = 0, selected = null, showingExplanation = false;
+const quizBox = document.getElementById("quizBox");
+const nextBtn = document.getElementById("nextBtn");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+function showQuestion() {
+  const q = quizData[current];
+  updateProgress();
+  quizBox.innerHTML = `
+    <div class='question'>${q.q}</div>
+	${q.svg || ""}
+    <div class='choices'></div>
+    <div class='explanation' id='explanationBox'></div>
+  `;
+  const choicesContainer = quizBox.querySelector(".choices");
+  q.c.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.innerHTML = choice;
+    btn.addEventListener("click", () => selectChoice(i));
+    choicesContainer.appendChild(btn);
+  });
+  nextBtn.style.display = "none";
+  selected = null;
+  showingExplanation = false;
+}
+
+function selectChoice(i) {
+  if (showingExplanation) return;
+
+  const q = quizData[current];
+  const buttons = document.querySelectorAll(".choice");
+  const expBox = document.getElementById("explanationBox");
+  const correct = i === q.a;
+
+  if (correct) score++;
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+
+    if (idx === q.a) {
+      btn.classList.add("correct");
+    }
+
+    if (idx === i && idx !== q.a) {
+      btn.classList.add("incorrect");
+    }
+  });
+
+  expBox.innerHTML = `<strong>${correct ? "✅ Correct!" : "❌ Incorrect."}</strong><br>${q.e}`;
+  expBox.style.display = "block";
+  nextBtn.style.display = "inline-block";
+  showingExplanation = true;
+}
+
+nextBtn.addEventListener("click", () => {
+  current++;
+  if (current < quizData.length) showQuestion();
+  else showResult();
+});
+
+function updateProgress() {
+  const percent = (current / quizData.length) * 100;
+  progressBar.style.width = percent + "%";
+  progressText.textContent = `Question ${current + 1} of ${quizData.length}`;
+}
+
+function getStarRating(percent) {
+  if (percent === 100) return "⭐️⭐️⭐️";
+  else if (percent >= 90) return "⭐️⭐️☆";
+  else if (percent >= 80) return "⭐️☆☆";
+  else return "☆☆☆";
+}
+
+let resultSent = false;
+
+function showResult() {
+  progressBar.style.width = "100%";
+  progressText.textContent = "Quiz Completed";
+
+  const percent = Math.round((score / quizData.length) * 100);
+  const passed = percent >= 80;
+
+  quizBox.innerHTML = `
+    <div class='stars'>${getStarRating(percent)}</div>
+    <div class='result'>You scored ${score}/${quizData.length} (${percent}%)</div>
+    <p id="saveStatus" style="color:#174ea6;font-weight:600;margin-top:10px;">Saving progress...</p>
+    <div class='quiz-nav'>
+      <button class='quiz-btn' id='backBtn' disabled>⬅ Back</button>
+      <button class='quiz-btn' id='retryBtn' disabled>🔁 Retry</button>
+      <button class='quiz-btn primary' id='nextLessonBtn' disabled>➡ Next Lesson</button>
+    </div>
+  `;
+
+  nextBtn.style.display = "none";
+
+  if (!resultSent) {
+    resultSent = true;
+    window.parent.postMessage({ type: "quizResult", score: percent, passed }, "*");
+  }
+
+  setTimeout(() => {
+    const status = document.getElementById("saveStatus");
+    const backBtn = document.getElementById("backBtn");
+    const retryBtn = document.getElementById("retryBtn");
+    const nextLessonBtn = document.getElementById("nextLessonBtn");
+
+    if (status) status.textContent = passed
+      ? "Progress sent. You may proceed after it is saved."
+      : "Attempt recorded. Retake the quiz to unlock the next lesson.";
+
+    if (backBtn) backBtn.disabled = false;
+    if (retryBtn) retryBtn.disabled = false;
+    if (nextLessonBtn) nextLessonBtn.disabled = !passed;
+
+    if (retryBtn) retryBtn.addEventListener("click", retryQuiz);
+    if (backBtn) backBtn.addEventListener("click", () =>
+      window.parent.postMessage({ type: "quizBack" }, "*")
+    );
+    if (nextLessonBtn) nextLessonBtn.addEventListener("click", () => {
+      if (passed) window.parent.postMessage({ type: "quizNextLesson" }, "*");
+    });
+  }, 1200);
+}
+
+function retryQuiz() {
+  resultSent = false;
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+showQuestion();
+</script>
+</body>
+</html>
